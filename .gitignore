@@ -1,0 +1,30 @@
+# Local datasets and generated training/evaluation artifacts
+/DetectDataset/
+runs/
+
+# Model weights and exported inference models
+*.pt
+*.pth
+*.pth.tar
+*.onnx
+*.engine
+*.torchscript
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.cache
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Experiment trackers and temporary output
+wandb/
+*.log
+
+# Editor and operating-system metadata
+.vscode/
+.idea/
+.DS_Store

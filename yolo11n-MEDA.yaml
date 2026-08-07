@@ -1,0 +1,36 @@
+# YOLOv11n-MEDA Corrected Indexing
+nc: 1
+scales:
+  n: [0.50, 0.25, 1024]
+
+backbone:
+  - [-1, 1, Conv, [64, 3, 2]]    # 0 (Stride 2, Size 128)
+  - [-1, 1, Conv, [128, 3, 2]]   # 1 (Stride 4, Size 64) - P2
+  - [-1, 1, MSEF, [256, 1, False, 0.5]] # 2 (Stride 1, Size 64)
+  - [-1, 1, ADown, [256]]        # 3 (Stride 2, Size 32) - P3
+  - [-1, 1, MSEF, [512, 1, False, 0.5]] # 4 (Stride 1, Size 32)
+  - [-1, 1, ADown, [512]]        # 5 (Stride 2, Size 16) - P4
+  - [-1, 1, MSEF, [512, 1, False, 0.5]] # 6 (Stride 1, Size 16)
+  - [-1, 1, ADown, [1024]]       # 7 (Stride 2, Size 8)  - P5
+  - [-1, 1, MSEF, [1024, 1, False, 0.5]]# 8 (Stride 1, Size 8)
+  - [-1, 1, SPPF, [1024, 5]]     # 9 (Stride 1, Size 8)
+  - [-1, 1, C2PSA, [1024]]       # 10 (Stride 1, Size 8) - P5 Output
+
+head:
+  - [-1, 1, DySample, [2]]       # 11: P5(8) -> 16
+  - [[-1, 6], 1, Concat, [1]]    # 12: 11层(16) + 6层(P4:16) -> ✅ 匹配
+  - [-1, 1, MSEF, [512, 1, False, 0.5]] # 13: 输出 16
+
+  - [-1, 1, DySample, [2]]       # 14: 13层(16) -> 32
+  - [[-1, 4], 1, Concat, [1]]    # 15: 14层(32) + 4层(P3:32) -> ✅ 匹配
+  - [-1, 1, MSEF, [256, 1, False, 0.5]] # 16: 输出 32 (Detection Layer 1)
+
+  - [-1, 1, ADown, [256]]        # 17: 16层(32) -> 16
+  - [[-1, 13], 1, Concat, [1]]   # 18: 17层(16) + 13层(16)  -> ✅ 匹配
+  - [-1, 1, MSEF, [512, 1, False, 0.5]] # 19: 输出 16 (Detection Layer 2)
+
+  - [-1, 1, ADown, [512]]        # 20: 19层(16) -> 8
+  - [[-1, 10], 1, Concat, [1]]   # 21: 20层(8) + 10层(P5:8)  -> ✅ 匹配
+  - [-1, 1, MSEF, [1024, 1, False, 0.5]]# 22: 输出 8 (Detection Layer 3)
+
+  - [[16, 19, 22], 1, Detect, [nc]] # 23

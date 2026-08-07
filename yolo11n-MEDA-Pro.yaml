@@ -1,0 +1,49 @@
+# Ultralytics YOLO11n-MEDA-Pro (Small Object Optimized)
+# Parameters
+nc: 1 # 修改为你的类别数
+scales:
+  n: [0.50, 0.33, 1024]
+
+backend:
+# [from, repeats, module, args]
+backbone:
+  - [-1, 1, Conv, [64, 3, 2]] # 0-P1/2
+  - [-1, 1, Conv, [128, 3, 2]] # 1-P2/4
+  - [-1, 2, C3k2, [128, False, 0.25]] # 2
+  - [-1, 1, ADown, [256]] # 3-P3/8
+  - [-1, 2, C3k2, [256, False, 0.25]] # 4
+  - [-1, 1, ADown, [512]] # 5-P4/16
+  - [-1, 2, C3k2, [512, True]] # 6
+  - [-1, 1, ADown, [1024]] # 7-P5/32
+  - [-1, 2, C3k2, [1024, True]] # 8
+  - [-1, 1, SPPF, [1024, 5]] # 9
+
+head:
+  - [-1, 1, DySample, [2, 'lp']] # 10 (P4/16)
+  - [[-1, 6], 1, Concat, [1]] # 11
+  - [-1, 1, RepNCSPELAN4, [512, 512, 256]] # 12
+
+  - [-1, 1, DySample, [2, 'lp']] # 13 (P3/8)
+  - [[-1, 4], 1, Concat, [1]] # 14
+  - [-1, 1, RepNCSPELAN4, [256, 256, 128]] # 15 (P3 Detection Point)
+
+  - [-1, 1, DySample, [2, 'lp']] # 16 (P2/4)
+  - [[-1, 2], 1, Concat, [1]] # 17
+  - [-1, 1, MSEF, [128, False, 1, 0.5]]
+  #- [-1, 1, RepNCSPELAN4, [128, 128, 64]] # 18 (P2 Detection Point - Smallest)
+  - [-1, 1, EMA, [16]] # 19 注意力增强
+
+  - [-1, 1, ADown, [256]] # 20
+  - [[-1, 15], 1, Concat, [1]] # 21
+  - [-1, 1, RepNCSPELAN4, [256, 256, 128]] # 22
+
+  - [-1, 1, ADown, [512]] # 23
+  - [[-1, 12], 1, Concat, [1]] # 24
+  - [-1, 1, RepNCSPELAN4, [512, 512, 256]] # 25
+
+  - [-1, 1, ADown, [1024]] # 26
+  - [[-1, 9], 1, Concat, [1]] # 27
+  - [-1, 1, MSEF, [1024, False, 1, 0.5]]      # 28  ← 也可在 P5 层加入 MSEF
+  #- [-1, 1, RepNCSPELAN4, [1024, 1024, 512]] # 28 (P5 Detection Point)
+
+  - [[18, 22, 25, 28], 1, Detect, [nc]] # 29 (四个检测头: P2, P3, P4, P5)

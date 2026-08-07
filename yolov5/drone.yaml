@@ -1,0 +1,6 @@
+path: /home/b520/Downloads/yuheping/DetectDataset
+train: train/images
+val: valid/images
+test: test/images   # 可选
+nc: 1
+names: ['0']

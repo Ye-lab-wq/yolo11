@@ -1,0 +1,73 @@
+# YOLOv11n-MEDA Corrected Indexing
+nc: 1
+scales:
+  n: [0.50, 0.25, 1024]
+
+backbone:
+  - [-1, 1, Conv, [64, 3, 2]]    # 0 (Stride 2, Size 128)
+  - [-1, 1, Conv, [128, 3, 2]]   # 1 (Stride 4, Size 64) - P2
+  - [-1, 1, MSEF, [256, 1, 0.5]] # 2 (Stride 1, Size 64)
+  - [-1, 1, ADown, [256]]        # 3 (Stride 2, Size 32) - P3
+  - [-1, 1, MSEF, [512, 1, 0.5]] # 4 (Stride 1, Size 32)
+  - [-1, 1, ADown, [512]]        # 5 (Stride 2, Size 16) - P4
+  - [-1, 1, MSEF, [512, 1, 0.5]] # 6 (Stride 1, Size 16)
+  - [-1, 1, ADown, [1024]]       # 7 (Stride 2, Size 8)  - P5
+  - [-1, 1, MSEF, [1024, 1, 0.5]]# 8 (Stride 1, Size 8)
+  - [-1, 1, SPPF, [1024, 5]]     # 9 (Stride 1, Size 8)
+  - [-1, 1, C2PSA, [1024]]       # 10 (Stride 1, Size 8) - P5 Output
+
+head:
+  - [-1, 1, DySample, [2]]       # 11: P5(8) -> 16
+  - [[-1, 6], 1, Concat, [1]]    # 12: 11层(16) + 6层(P4:16) -> ✅ 匹配
+  - [-1, 1, MSEF, [512, 1, 0.5]] # 13: 输出 16
+
+  - [-1, 1, DySample, [2]]       # 14: 13层(16) -> 32
+  - [[-1, 4], 1, Concat, [1]]    # 15: 14层(32) + 4层(P3:32) -> ✅ 匹配
+  - [-1, 1, MSEF, [256, 1, 0.5]] # 16: 输出 32 (Detection Layer 1)
+
+  - [-1, 1, ADown, [256]]        # 17: 16层(32) -> 16
+  - [[-1, 13], 1, Concat, [1]]   # 18: 17层(16) + 13层(16)  -> ✅ 匹配
+  - [-1, 1, MSEF, [512, 1, 0.5]] # 19: 输出 16 (Detection Layer 2)
+
+  - [-1, 1, ADown, [512]]        # 20: 19层(16) -> 8
+  - [[-1, 10], 1, Concat, [1]]   # 21: 20层(8) + 10层(P5:8)  -> ✅ 匹配
+  - [-1, 1, MSEF, [1024, 1, 0.5]]# 22: 输出 8 (Detection Layer 3)
+
+  - [[16, 19, 22], 1, Detect, [nc]] # 23
+Concat shapes: [torch.Size([1, 256, 64, 64]), torch.Size([1, 128, 16, 16])]
+Traceback (most recent call last):
+  File "/home/b520/Downloads/yuheping/train_meda.py", line 15, in <module>
+    model = YOLO('yolo11n-MEDA.yaml')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/models/yolo/model.py", line 76, in __init__
+    super().__init__(model=model, task=task, verbose=verbose)
+  File "/home/b520/Downloads/yuheping/ultralytics/engine/model.py", line 142, in __init__
+    self._new(model, task=task, verbose=verbose)
+  File "/home/b520/Downloads/yuheping/ultralytics/engine/model.py", line 250, in _new
+    self.model = (model or self._smart_load("model"))(cfg_dict, verbose=verbose and RANK == -1)  # build model
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/tasks.py", line 407, in __init__
+    m.stride = torch.tensor([s / x.shape[-2] for x in _forward(torch.zeros(1, ch, s, s))])  # forward
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/tasks.py", line 403, in _forward
+    return self.forward(x)[0] if isinstance(m, (Segment, YOLOESegment, Pose, OBB)) else self.forward(x)
+                                                                                        ^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/tasks.py", line 139, in forward
+    return self.predict(x, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/tasks.py", line 156, in predict
+    return self._predict_once(x, profile, visualize, embed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/tasks.py", line 178, in _predict_once
+    x = m(x)  # run
+        ^^^^
+  File "/home/b520/anaconda3/envs/YHP/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/anaconda3/envs/YHP/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/b520/Downloads/yuheping/ultralytics/nn/modules/conv.py", line 642, in forward
+    return torch.cat(x, self.d)
+           ^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 64 but got size 16 for tensor number 1 in the list.

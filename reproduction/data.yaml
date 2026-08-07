@@ -1,0 +1,8 @@
+path: /home/b520/Downloads/yelin/yolo11/DetectDataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 1
+names:
+  0: drone

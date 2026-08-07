@@ -40,6 +40,8 @@ yolo11/
 └── reproduction/            # 本次最小复现材料与结果
 ```
 
+GitHub 仓库只跟踪 `DetectDataset/data.yaml`，不上传数据集图像与标签；`runs/` 中只跟踪各运行的 `args.yaml` 和 `results.csv`，不上传权重、图表及其他生成文件。完整数据集、权重和运行产物仍保留在当前服务器本地。
+
 ## 3. 固定环境
 
 所有正式复核统一使用服务器原项目的 YHP 环境：
@@ -61,6 +63,8 @@ cd /home/b520/Downloads/yelin/yolo11
 ## 4. 数据划分与职责
 
 复现使用 [reproduction/data.yaml](reproduction/data.yaml)：
+
+论文第三章称数据集包含 5000 张图像并按 8:1:1 划分，但当前作者材料中可读取到 5638 张图像，实际比例约为 75.13%:14.93%:9.93%。因此，下表描述的是当前交付数据，而不是对论文数量表述的转录；详细核对见 [reproduction/RESULTS.md](reproduction/RESULTS.md)。
 
 | 划分 | 图像 | 目标 | 用途 |
 |---|---:|---:|---|

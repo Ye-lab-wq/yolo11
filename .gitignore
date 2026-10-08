@@ -2,13 +2,55 @@
 /DetectDataset/*
 !/DetectDataset/data.yaml
 
-# Ignore generated run directories by default, but retain the author's
-# configuration and per-epoch metric history from the root runs archive.
-runs/
-!/runs/
+# Clean source-disjoint rebuild: keep the protocol/provenance, not image payloads.
+/DetectDataset_clean_v1/*
+!/DetectDataset_clean_v1/data.yaml
+!/DetectDataset_clean_v1/README.md
+!/DetectDataset_clean_v1/audit.json
+!/DetectDataset_clean_v1/split_manifest.csv
+!/DetectDataset_clean_v1/data_self_test.yaml
+!/DetectDataset_clean_v1/data_public_test.yaml
+!/DetectDataset_clean_v1/self_video_audit.json
+!/DetectDataset_clean_v1/self_video_manifest.csv
+
+# Frame-level, format-aware clean rebuild (publication candidate).
+/DetectDataset_clean_v2/*
+!/DetectDataset_clean_v2/data.yaml
+!/DetectDataset_clean_v2/data_public_test.yaml
+!/DetectDataset_clean_v2/data_self_test.yaml
+!/DetectDataset_clean_v2/README.md
+!/DetectDataset_clean_v2/audit.json
+!/DetectDataset_clean_v2/split_manifest.csv
+!/DetectDataset_clean_v2/self_video_audit.json
+!/DetectDataset_clean_v2/self_video_manifest.csv
+
+# Deterministic motion-blur derivative: retain protocol metadata, not 530 MB of
+# generated images or duplicated labels.
+/DetectDataset_clean_v2_motion_blur/*
+!/DetectDataset_clean_v2_motion_blur/README.md
+!/DetectDataset_clean_v2_motion_blur/metadata.json
+!/DetectDataset_clean_v2_motion_blur/manifest.csv
+!/DetectDataset_clean_v2_motion_blur/data_light.yaml
+!/DetectDataset_clean_v2_motion_blur/data_moderate.yaml
+!/DetectDataset_clean_v2_motion_blur/data_strong.yaml
+
+# Keep run configuration, frozen evaluation data, and compact diagnostic plots.
+# Checkpoints, training batches, cached labels, and logs stay local.
+/runs/**
 !/runs/**/
 !/runs/**/args.yaml
-!/runs/**/results.csv
+!/runs/**/*.csv
+!/runs/**/*.json
+!/runs/**/results.png
+!/runs/**/Box*curve.png
+!/runs/**/confusion_matrix*.png
+
+# An older Ultralytics example run lives inside the package tree.
+/ultralytics/models/yolo/detect/runs/**/train_batch*.jpg
+/ultralytics/models/yolo/detect/runs/**/val_batch*.jpg
+
+# Recovered ZIP duplicates of the model YAMLs already at the project root.
+/1/
 
 # Model weights and exported inference models
 *.pt

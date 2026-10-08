@@ -101,15 +101,22 @@ warmup_epochs: 3.0 # (float) warmup epochs (fractions allowed)
 warmup_momentum: 0.8 # (float) initial momentum during warmup
 warmup_bias_lr: 0.1 # (float) bias learning rate during warmup
 #######################
-box: 12.0  #7.5 # (float) box loss gain
+box: 7.5 # (float) box loss gain
 cls: 0.5 # (float) classification loss gain
 dfl: 1.5 # (float) distribution focal loss gain
+focaler_iou: False # (bool) use author Focaler-IoU instead of standard CIoU for detection box loss
+bbox_loss_mode: ciou # (str) ciou, author_focal, or focaler_ciou
+focaler_d: 0.0 # (float) lower interval bound for paper/official Focaler-IoU
+focaler_u: 0.95 # (float) upper interval bound for paper/official Focaler-IoU
 pose: 12.0 # (float) pose loss gain (pose tasks)
 kobj: 1.0 # (float) keypoint objectness loss gain (pose tasks)
 nbs: 64 # (int) nominal batch size used for loss normalization
 hsv_h: 0.015 # (float) HSV hue augmentation fraction
 hsv_s: 0.7 # (float) HSV saturation augmentation fraction
 hsv_v: 0.4 # (float) HSV value (brightness) augmentation fraction
+motion_blur: 0.0 # (float) directional motion-blur probability for detection training
+motion_blur_min: 3 # (int) minimum odd motion-blur kernel at model input resolution
+motion_blur_max: 7 # (int) maximum odd motion-blur kernel at model input resolution
 degrees: 0.0 # (float) rotation degrees (+/-)
 translate: 0.1 # (float) translation fraction (+/-)
 scale: 0.5 # (float) scale gain (+/-)

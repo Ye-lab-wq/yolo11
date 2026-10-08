@@ -58,6 +58,7 @@ from ultralytics.nn.modules import (
     RepC3,
     RepConv,
     RepNCSPELAN4,
+    RepNCSPELAN4Official,
     RepVGGDW,
     ResNetLayer,
     RTDETRDecoder,
@@ -93,7 +94,18 @@ from ultralytics.utils.torch_utils import (
     time_sync,
 )
 #新加
-from ultralytics.nn.modules import ADown, DySample, MSEF, ELSNHead, EMA, RepNCSPELAN4
+from ultralytics.nn.modules import (
+    ADown,
+    ADownResidual,
+    DySample,
+    DySampleOfficial,
+    MSEF,
+    MSEFPaper,
+    ELSNHead,
+    EMA,
+    RepNCSPELAN4,
+    RepNCSPELAN4Official,
+)
 
 
 class BaseModel(torch.nn.Module):
@@ -1539,10 +1551,14 @@ def parse_model(d, ch, verbose=True):
             C2f,
             C3k2,
             RepNCSPELAN4,
+            RepNCSPELAN4Official,
             ELAN1,
             ADown,
+            ADownResidual,
             MSEF,  # 添加这一行
+            MSEFPaper,
             DySample,
+            DySampleOfficial,
             EMA,  # ✨ 确保这里有 EMA
             AConv,
             SPPELAN,
@@ -1569,6 +1585,7 @@ def parse_model(d, ch, verbose=True):
             C3k2,
             #RepNCSPELAN4,
             MSEF,  # 添加这一行，这样解析器会自动把重复次数 n 插入到 args 中
+            MSEFPaper,
             C2fAttn,
             C3,
             C3TR,
@@ -1618,7 +1635,7 @@ def parse_model(d, ch, verbose=True):
         #         legacy = False
         ########  meda1-pro   #########
         if m in base_modules:
-            if m in (DySample, EMA):  # ✨ 特殊模块：不缩放通道，直接插入 c1
+            if m in (DySample, DySampleOfficial, EMA):  # modules preserve their input channels
                 c1 = ch[f]
                 c2 = c1
                 args = [c1, *args]
@@ -1627,9 +1644,15 @@ def parse_model(d, ch, verbose=True):
                 if c2 != nc:  # 缩放输出通道
                     c2 = make_divisible(min(c2, max_channels) * width, 8)
 
-                # 特殊处理 RepNCSPELAN4 的参数: [c1, c2, c3, c4, n]
-                if m is RepNCSPELAN4:
-                    args = [c1, c2, args[1], args[2], n]
+                # RepNCSPELAN4 has two additional channel arguments (c3/c4).
+                # A scaled model YAML must apply the width multiplier to all
+                # three channel dimensions, not only c2. Leaving c3/c4 at the
+                # unscaled template values silently turns the "n" model into a
+                # much wider network internally.
+                if m in (RepNCSPELAN4, RepNCSPELAN4Official):
+                    c3 = make_divisible(min(args[1], max_channels) * width, 8)
+                    c4 = make_divisible(min(args[2], max_channels) * width, 8)
+                    args = [c1, c2, c3, c4, n]
                     n = 1  # 处理完后将外层的 n 置 1，防止重复
                 else:
                     # 普通模块逻辑: [c1, c2, *其余参数]

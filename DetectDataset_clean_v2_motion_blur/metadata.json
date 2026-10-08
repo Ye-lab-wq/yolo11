@@ -1,0 +1,21 @@
+{
+  "source": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/test",
+  "source_split": "public test",
+  "images_per_severity": 625,
+  "severities_kernel_at_640": {
+    "light": 3,
+    "moderate": 7,
+    "strong": 11
+  },
+  "angles_degrees": [
+    0,
+    45,
+    90,
+    135
+  ],
+  "angle_assignment": "sha256(filename) modulo four; fixed across severity",
+  "native_kernel_rule": "nearest odd integer to kernel_at_640 * max(width,height) / 640",
+  "image_output": "lossless PNG at original dimensions",
+  "labels": "unchanged YOLO labels, hard-linked when possible",
+  "use": "secondary robustness benchmark only; not an independent dataset"
+}

@@ -1,0 +1,3 @@
+experiment,source,model_yaml,bbox_loss_mode,epochs_observed,best_epoch,precision,recall,map50,map50_95,training_time_s_at_end,parameters,best_weight
+yolo11n_ciou_s0_reference,noncomparable_200epoch_curve_first60,yolo11n.yaml,ciou,60,47,0.90475,0.83204,0.91753,0.52634,2090.4,2590035,
+full_meda_author_focal_s0_reference,noncomparable_200epoch_curve_first60,/home/b520/Downloads/yelin/yolo11/reproduction/dut/models/meda_pro_w025.yaml,author_focal,60,50,0.89663,0.87007,0.92796,0.53676,3988.66,2844348,

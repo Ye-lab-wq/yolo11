@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-09-15T05:34:38.720235+08:00",
+  "seed": 2,
+  "selection_split": "validation",
+  "selection_rule": "maximum validation mAP50:95 over the fixed 200-epoch run",
+  "best_epoch_zero_based": 157,
+  "precision": 0.92718,
+  "recall": 0.91533,
+  "map50": 0.94774,
+  "map50_95": 0.57262,
+  "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed2/weights/best.pt",
+  "test_access_before_freeze": "none"
+}

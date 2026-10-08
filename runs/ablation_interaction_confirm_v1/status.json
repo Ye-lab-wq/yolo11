@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "started_or_resumed_at": "2026-08-14T12:06:07.456049+08:00",
+  "current": null,
+  "completed": [
+    "cell_00_s1",
+    "cell_10_s1",
+    "cell_01_s1",
+    "cell_11_s1",
+    "cell_00_s2",
+    "cell_10_s2",
+    "cell_01_s2",
+    "cell_11_s2"
+  ],
+  "cell": "11",
+  "seed": 2,
+  "phase_started_at": "2026-08-14T14:02:00.034675+08:00",
+  "protocol_valid": true,
+  "completed_at": "2026-08-14T14:35:07.632958+08:00",
+  "analysis": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/interaction_analysis.json"
+}

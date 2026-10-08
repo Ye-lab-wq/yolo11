@@ -1,0 +1,39 @@
+{
+  "protocol": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/ADOWN_RESIDUAL_PROTOCOL.md",
+  "selection_split": "validation",
+  "test_access": "none",
+  "parent": {
+    "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_adown_ciou_s0",
+    "best_epoch_logged": 59,
+    "precision": 0.90594,
+    "recall": 0.89635,
+    "map50": 0.94099,
+    "map50_95": 0.55555,
+    "parameters": 2278148
+  },
+  "child": {
+    "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_adown_residual_v1/p2_adown_residual_deep_s0",
+    "best_epoch_logged": 59,
+    "precision": 0.90657,
+    "recall": 0.90655,
+    "map50": 0.93881,
+    "map50_95": 0.56483,
+    "parameters": 2311430,
+    "learned_tanh_alpha_by_layer": {
+      "5": -0.00749192526564002,
+      "7": -0.001114844810217619
+    }
+  },
+  "effects": {
+    "map50_95_delta_pp": 0.9280000000000066,
+    "map50_delta_pp": -0.21799999999999597,
+    "parameter_change_percent": 1.4609235220889971
+  },
+  "criteria": {
+    "map50_95_delta_at_least_0_30_pp": true,
+    "map50_drop_no_more_than_0_50_pp": true,
+    "parameter_growth_no_more_than_2_percent": true,
+    "completed_60_epochs": true
+  },
+  "retain_for_confirmation": true
+}

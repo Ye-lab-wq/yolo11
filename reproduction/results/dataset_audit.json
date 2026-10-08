@@ -1,0 +1,597 @@
+{
+  "dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset",
+  "network_input": 640,
+  "size_definition": {
+    "lt8x8": "both resized box width and height < 8 px",
+    "tiny": "sqrt(resized box area) < 16 px",
+    "small": "16 <= sqrt(area) < 32 px",
+    "medium": "32 <= sqrt(area) < 96 px",
+    "large": "sqrt(area) >= 96 px"
+  },
+  "splits": {
+    "train": {
+      "images": 4148,
+      "instances": 4405,
+      "background_images": 1,
+      "missing_label_files": 0,
+      "image_dimensions": {
+        "640x640": 4148
+      },
+      "instances_per_image": {
+        "min": 0.0,
+        "p05": 1.0,
+        "p25": 1.0,
+        "p50": 1.0,
+        "p75": 1.0,
+        "p95": 2.0,
+        "max": 7.0
+      },
+      "box_width_640": {
+        "min": 0.5,
+        "p05": 19.10000000000001,
+        "p25": 46.0,
+        "p50": 107.0,
+        "p75": 272.0,
+        "p95": 561.0,
+        "max": 640.0
+      },
+      "box_height_640": {
+        "min": 1.0,
+        "p05": 24.0,
+        "p25": 49.0,
+        "p50": 99.0,
+        "p75": 251.5,
+        "p95": 454.8000000000002,
+        "max": 640.0
+      },
+      "equivalent_side_640": {
+        "min": 0.7071067811865476,
+        "p05": 21.633307652783937,
+        "p25": 48.24417063231578,
+        "p50": 102.23502335305646,
+        "p75": 265.73483023495436,
+        "p95": 474.13531627527,
+        "max": 633.2388964679918
+      },
+      "relative_area": {
+        "min": 1.2207031250000002e-06,
+        "p05": 0.001142578125,
+        "p25": 0.0056823730468750005,
+        "p50": 0.025517578125000002,
+        "p75": 0.17239990234375002,
+        "p95": 0.548838623046875,
+        "max": 0.9789831542968751
+      },
+      "size_counts": {
+        "large": 2302,
+        "medium": 1487,
+        "tiny": 54,
+        "small": 562
+      },
+      "size_fractions": {
+        "large": 0.5225879682179342,
+        "medium": 0.3375709421112372,
+        "tiny": 0.012258796821793417,
+        "small": 0.1275822928490352
+      },
+      "lt8x8_count": 23,
+      "lt8x8_fraction": 0.005221339387060159,
+      "touches_border_1px_count": 131
+    },
+    "valid": {
+      "images": 826,
+      "instances": 977,
+      "background_images": 1,
+      "missing_label_files": 0,
+      "image_dimensions": {
+        "640x640": 826
+      },
+      "instances_per_image": {
+        "min": 0.0,
+        "p05": 1.0,
+        "p25": 1.0,
+        "p50": 1.0,
+        "p75": 1.0,
+        "p95": 2.0,
+        "max": 4.0
+      },
+      "box_width_640": {
+        "min": 8.5,
+        "p05": 17.900000000000002,
+        "p25": 26.0,
+        "p50": 38.0,
+        "p75": 95.5,
+        "p95": 335.19999999999976,
+        "max": 638.5
+      },
+      "box_height_640": {
+        "min": 13.5,
+        "p05": 19.5,
+        "p25": 28.5,
+        "p50": 42.0,
+        "p75": 95.0,
+        "p95": 320.7999999999994,
+        "max": 621.0
+      },
+      "equivalent_side_640": {
+        "min": 12.020815280171307,
+        "p05": 18.993419913222578,
+        "p25": 26.91653766738954,
+        "p50": 39.949968710876355,
+        "p75": 92.90317540321213,
+        "p95": 332.85489231841956,
+        "max": 605.4203085460547
+      },
+      "relative_area": {
+        "min": 0.00035278320312499996,
+        "p05": 0.0008807373046875,
+        "p25": 0.0017687988281250002,
+        "p50": 0.0038964843749999998,
+        "p75": 0.021071777343749997,
+        "p95": 0.2704926757812497,
+        "max": 0.8948577880859375
+      },
+      "size_counts": {
+        "medium": 372,
+        "large": 237,
+        "small": 354,
+        "tiny": 14
+      },
+      "size_fractions": {
+        "medium": 0.38075742067553736,
+        "large": 0.24257932446264074,
+        "small": 0.3623336745138178,
+        "tiny": 0.014329580348004094
+      },
+      "lt8x8_count": 0,
+      "lt8x8_fraction": 0.0,
+      "touches_border_1px_count": 12
+    },
+    "test": {
+      "images": 560,
+      "instances": 608,
+      "background_images": 0,
+      "missing_label_files": 0,
+      "image_dimensions": {
+        "640x640": 560
+      },
+      "instances_per_image": {
+        "min": 1.0,
+        "p05": 1.0,
+        "p25": 1.0,
+        "p50": 1.0,
+        "p75": 1.0,
+        "p95": 2.0,
+        "max": 3.0
+      },
+      "box_width_640": {
+        "min": 13.0,
+        "p05": 19.5,
+        "p25": 34.5,
+        "p50": 65.75,
+        "p75": 126.375,
+        "p95": 357.1249999999997,
+        "max": 637.0
+      },
+      "box_height_640": {
+        "min": 14.0,
+        "p05": 23.0,
+        "p25": 39.0,
+        "p50": 66.0,
+        "p75": 131.0,
+        "p95": 374.0249999999996,
+        "max": 634.5
+      },
+      "equivalent_side_640": {
+        "min": 13.490737563232042,
+        "p05": 22.188958617243326,
+        "p25": 36.619636255935596,
+        "p50": 65.23035821444589,
+        "p75": 131.28590866889064,
+        "p95": 351.820202888467,
+        "max": 597.6704777718237
+      },
+      "relative_area": {
+        "min": 0.00044433593749999996,
+        "p05": 0.0012020263671874997,
+        "p25": 0.00327392578125,
+        "p50": 0.01038818359375,
+        "p75": 0.042080688476562496,
+        "p95": 0.3021925048828124,
+        "max": 0.8720947265625001
+      },
+      "size_counts": {
+        "large": 225,
+        "medium": 264,
+        "small": 115,
+        "tiny": 4
+      },
+      "size_fractions": {
+        "large": 0.37006578947368424,
+        "medium": 0.4342105263157895,
+        "small": 0.18914473684210525,
+        "tiny": 0.006578947368421052
+      },
+      "lt8x8_count": 0,
+      "lt8x8_fraction": 0.0,
+      "touches_border_1px_count": 9
+    }
+  },
+  "invalid_label_records": [],
+  "exact_sha256_overlap": {
+    "unique_groups": 4310,
+    "cross_split_groups": 461,
+    "cross_split_images": 942,
+    "examples": {
+      "0025c535203b0a7b383c19cf2ada79ccf0131f46a00468bc24c489639b167dd8": {
+        "train": 1,
+        "valid": 1
+      },
+      "011bdb000dcf6025181cb873b240c0a0729bf438bb3d87b308b187384ebc23bf": {
+        "train": 1,
+        "valid": 1
+      },
+      "017fb8f295d02ff638c1266407f8c1c2838c935d36ce3db86db8f0ac7de7c060": {
+        "train": 1,
+        "test": 1
+      },
+      "01c2fab77fe181d7439f3ea4c11ee10f6b2db179608e109f6cef683fccc48ebf": {
+        "train": 1,
+        "valid": 1
+      },
+      "024f93cf76e1e405c84363b55523d76524dde75a586bd68a1634ef71bbdbe121": {
+        "train": 1,
+        "valid": 1
+      },
+      "025029996800d9ab71555ff6e44a92efcad0b52e51587a301bd59f204f131399": {
+        "train": 1,
+        "test": 1
+      },
+      "025074ca9350712ebed829c33c417b3b624e8190a33bab3d91a1abca8bb0b73d": {
+        "train": 1,
+        "test": 1
+      },
+      "03092b14024e01cc63affda02f92d74efe68202b1fcdd0be650d3bef7d6683d4": {
+        "valid": 1,
+        "test": 1
+      },
+      "03eaec22677fa33d9617215439c27174c9aaae754585d328d7193f2434c3e489": {
+        "train": 1,
+        "test": 1
+      },
+      "04c3aaf797778150b9192955b68996c19b9a8c2d2bcb30c7453be3fbe9cbd62c": {
+        "train": 1,
+        "test": 1
+      },
+      "04daae0789e195b16fd432c75c90f2ee5d0bf2b1f66eb5a08859ff7c0e62d180": {
+        "train": 1,
+        "valid": 1
+      },
+      "0506e32d36986bab056fdf98b2a4d9f2a8ba60534e0efe1f572438195d7d18d4": {
+        "train": 1,
+        "valid": 1,
+        "test": 1
+      },
+      "053a8a5a4572d41a54ab109cb70c418d28374551238db42f772c9870c75ac262": {
+        "train": 2,
+        "valid": 1
+      },
+      "05913a452a0d464a200686aaf814059152c1591e8374bb63e0b1a63fe7a76511": {
+        "train": 2,
+        "test": 1
+      },
+      "05a4573f217aed054b5d7425a329f5e60d88b150477d1fbe26e29f5275b1c158": {
+        "train": 1,
+        "test": 1
+      },
+      "05a6484957ee5f4eca5125c78aa42c91df179bf025ac47e1ee02ca6a8a05a103": {
+        "train": 1,
+        "test": 1
+      },
+      "05dc63eeec2dd227406b83671d1156870c25db9dbf9d86dc6195d333238a40b9": {
+        "train": 1,
+        "valid": 1
+      },
+      "06431d0f7f1306e53e03860ac4920c902400df434c670b5ca074f83e1cfc509e": {
+        "train": 1,
+        "test": 1
+      },
+      "0757919d7c0b07e09048d70035490d831ebb74d8c60d0d0fc6814baebcd2f015": {
+        "train": 1,
+        "test": 1
+      },
+      "076d4333ae35637a84b9348963f778f05fa1304659e5a0c59ca300fd0a7d471c": {
+        "train": 1,
+        "valid": 1
+      },
+      "07c253d8896ec62072c91062c258ffb07619582db9e4b22dc9d033501321d272": {
+        "train": 1,
+        "test": 1
+      },
+      "0877d5e4bd5ae4983d3a3b01b40027ac8fdb18b3161e73f98cf202637e10e993": {
+        "train": 1,
+        "valid": 1
+      },
+      "092e0a278981cf85d5feb8c764ac6d0fe28106833de0b3956a1bc1acb2680d5d": {
+        "train": 1,
+        "test": 1
+      },
+      "0a3780648946c35f6e8ca669f591a19046454932ee98843c102b1d167f922952": {
+        "train": 1,
+        "valid": 1
+      },
+      "0b138a811478dfacdcc027b8e115037fc86aacefaed309b2472d5fafa13ec09c": {
+        "train": 1,
+        "test": 1
+      }
+    }
+  },
+  "roboflow_base_name_overlap": {
+    "unique_groups": 4437,
+    "cross_split_groups": 444,
+    "cross_split_images": 888,
+    "examples": {
+      "116_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "146_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "155_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "167_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "190_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "227_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "228_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "23_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "263_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "267_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "298_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "299_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "32_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "339_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "42_JPEG": {
+        "train": 1,
+        "valid": 1
+      },
+      "50_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "56_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "59_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "60_JPEG": {
+        "train": 1,
+        "test": 1
+      },
+      "81_JPEG": {
+        "valid": 1,
+        "test": 1
+      },
+      "bangkok-thailand-november-14-2016-260nw-521776258_jpg": {
+        "train": 1,
+        "valid": 1
+      },
+      "big-narrows-poudre-canyon-co-260nw-397931353_jpg": {
+        "train": 1,
+        "valid": 1
+      },
+      "bologna-italy-may-3-2014-260nw-205130413_jpg": {
+        "train": 1,
+        "valid": 1
+      },
+      "chanburi-thailand-11-april-2017-260nw-625760876_jpg": {
+        "train": 1,
+        "valid": 1
+      },
+      "chanburi-thailand-11-april-2017-260nw-625760894_jpg": {
+        "train": 1,
+        "valid": 1
+      }
+    }
+  },
+  "exact_sha256_pairwise": {
+    "train_valid": {
+      "shared_sha256_groups": 215,
+      "train_images_with_match": 222,
+      "valid_images_with_match": 215,
+      "groups_with_identical_labels": 213,
+      "groups_with_different_labels": 2
+    },
+    "train_test": {
+      "shared_sha256_groups": 199,
+      "train_images_with_match": 211,
+      "test_images_with_match": 199,
+      "groups_with_identical_labels": 198,
+      "groups_with_different_labels": 1
+    },
+    "valid_test": {
+      "shared_sha256_groups": 49,
+      "valid_images_with_match": 49,
+      "test_images_with_match": 49,
+      "groups_with_identical_labels": 49,
+      "groups_with_different_labels": 0
+    }
+  },
+  "within_split_exact_duplicates": {
+    "train": {
+      "images": 4148,
+      "unique_sha256": 3403,
+      "duplicate_copies": 745
+    },
+    "valid": {
+      "images": 826,
+      "unique_sha256": 826,
+      "duplicate_copies": 0
+    },
+    "test": {
+      "images": 560,
+      "unique_sha256": 543,
+      "duplicate_copies": 17
+    }
+  },
+  "train_exact_repeat_size_audit": {
+    "images_in_repeated_sha_groups": {
+      "images": 1458,
+      "instances": 1479,
+      "size_counts": {
+        "large": 855,
+        "medium": 486,
+        "small": 126,
+        "tiny": 12
+      },
+      "tiny_small_fraction": 0.09330628803245436
+    },
+    "images_with_unique_sha": {
+      "images": 2690,
+      "instances": 2926,
+      "size_counts": {
+        "large": 1447,
+        "medium": 1001,
+        "tiny": 42,
+        "small": 436
+      },
+      "tiny_small_fraction": 0.16336295283663704
+    }
+  },
+  "train_roboflow_base_repeat_size_audit": {
+    "images_in_repeated_base_groups": {
+      "images": 1272,
+      "instances": 1274,
+      "size_counts": {
+        "large": 744,
+        "medium": 404,
+        "small": 114,
+        "tiny": 12
+      },
+      "tiny_small_fraction": 0.0989010989010989
+    },
+    "images_with_unique_base": {
+      "images": 2876,
+      "instances": 3131,
+      "size_counts": {
+        "large": 1558,
+        "medium": 1083,
+        "tiny": 42,
+        "small": 448
+      },
+      "tiny_small_fraction": 0.1564995209198339
+    }
+  },
+  "video_frame_audit": {
+    "matched_video_images": 3462,
+    "unique_videos": 6,
+    "videos_in_multiple_splits": 6,
+    "video_split_counts": {
+      "video14": {
+        "train": 251,
+        "valid": 49,
+        "test": 56
+      },
+      "video15": {
+        "train": 249,
+        "valid": 39,
+        "test": 46
+      },
+      "video16": {
+        "train": 527,
+        "valid": 90,
+        "test": 97
+      },
+      "video17": {
+        "train": 536,
+        "valid": 88,
+        "test": 104
+      },
+      "video18": {
+        "train": 593,
+        "valid": 435,
+        "test": 134
+      },
+      "video19": {
+        "train": 118,
+        "valid": 16,
+        "test": 34
+      }
+    },
+    "train_proximity": {
+      "valid": {
+        "frames_with_train_video_source": 717,
+        "min_frame_distance": 0,
+        "median_min_frame_distance": 2.0,
+        "distance_le_1": 348,
+        "distance_le_5": 388,
+        "distance_le_10": 417
+      },
+      "test": {
+        "frames_with_train_video_source": 471,
+        "min_frame_distance": 0,
+        "median_min_frame_distance": 1.0,
+        "distance_le_1": 450,
+        "distance_le_5": 470,
+        "distance_le_10": 470
+      }
+    }
+  },
+  "overall": {
+    "images": 5534,
+    "instances": 5990,
+    "size_counts": {
+      "large": 2764,
+      "medium": 2123,
+      "tiny": 72,
+      "small": 1031
+    },
+    "size_fractions": {
+      "large": 0.46143572621035056,
+      "medium": 0.35442404006677797,
+      "tiny": 0.012020033388981636,
+      "small": 0.1721202003338898
+    },
+    "lt8x8_count": 23,
+    "lt8x8_fraction": 0.0038397328881469117
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "valid": true,
+  "expected_epochs": 60,
+  "allowed_argument_differences": [
+    "bbox_loss_mode",
+    "focaler_iou",
+    "model",
+    "name",
+    "resume",
+    "save_dir"
+  ],
+  "training_data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "selection_split": "val",
+  "test_access_during_screen": "none in run arguments or screen script",
+  "runs": [
+    {
+      "run": "full_meda_author_focal_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/full_meda_author_focal_s0/weights/last.pt",
+      "bbox_loss_mode": "author_focal",
+      "best_pt_sha256": "d9cba9556a91e0544bc449648824432770c39f6f6d88bfd3e8a6162fa7a9ed67",
+      "last_pt_sha256": "638310a13d8e8d28e9d21a7cf8b7ebdc490cf29bc5f39ef869dc1a9d4c90abb8"
+    },
+    {
+      "run": "p2_adown_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_adown.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "a0ed4fa9f95690847b858df028040bc6d4546de6d35e7ff68f989cdb66713538",
+      "last_pt_sha256": "c884685f6e868e05ae48b8ad523b89e34005ab46aca519f293473a240e65fd49"
+    },
+    {
+      "run": "p2_author_bilinear_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_author_bilinear.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "00a3a657659655210ce85916beb1f69533c250d7a8fee60a56a6cb55f07b48d2",
+      "last_pt_sha256": "511b36a63c02eed268202b1fd4deb6cf98a993d398ba9651542091a9e34afca1"
+    },
+    {
+      "run": "p2_msef_author_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_author.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "1b9c917bad6e87f045285d3065a0a944258ba4e25074e00d374f685c5a9ebf6e",
+      "last_pt_sha256": "d29416a65e967fc0aa1df62e1f9370da60238b7ad7bd4f01ddb8a0d5fd3440a1"
+    },
+    {
+      "run": "p2_msef_author_ema_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_author_ema.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "c8d61b9efa43f39446033330fc06ba9b9490605e2d72f67aea7302c2507a65e1",
+      "last_pt_sha256": "15b9ca18b744105dca1a8b90a8cd974a8aa4d37ef2c8bafe77630593d13cde9b"
+    },
+    {
+      "run": "p2_msef_paper_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "298ca29839cfad710daa776ac724b266ac13c750493ebc01fe94d568ec81141f",
+      "last_pt_sha256": "f63e1688d9ecb39f19c631154091bceb85ad7405d333a9abafd55ddd042c2472"
+    },
+    {
+      "run": "p2_nearest_author_focal_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_nearest.yaml",
+      "bbox_loss_mode": "author_focal",
+      "best_pt_sha256": "65a09b89e47c11b01085e719627dc831e85cd0bf9cac7a4d0ccd8b86d6931de2",
+      "last_pt_sha256": "97cbf900202c490e17156a878241e1b046e3515f56142ead806e2669564c137c"
+    },
+    {
+      "run": "p2_nearest_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_nearest.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "913e1c3d196690f9c7ddf8b5ae1868cac540d30802b400377d6e44048f8b6889",
+      "last_pt_sha256": "52d01981fcde07f730bb9c550b421024c4c5b2d9bb8c91db113f2014e408ddc7"
+    },
+    {
+      "run": "p2_nearest_focaler_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_nearest.yaml",
+      "bbox_loss_mode": "focaler_ciou",
+      "best_pt_sha256": "621b4fa7a368d9073c76172fd597c0416918ab6a9b79bfae576b06adcf28881a",
+      "last_pt_sha256": "f9504cf68e160883decd84a115a5e8a5957fbb081b29389345ebe0c48552d3b9"
+    },
+    {
+      "run": "p2_no_c2psa_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_no_c2psa.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "248ca5e495477da2b2dd93dcf0c922e18a25ef7d364dd13dfe0872e8e91060ed",
+      "last_pt_sha256": "faec0788a8feb85932b03ec51cea9f65944498fec2dce5d355b78a2dd4a8127a"
+    },
+    {
+      "run": "p2_official_dysample_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_official_dysample.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "99076f956e361df78f477927a39cd85ac38e4dac10892c2dd5ebe09dd277099e",
+      "last_pt_sha256": "5139f3413c4d4b90806671181ea8180e044c16ac07f1a0560d11eb3e37c05b17"
+    },
+    {
+      "run": "p2_p5_msef_author_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_p5_msef_author.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "4a4961cfddd0ce72e6db2bdaa05a06196fa9c3be81ec8b78940f67b8d834b708",
+      "last_pt_sha256": "1654841acf9bb4c43882ff8220ce09a6a7ddde13e7e810fc21b85aa348f60b1b"
+    },
+    {
+      "run": "p2_rep_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_rep.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "59b1b2e1b2a666b625355eb85ac84fe789843b3b28960826ae7726c5f6957f63",
+      "last_pt_sha256": "7e3b759ea3a05bf3239bed77a4cb3b455d82688aa8272773f90c78d7c2d501b3"
+    },
+    {
+      "run": "p2_rep_official_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_rep_official.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "4d78116cf565d8d46377d2d644c02b66fc3d6b5748231e2169e9bdba92c7f379",
+      "last_pt_sha256": "43032b4f94f3d3485263f4f506d1bde0504b8dc33c482deb38c0064692c35514"
+    },
+    {
+      "run": "yolo11n_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {},
+      "model": "/home/b520/Downloads/yelin/yolo11/ultralytics/cfg/models/11/yolo11.yaml",
+      "bbox_loss_mode": "ciou",
+      "best_pt_sha256": "0a011071602c5af535f91f001a3ac177310c0a8e05af6a8fe7456cdddaa9b23b",
+      "last_pt_sha256": "d3e1a5f6db886c7515a458536153a05cbe0e7a22376efd52bc29942cd63f46c8"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "manual_image_selection": false,
+  "display_confidence": 0.25,
+  "nms_iou": 0.7,
+  "selection_rule": "rank images by paired P2+MSEF+blur-training minus standard-P2 TP50/TP75/IoU change; require same direction in >=2 of 3 seeds before one-seed fallback",
+  "blurred_examples": [
+    {
+      "condition": "strong",
+      "stem": "video18_1323__755ee959bb862866",
+      "gain_votes": 3,
+      "loss_votes": 0,
+      "mean_delta_tp50": 1.6666666666666667,
+      "mean_delta_tp75": 2.0,
+      "mean_delta_iou": 0.6741409514651288,
+      "gain_score": 42.00747428479846,
+      "loss_score": -12.007474284798462
+    },
+    {
+      "condition": "strong",
+      "stem": "video18_1289__2b05850d8325650e",
+      "gain_votes": 3,
+      "loss_votes": 0,
+      "mean_delta_tp50": 2.0,
+      "mean_delta_tp75": 1.3333333333333333,
+      "mean_delta_iou": 0.7488105824727538,
+      "gain_score": 40.08214391580609,
+      "loss_score": -10.082143915806085
+    },
+    {
+      "condition": "moderate",
+      "stem": "video18_1290__b5a84a89f1293a01",
+      "gain_votes": 3,
+      "loss_votes": 0,
+      "mean_delta_tp50": 1.0,
+      "mean_delta_tp75": 1.3333333333333333,
+      "mean_delta_iou": 0.40379126023905637,
+      "gain_score": 37.73712459357239,
+      "loss_score": -7.737124593572389
+    },
+    {
+      "condition": "moderate",
+      "stem": "video16_453__c10eeab514799863",
+      "gain_votes": 3,
+      "loss_votes": 0,
+      "mean_delta_tp50": 1.0,
+      "mean_delta_tp75": 1.0,
+      "mean_delta_iou": 0.8491157720065581,
+      "gain_score": 36.849115772006556,
+      "loss_score": -6.849115772006558
+    }
+  ],
+  "clear_regression_examples": [
+    {
+      "condition": "clean",
+      "stem": "foto01683__58e0794fb90efead",
+      "gain_votes": 0,
+      "loss_votes": 3,
+      "mean_delta_tp50": 0.0,
+      "mean_delta_tp75": -1.0,
+      "mean_delta_iou": -0.18389871286046858,
+      "gain_score": -4.1838987128604685,
+      "loss_score": 34.18389871286047
+    },
+    {
+      "condition": "clean",
+      "stem": "video18_1861__46f57083a0968527",
+      "gain_votes": 0,
+      "loss_votes": 3,
+      "mean_delta_tp50": 0.0,
+      "mean_delta_tp75": -1.0,
+      "mean_delta_iou": -0.05997641187692856,
+      "gain_score": -4.059976411876929,
+      "loss_score": 34.05997641187693
+    },
+    {
+      "condition": "clean",
+      "stem": "video18_1100__49c5902287959a0d",
+      "gain_votes": 0,
+      "loss_votes": 3,
+      "mean_delta_tp50": 0.0,
+      "mean_delta_tp75": -1.0,
+      "mean_delta_iou": -0.05411712832533836,
+      "gain_score": -4.0541171283253385,
+      "loss_score": 34.05411712832534
+    },
+    {
+      "condition": "clean",
+      "stem": "video18_2526__1eaf0574a9d55c3c",
+      "gain_votes": 0,
+      "loss_votes": 3,
+      "mean_delta_tp50": -1.0,
+      "mean_delta_tp75": 0.0,
+      "mean_delta_iou": -0.21028157014496873,
+      "gain_score": -2.2102815701449687,
+      "loss_score": 32.21028157014497
+    }
+  ],
+  "population_summary": {
+    "clean": {
+      "images": 625,
+      "consensus_gain_images": 35,
+      "consensus_loss_images": 34,
+      "any_seed_gain_images": 138,
+      "any_seed_loss_images": 148,
+      "metric_consensus": {
+        "tp50": {
+          "gain_images": 4,
+          "loss_images": 3
+        },
+        "tp75": {
+          "gain_images": 29,
+          "loss_images": 29
+        },
+        "mean_best_iou": {
+          "gain_images": 279,
+          "loss_images": 331
+        }
+      }
+    },
+    "moderate": {
+      "images": 625,
+      "consensus_gain_images": 75,
+      "consensus_loss_images": 24,
+      "any_seed_gain_images": 213,
+      "any_seed_loss_images": 122,
+      "metric_consensus": {
+        "tp50": {
+          "gain_images": 36,
+          "loss_images": 3
+        },
+        "tp75": {
+          "gain_images": 43,
+          "loss_images": 19
+        },
+        "mean_best_iou": {
+          "gain_images": 408,
+          "loss_images": 201
+        }
+      }
+    },
+    "strong": {
+      "images": 625,
+      "consensus_gain_images": 147,
+      "consensus_loss_images": 20,
+      "any_seed_gain_images": 286,
+      "any_seed_loss_images": 120,
+      "metric_consensus": {
+        "tp50": {
+          "gain_images": 93,
+          "loss_images": 5
+        },
+        "tp75": {
+          "gain_images": 84,
+          "loss_images": 15
+        },
+        "mean_best_iou": {
+          "gain_images": 434,
+          "loss_images": 163
+        }
+      }
+    }
+  }
+}

@@ -129,9 +129,24 @@ def focaler_iou_loss(pred, target, gamma=1.5, reduction='mean'):
 class BboxLoss(nn.Module):
     """Criterion class for computing training losses for bounding boxes."""
 
-    def __init__(self, reg_max: int = 16):
-        """Initialize the BboxLoss module with regularization maximum and DFL settings."""
+    def __init__(
+        self,
+        reg_max: int = 16,
+        focaler_iou: bool = False,
+        mode: str = "ciou",
+        focaler_d: float = 0.0,
+        focaler_u: float = 0.95,
+    ):
+        """Initialize an explicitly selected box loss while preserving old checkpoints/configs."""
         super().__init__()
+        self.mode = "author_focal" if focaler_iou and mode == "ciou" else mode
+        if self.mode not in {"ciou", "author_focal", "focaler_ciou"}:
+            raise ValueError(f"unsupported bbox loss mode: {self.mode}")
+        if not 0.0 <= focaler_d < focaler_u <= 1.0:
+            raise ValueError("Focaler-IoU requires 0 <= d < u <= 1")
+        self.focaler_iou = self.mode == "author_focal"  # backwards-compatible audit field
+        self.focaler_d = focaler_d
+        self.focaler_u = focaler_u
         self.dfl_loss = DFLoss(reg_max) if reg_max > 1 else None
 
     def forward(
@@ -146,19 +161,21 @@ class BboxLoss(nn.Module):
     ) -> tuple[torch.Tensor, torch.Tensor]:
         """Compute IoU and DFL losses for bounding boxes."""
         weight = target_scores.sum(-1)[fg_mask].unsqueeze(-1)
-        #原版
-        #iou = bbox_iou(pred_bboxes[fg_mask], target_bboxes[fg_mask], xywh=False, CIoU=True)
-        # 原版
-        # loss_iou = ((1.0 - iou) * weight).sum() / target_scores_sum
-    #    Focaler-IOU
-    # Focaler-IOU 計算損失
-       #计算 Focaler-IoU 损失（权重 weight 可以保留，如果需要）
-        focal_loss = focaler_iou_loss(pred_bboxes[fg_mask], target_bboxes[fg_mask], gamma=1.5, reduction='none')
-        loss_iou = (focal_loss * weight).sum() / target_scores_sum
-    #W-IOU
-    #     iou = bbox_wiou(pred_bboxes[fg_mask], target_bboxes[fg_mask])
-    #     loss_iou = (1.0 - iou).mean()
-
+        if self.mode == "author_focal":
+            focal_loss = focaler_iou_loss(
+                pred_bboxes[fg_mask], target_bboxes[fg_mask], gamma=1.5, reduction="none"
+            )
+            loss_iou = (focal_loss * weight).sum() / target_scores_sum
+        elif self.mode == "focaler_ciou":
+            pred_fg, target_fg = pred_bboxes[fg_mask], target_bboxes[fg_mask]
+            iou = bbox_iou(pred_fg, target_fg, xywh=False, CIoU=False)
+            ciou = bbox_iou(pred_fg, target_fg, xywh=False, CIoU=True)
+            focaler_iou = ((iou - self.focaler_d) / (self.focaler_u - self.focaler_d)).clamp(0, 1)
+            focaler_ciou = (1.0 - ciou) + iou - focaler_iou
+            loss_iou = (focaler_ciou * weight).sum() / target_scores_sum
+        else:
+            iou = bbox_iou(pred_bboxes[fg_mask], target_bboxes[fg_mask], xywh=False, CIoU=True)
+            loss_iou = ((1.0 - iou) * weight).sum() / target_scores_sum
 
         # DFL loss
         if self.dfl_loss:
@@ -243,7 +260,13 @@ class v8DetectionLoss:
         self.use_dfl = m.reg_max > 1
 
         self.assigner = TaskAlignedAssigner(topk=tal_topk, num_classes=self.nc, alpha=0.5, beta=6.0)
-        self.bbox_loss = BboxLoss(m.reg_max).to(device)
+        self.bbox_loss = BboxLoss(
+            m.reg_max,
+            focaler_iou=bool(getattr(h, "focaler_iou", False)),
+            mode=str(getattr(h, "bbox_loss_mode", "ciou")),
+            focaler_d=float(getattr(h, "focaler_d", 0.0)),
+            focaler_u=float(getattr(h, "focaler_u", 0.95)),
+        ).to(device)
         self.proj = torch.arange(m.reg_max, dtype=torch.float, device=device)
 
     def preprocess(self, targets: torch.Tensor, batch_size: int, scale_tensor: torch.Tensor) -> torch.Tensor:

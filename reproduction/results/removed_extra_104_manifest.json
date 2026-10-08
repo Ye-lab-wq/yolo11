@@ -1,0 +1,845 @@
+{
+  "removed_at": "2026-08-10T18:53:19.245167+08:00",
+  "reason": "Remove 104 files absent from recovered DroneDetection_v2.zip; preserve original 5534-file export.",
+  "images_removed": 104,
+  "labels_removed": 104,
+  "split_counts": {
+    "train": 88,
+    "valid": 16,
+    "test": 0
+  },
+  "records": [
+    {
+      "image": "DetectDataset/train/images/1frame_000000.jpg",
+      "label": "DetectDataset/train/labels/1frame_000000.txt",
+      "image_sha256": "4f83bbc3cbd3c1e83bbb7507118777c98d8dfa235d596d458e99ff0bf34292ef",
+      "label_sha256": "f40dd9b3d5445247a19784e0702769311a86ee12c6881e2cdb1097bbc2376a30",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000000.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000000.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000001.jpg",
+      "label": "DetectDataset/train/labels/1frame_000001.txt",
+      "image_sha256": "f2d27380882c402305f99a5fb7f7803523d2e34966558f5c625d4b75784e206c",
+      "label_sha256": "fe2ec99eba02ccc071553c31e9a37efd5ef70ca90f462631dcef6460fe44dc93",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000001.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000001.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000002.jpg",
+      "label": "DetectDataset/train/labels/1frame_000002.txt",
+      "image_sha256": "fef4204680e3ea706f3b24e825ef6d06e9bfa517a632def20b1a492746b67ff8",
+      "label_sha256": "0b0885a30bda5a7c6739df612dc7f6645c8d5ca43e30c1a75199564ba2693b38",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000002.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000002.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000003.jpg",
+      "label": "DetectDataset/train/labels/1frame_000003.txt",
+      "image_sha256": "bb87dce59155e0fdc5ad9dee220e6ff5b8bce072782ffca02ce4da03ca4adf96",
+      "label_sha256": "302fa617f1e0dca8b86441fdf90352fa17de620bb75f9fad5e0a5a925cdf3bff",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000003.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000003.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000004.jpg",
+      "label": "DetectDataset/train/labels/1frame_000004.txt",
+      "image_sha256": "9104a6c7acd0e2b07809fbecb26fa9b13344975340e44cf002ac287ab95b2e05",
+      "label_sha256": "1334d389f4c354aa05f963fbf18b66a268489d2475c742197813d32932e1d06e",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000004.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000004.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000005.jpg",
+      "label": "DetectDataset/train/labels/1frame_000005.txt",
+      "image_sha256": "d3a1a36de3e44d1948c3022dbd1c3ae3dd9c7c38b790ff7d832ab9cba72776e0",
+      "label_sha256": "c1e65e72149adcc632c46c6abca647262d24170eb5c055b02c8870b980e4cd57",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000005.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000005.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000006.jpg",
+      "label": "DetectDataset/train/labels/1frame_000006.txt",
+      "image_sha256": "98ba4784d50dd57147f34d7273ab31bb6468685369caf16f768402eccd65db10",
+      "label_sha256": "13d07e63e1f0c1684439db58c0299e446dd8473217584313709038eb799d82e0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000006.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000006.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000007.jpg",
+      "label": "DetectDataset/train/labels/1frame_000007.txt",
+      "image_sha256": "e9d4241fb5ed393178aa38580bb5e251304e9db39798142a646796b4fb5e77cf",
+      "label_sha256": "0d13ed61be32594bb33191733492d086fe9dbf4bbd29afe49922448f72c27e19",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000007.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000007.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000008.jpg",
+      "label": "DetectDataset/train/labels/1frame_000008.txt",
+      "image_sha256": "f42e2e2a5e1a6c04d7f45164e7e88882d7e3228ed75b6e01fd419f83cf70f1e2",
+      "label_sha256": "40d4067f9d7d83b0359585d3d49bf8b85f220c11dab484cd4d8268da22dbdc57",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000008.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000008.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000009.jpg",
+      "label": "DetectDataset/train/labels/1frame_000009.txt",
+      "image_sha256": "034251c369a06b605d1aa76e0dd1adef7a78a8cbdcf59e56683b5cad054d280a",
+      "label_sha256": "ba39b2d92058498a2f1b571d19213b1aefa58af2dce7efe3182d20dac509e3d4",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000009.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000009.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000010.jpg",
+      "label": "DetectDataset/train/labels/1frame_000010.txt",
+      "image_sha256": "4ec9a25067ff8f9cf0ee39cc6766c4cdbbeeef4978dd208cb72d162cef7bbde4",
+      "label_sha256": "f3be8adaee7bb4198fc2ce5d1213a25fbf11ec6383f2e02cc9560b79d519d59b",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000010.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000010.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000011.jpg",
+      "label": "DetectDataset/train/labels/1frame_000011.txt",
+      "image_sha256": "9eed3deb8a48f65fb9602547cff0e507e6f20580a6b01d515f26dc35e915efe5",
+      "label_sha256": "01f79e6a923deed7afe9349ad34cf69f285ce5b5e924301a5088d964e769737c",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000011.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000011.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000012.jpg",
+      "label": "DetectDataset/train/labels/1frame_000012.txt",
+      "image_sha256": "60fa908016a3a690ef961cd94aa942323a5eaec0709758e90f8d90f5dba5c3c8",
+      "label_sha256": "ff7a784bb40852936b4bcb0b6da100ca06fafdb0c39d1a47ff8645fab07a80a0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000012.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000012.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000013.jpg",
+      "label": "DetectDataset/train/labels/1frame_000013.txt",
+      "image_sha256": "e2dc22aa36c94bdaec3e2a16ee5a2c9d609f3c2e67c7f83eb273e534f9524342",
+      "label_sha256": "2df42c4e7344f683afca1764e3b1a3d2b1b85c2b58c804b786da5d4c2ce50753",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000013.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000013.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000014.jpg",
+      "label": "DetectDataset/train/labels/1frame_000014.txt",
+      "image_sha256": "4a4b8ece533f49972ef56db3b552941bb165d4f884775ae7b50ab5a118df05d4",
+      "label_sha256": "8c8fa858a2fb5c0d7a88fde42ecd16ffb0ee92b68ee48abce9f5832561e6e226",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000014.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000014.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000015.jpg",
+      "label": "DetectDataset/train/labels/1frame_000015.txt",
+      "image_sha256": "500515e96a6d02e02f921d7851aee24cda49bc03bd8c192cb9e718206519cdb8",
+      "label_sha256": "69a5d2de429e48ab2143d761c16d88c5598ca22fe974da450232579553580d50",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000015.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000015.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000016.jpg",
+      "label": "DetectDataset/train/labels/1frame_000016.txt",
+      "image_sha256": "726cdb343454b1a55110365eb871d7b4b2912bbf7647f39053c9fe2a99e60fdc",
+      "label_sha256": "e754cfdde7fb5b731b9aa270d247081e2b157ab3c27d892ced3ceff67e4ffbe4",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000016.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000016.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000017.jpg",
+      "label": "DetectDataset/train/labels/1frame_000017.txt",
+      "image_sha256": "b1547602b72b0270cca4aba090d8790b2206454d013a91134d2c769afda4d935",
+      "label_sha256": "ad853387cc4e0b441cccd77f7f1ceb4a2c3282f4142e607f0ad990a400135cfd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000017.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000017.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000018.jpg",
+      "label": "DetectDataset/train/labels/1frame_000018.txt",
+      "image_sha256": "844a47de56fca9afb4a5dc370993144a30b70d212d6b410ec21af2d186d472ba",
+      "label_sha256": "f2a519fa674820815ae101dc9bf89b423870cc673a1a7fdd5482d80bead02db1",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000018.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000018.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000019.jpg",
+      "label": "DetectDataset/train/labels/1frame_000019.txt",
+      "image_sha256": "f8ae0db1f9301262e947146fd75619bb3109cd51b31325a6cfe89f17b60af5ca",
+      "label_sha256": "4b0eb8d3486cecbb25517c8c7eb98667245d2b0bb3eb9b03d05d1455b0ddafb0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000019.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000019.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000020.jpg",
+      "label": "DetectDataset/train/labels/1frame_000020.txt",
+      "image_sha256": "b720174a624e5f963a1f2951b58fb5b64fe191e195d7e3243596f9347219a538",
+      "label_sha256": "589dd3aec4d75fca7f6c0b49ba9e153f6272b9b3b62b5873b4e71b039453e7db",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000020.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000020.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000021.jpg",
+      "label": "DetectDataset/train/labels/1frame_000021.txt",
+      "image_sha256": "f0e1b182e56d73435bd77923d20e9232da739a72b4d0f8a6090a46b92696d2d5",
+      "label_sha256": "1333e24d3455b36112ae33480c1b4f283c016f3002ce5a1d6fe2aa4e6b327c04",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000021.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000021.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000022.jpg",
+      "label": "DetectDataset/train/labels/1frame_000022.txt",
+      "image_sha256": "72df4811db75402a56968f257d1f8a03ae43d916e0518c2d50e8613491b3248c",
+      "label_sha256": "392f33fcacaeed29746e0ad96eda0bb7eeb46aa4e5e212a2bb6966ca7ec81e88",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000022.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000022.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000023.jpg",
+      "label": "DetectDataset/train/labels/1frame_000023.txt",
+      "image_sha256": "76190843dd24c0f83f7aa03185e39b04e4b1ca07303cb8b1d340fcdd48f485b7",
+      "label_sha256": "e766b9aab57fa9eab17957aaded5d611b1589fce7424afd28a3921e529f3f95e",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000023.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000023.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000024.jpg",
+      "label": "DetectDataset/train/labels/1frame_000024.txt",
+      "image_sha256": "68a97b4248e93a25024c7d015a3f0da40254441579ad93079f2648b79377f65f",
+      "label_sha256": "27f4faeb6bfd0fdfb80e7e38636f69a0e361aa01fcc45c1f98611880b40d6f5a",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000024.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000024.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000025.jpg",
+      "label": "DetectDataset/train/labels/1frame_000025.txt",
+      "image_sha256": "ff7a0040b5903a3db78fc81e0fb64e7b6296aabaf9b4da946a69aee0326b4c97",
+      "label_sha256": "6b596cba84bbaff5f73858c073862acc7d6580815e3c56104d1ee851bdf0e726",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000025.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000025.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000026.jpg",
+      "label": "DetectDataset/train/labels/1frame_000026.txt",
+      "image_sha256": "79e26a2f8b2585b567643115149f0b39c5e16fd15b1b3a763d3dc4ee3cc04181",
+      "label_sha256": "ec838d61d482e29fca17c6167f2c78e1c5a62779c4b4f5c82be4fbf1ce52eb33",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000026.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000026.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000027.jpg",
+      "label": "DetectDataset/train/labels/1frame_000027.txt",
+      "image_sha256": "74e8e4912800c435b60f0dfe00195982e0a86d2cb8073462dfcd7cdb791e8d91",
+      "label_sha256": "e0703b90073afddc080ae07e8154af0cef7fb4988c3a99351bbebf6e5155569d",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000027.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000027.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000028.jpg",
+      "label": "DetectDataset/train/labels/1frame_000028.txt",
+      "image_sha256": "dc238a1087a1920b1463d209fde38d6379eb2437c2effa5ca92b31f674d140ac",
+      "label_sha256": "7d770c23b42e3667ecf97b8c5e38adeaa71a6f4e9ddbb2ff76ad767f1ad116bd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000028.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000028.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000029.jpg",
+      "label": "DetectDataset/train/labels/1frame_000029.txt",
+      "image_sha256": "7bb2bd922bbedfcf2f0b63ca3247bb3861e2224fcb20f29d537036ef40563e56",
+      "label_sha256": "1db2ded6aaf476849c25ba9c391d8de5c585e7a6b20c63c35004717088ae8aab",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000029.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000029.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000030.jpg",
+      "label": "DetectDataset/train/labels/1frame_000030.txt",
+      "image_sha256": "3e27930e1e79fec977537a53fc5a333888e5376b3183a6a2c564160499b86034",
+      "label_sha256": "bd51190536f020f24e3c7428da8ca3127ae6ae0371f8d5e1f3f8026192a26023",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000030.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000030.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000031.jpg",
+      "label": "DetectDataset/train/labels/1frame_000031.txt",
+      "image_sha256": "963f487bc35322e3723955361480d86cf4b2acb6781d0e7193f3aa674890402c",
+      "label_sha256": "d3c5d16369fe9034b5991c339980c72d7b6c915be7c4660cd0b6317a4fdea618",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000031.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000031.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000032.jpg",
+      "label": "DetectDataset/train/labels/1frame_000032.txt",
+      "image_sha256": "a5c0646fcdd2d100b73f843b0f648f15db62a29934963f915bde53ed6f32e93c",
+      "label_sha256": "f30647aebe5c02b95cf0ed23e33f67977e837f44b8485a5706b8c6876a7205e7",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000032.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000032.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000033.jpg",
+      "label": "DetectDataset/train/labels/1frame_000033.txt",
+      "image_sha256": "eb65102cc48a64d0f1624787fc92dd87e81436cc207fc7366ba73e8b2524e758",
+      "label_sha256": "34f17dfd87ddc30b56cdad605cc3f7e8e4763da31027430a6470c856f709775f",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000033.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000033.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000034.jpg",
+      "label": "DetectDataset/train/labels/1frame_000034.txt",
+      "image_sha256": "1859dffa1ea74fa2904d13caca5d59826ba519b53ba5b21e3d01095dea46f284",
+      "label_sha256": "ad01d1e2b6db38b9ee3ccc79b7c321e9f78ca4ee6affad5351dee07cb3401365",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000034.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000034.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/1frame_000035.jpg",
+      "label": "DetectDataset/train/labels/1frame_000035.txt",
+      "image_sha256": "b4209c306829b784a1c083f9b74126570706bb0405d88dac30b5f24a18d08cc4",
+      "label_sha256": "bdea86cd7a19eb6b305a36897359896fc4cda493c46da49c5022c26a5c4e604a",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/1frame_000035.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/1frame_000035.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_10_00-20.jpeg",
+      "label": "DetectDataset/train/labels/aa_10_00-20.txt",
+      "image_sha256": "e7ba4a57acf9a8e29dd177a5fecb0e9ccaf163d2f4101e51d33976bb88a40ffe",
+      "label_sha256": "088e7b3e3649c8e28b002ad324934d12201388ba68802fbba946a0b13816aaaf",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_10_00-20.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_10_00-20.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_11_00-23.jpeg",
+      "label": "DetectDataset/train/labels/aa_11_00-23.txt",
+      "image_sha256": "9b230e94dbc64df57b479311a875e6127bb20ff212289a20691c11c29d838c8d",
+      "label_sha256": "88cf0255a62eb1f726fcf8c67389e6e1ecc19de0f3038122b2ae5fc3b9f2cffd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_11_00-23.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_11_00-23.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_12_00-24.jpeg",
+      "label": "DetectDataset/train/labels/aa_12_00-24.txt",
+      "image_sha256": "6d9aa355150556c6db8a2aa388752fc97b885ab5605fc819147c2fad6099772d",
+      "label_sha256": "7ce2596ca6d0515ff6b6d2843d603a1a22e72533b443ec6535a1577a4f9030f5",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_12_00-24.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_12_00-24.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_13_00-26.jpeg",
+      "label": "DetectDataset/train/labels/aa_13_00-26.txt",
+      "image_sha256": "e98ac3ab93a8054e75e4ba8b78f01df7e80211832b09a6610b4a3241c2f47c26",
+      "label_sha256": "41af8fe03906485c0ddc35dd6c07c8633107d7817177751e9a44aae518128d28",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_13_00-26.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_13_00-26.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_14_00-29.jpeg",
+      "label": "DetectDataset/train/labels/aa_14_00-29.txt",
+      "image_sha256": "94c3a913509b6312f432c5270335440cdd7f7ac994021836a0337c89fb3713ca",
+      "label_sha256": "37186fb7e54609922f709e734cc93dade944d4554afd20b7aff589713a7b1578",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_14_00-29.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_14_00-29.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_15_00-30.jpeg",
+      "label": "DetectDataset/train/labels/aa_15_00-30.txt",
+      "image_sha256": "d747dcaf342d70fdb26b46fe99d896848f2a2e4754aae31558a7f18f3cdca9d6",
+      "label_sha256": "3ebab0914a5f8897c4f74c851babbca129c3cfd5789522f0c5a0a662e7d9d206",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_15_00-30.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_15_00-30.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_16_00-31.jpeg",
+      "label": "DetectDataset/train/labels/aa_16_00-31.txt",
+      "image_sha256": "43d289539e365bb32d620856a2fd7eeaa6ef0769879a28abe2e59b6da73ea9e3",
+      "label_sha256": "ac44106d18065665b27f11770644627de16e59409019584aadc0848bd42df233",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_16_00-31.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_16_00-31.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_17_00-36.jpeg",
+      "label": "DetectDataset/train/labels/aa_17_00-36.txt",
+      "image_sha256": "150e60967b0fc442c330511483ffa20d9169cffe6621e06c6874654b89e168f4",
+      "label_sha256": "28ca3ebbfe13b83ffb06a1374329dd8a352d25fee38d4d6e4f34efd925d56147",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_17_00-36.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_17_00-36.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_18_00-40.jpeg",
+      "label": "DetectDataset/train/labels/aa_18_00-40.txt",
+      "image_sha256": "c04b5431f4c076329018ee7b1a6414cc16b52fb8c433053f0f6c2a5b1b52e7b0",
+      "label_sha256": "9c1d07c0bf1c43730b6b340d2ea0464b334a61eb29f05eb18148c2fa07db159b",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_18_00-40.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_18_00-40.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_19_00-42.jpeg",
+      "label": "DetectDataset/train/labels/aa_19_00-42.txt",
+      "image_sha256": "9cf2dc43a82257944b56918a3f6708fec14d132d19c7a690e10611e8417f63a8",
+      "label_sha256": "e2b9b961febc7727f57aac920facfcf77056e55f98bceedcfea96480cf5b1b5c",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_19_00-42.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_19_00-42.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_1_00-00.jpeg",
+      "label": "DetectDataset/train/labels/aa_1_00-00.txt",
+      "image_sha256": "e250a08ec028016b98e52cf70818b76a33ad69e83d2bff08555ab3d213481994",
+      "label_sha256": "5eb307c24bc008cb9a28997623601a807afe54282ecb4da1f3638065820f4953",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_1_00-00.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_1_00-00.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_20_00-43.jpeg",
+      "label": "DetectDataset/train/labels/aa_20_00-43.txt",
+      "image_sha256": "ab20f6e7db4cb5ea44811bf603087cbb4eee251328c5c70830dad59f8be4ae58",
+      "label_sha256": "6280265de18acaf2a073ed8de27c0ba4f295888f06113bed7afcfffa1b07e012",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_20_00-43.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_20_00-43.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_21_00-43.jpeg",
+      "label": "DetectDataset/train/labels/aa_21_00-43.txt",
+      "image_sha256": "bead6f5edb4fd52ef081f7e0e345c493eb513eacc1d8a799ea1033267a525971",
+      "label_sha256": "842c8b621b6358b5ba9f130e012aaeb737628f7bb43b012d37cd800286e1a5aa",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_21_00-43.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_21_00-43.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_22_00-00.jpeg",
+      "label": "DetectDataset/train/labels/aa_22_00-00.txt",
+      "image_sha256": "07ec8b6c77d56f604878050a99efcd2fb81c5272b1b003cfc0b4012950514946",
+      "label_sha256": "d5c034607be559477d6147feb0cf7575c9de9b2b74ed74e7c97279c808086095",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_22_00-00.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_22_00-00.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_23_00-01.jpeg",
+      "label": "DetectDataset/train/labels/aa_23_00-01.txt",
+      "image_sha256": "fef5903e5cf66d487f4e616b49151499ba359d109733a89243f169f8cef117e7",
+      "label_sha256": "6569d228a3e4b252ccbd3071d33193c1e5d9c2964f7f74b74b862f0bf604da11",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_23_00-01.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_23_00-01.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/aa_24_00-02.jpeg",
+      "label": "DetectDataset/train/labels/aa_24_00-02.txt",
+      "image_sha256": "0d6b67be42038c8cd2113d12b715cf6768c7601dc96c32cdce1e5affb9d1dffc",
+      "label_sha256": "b2b7baa855c689ec6150a7182ffa2f41fbdc26577cc262532deb82bce4eb1378",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/aa_24_00-02.jpeg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/aa_24_00-02.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000000.jpg",
+      "label": "DetectDataset/train/labels/frame_000000.txt",
+      "image_sha256": "4f83bbc3cbd3c1e83bbb7507118777c98d8dfa235d596d458e99ff0bf34292ef",
+      "label_sha256": "f40dd9b3d5445247a19784e0702769311a86ee12c6881e2cdb1097bbc2376a30",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000000.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000000.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000001.jpg",
+      "label": "DetectDataset/train/labels/frame_000001.txt",
+      "image_sha256": "f2d27380882c402305f99a5fb7f7803523d2e34966558f5c625d4b75784e206c",
+      "label_sha256": "fe2ec99eba02ccc071553c31e9a37efd5ef70ca90f462631dcef6460fe44dc93",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000001.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000001.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000002.jpg",
+      "label": "DetectDataset/train/labels/frame_000002.txt",
+      "image_sha256": "fef4204680e3ea706f3b24e825ef6d06e9bfa517a632def20b1a492746b67ff8",
+      "label_sha256": "0b0885a30bda5a7c6739df612dc7f6645c8d5ca43e30c1a75199564ba2693b38",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000002.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000002.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000003.jpg",
+      "label": "DetectDataset/train/labels/frame_000003.txt",
+      "image_sha256": "bb87dce59155e0fdc5ad9dee220e6ff5b8bce072782ffca02ce4da03ca4adf96",
+      "label_sha256": "302fa617f1e0dca8b86441fdf90352fa17de620bb75f9fad5e0a5a925cdf3bff",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000003.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000003.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000004.jpg",
+      "label": "DetectDataset/train/labels/frame_000004.txt",
+      "image_sha256": "9104a6c7acd0e2b07809fbecb26fa9b13344975340e44cf002ac287ab95b2e05",
+      "label_sha256": "1334d389f4c354aa05f963fbf18b66a268489d2475c742197813d32932e1d06e",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000004.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000004.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000005.jpg",
+      "label": "DetectDataset/train/labels/frame_000005.txt",
+      "image_sha256": "d3a1a36de3e44d1948c3022dbd1c3ae3dd9c7c38b790ff7d832ab9cba72776e0",
+      "label_sha256": "c1e65e72149adcc632c46c6abca647262d24170eb5c055b02c8870b980e4cd57",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000005.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000005.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000006.jpg",
+      "label": "DetectDataset/train/labels/frame_000006.txt",
+      "image_sha256": "98ba4784d50dd57147f34d7273ab31bb6468685369caf16f768402eccd65db10",
+      "label_sha256": "13d07e63e1f0c1684439db58c0299e446dd8473217584313709038eb799d82e0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000006.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000006.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000007.jpg",
+      "label": "DetectDataset/train/labels/frame_000007.txt",
+      "image_sha256": "e9d4241fb5ed393178aa38580bb5e251304e9db39798142a646796b4fb5e77cf",
+      "label_sha256": "0d13ed61be32594bb33191733492d086fe9dbf4bbd29afe49922448f72c27e19",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000007.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000007.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000008.jpg",
+      "label": "DetectDataset/train/labels/frame_000008.txt",
+      "image_sha256": "f42e2e2a5e1a6c04d7f45164e7e88882d7e3228ed75b6e01fd419f83cf70f1e2",
+      "label_sha256": "40d4067f9d7d83b0359585d3d49bf8b85f220c11dab484cd4d8268da22dbdc57",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000008.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000008.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000009.jpg",
+      "label": "DetectDataset/train/labels/frame_000009.txt",
+      "image_sha256": "034251c369a06b605d1aa76e0dd1adef7a78a8cbdcf59e56683b5cad054d280a",
+      "label_sha256": "ba39b2d92058498a2f1b571d19213b1aefa58af2dce7efe3182d20dac509e3d4",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000009.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000009.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000010.jpg",
+      "label": "DetectDataset/train/labels/frame_000010.txt",
+      "image_sha256": "4ec9a25067ff8f9cf0ee39cc6766c4cdbbeeef4978dd208cb72d162cef7bbde4",
+      "label_sha256": "f3be8adaee7bb4198fc2ce5d1213a25fbf11ec6383f2e02cc9560b79d519d59b",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000010.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000010.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000011.jpg",
+      "label": "DetectDataset/train/labels/frame_000011.txt",
+      "image_sha256": "9eed3deb8a48f65fb9602547cff0e507e6f20580a6b01d515f26dc35e915efe5",
+      "label_sha256": "01f79e6a923deed7afe9349ad34cf69f285ce5b5e924301a5088d964e769737c",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000011.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000011.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000012.jpg",
+      "label": "DetectDataset/train/labels/frame_000012.txt",
+      "image_sha256": "60fa908016a3a690ef961cd94aa942323a5eaec0709758e90f8d90f5dba5c3c8",
+      "label_sha256": "ff7a784bb40852936b4bcb0b6da100ca06fafdb0c39d1a47ff8645fab07a80a0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000012.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000012.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000013.jpg",
+      "label": "DetectDataset/train/labels/frame_000013.txt",
+      "image_sha256": "e2dc22aa36c94bdaec3e2a16ee5a2c9d609f3c2e67c7f83eb273e534f9524342",
+      "label_sha256": "2df42c4e7344f683afca1764e3b1a3d2b1b85c2b58c804b786da5d4c2ce50753",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000013.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000013.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000014.jpg",
+      "label": "DetectDataset/train/labels/frame_000014.txt",
+      "image_sha256": "4a4b8ece533f49972ef56db3b552941bb165d4f884775ae7b50ab5a118df05d4",
+      "label_sha256": "8c8fa858a2fb5c0d7a88fde42ecd16ffb0ee92b68ee48abce9f5832561e6e226",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000014.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000014.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000015.jpg",
+      "label": "DetectDataset/train/labels/frame_000015.txt",
+      "image_sha256": "500515e96a6d02e02f921d7851aee24cda49bc03bd8c192cb9e718206519cdb8",
+      "label_sha256": "69a5d2de429e48ab2143d761c16d88c5598ca22fe974da450232579553580d50",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000015.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000015.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000016.jpg",
+      "label": "DetectDataset/train/labels/frame_000016.txt",
+      "image_sha256": "726cdb343454b1a55110365eb871d7b4b2912bbf7647f39053c9fe2a99e60fdc",
+      "label_sha256": "e754cfdde7fb5b731b9aa270d247081e2b157ab3c27d892ced3ceff67e4ffbe4",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000016.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000016.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000017.jpg",
+      "label": "DetectDataset/train/labels/frame_000017.txt",
+      "image_sha256": "b1547602b72b0270cca4aba090d8790b2206454d013a91134d2c769afda4d935",
+      "label_sha256": "ad853387cc4e0b441cccd77f7f1ceb4a2c3282f4142e607f0ad990a400135cfd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000017.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000017.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000018.jpg",
+      "label": "DetectDataset/train/labels/frame_000018.txt",
+      "image_sha256": "844a47de56fca9afb4a5dc370993144a30b70d212d6b410ec21af2d186d472ba",
+      "label_sha256": "f2a519fa674820815ae101dc9bf89b423870cc673a1a7fdd5482d80bead02db1",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000018.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000018.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000019.jpg",
+      "label": "DetectDataset/train/labels/frame_000019.txt",
+      "image_sha256": "f8ae0db1f9301262e947146fd75619bb3109cd51b31325a6cfe89f17b60af5ca",
+      "label_sha256": "4b0eb8d3486cecbb25517c8c7eb98667245d2b0bb3eb9b03d05d1455b0ddafb0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000019.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000019.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000020.jpg",
+      "label": "DetectDataset/train/labels/frame_000020.txt",
+      "image_sha256": "b720174a624e5f963a1f2951b58fb5b64fe191e195d7e3243596f9347219a538",
+      "label_sha256": "589dd3aec4d75fca7f6c0b49ba9e153f6272b9b3b62b5873b4e71b039453e7db",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000020.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000020.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000021.jpg",
+      "label": "DetectDataset/train/labels/frame_000021.txt",
+      "image_sha256": "f0e1b182e56d73435bd77923d20e9232da739a72b4d0f8a6090a46b92696d2d5",
+      "label_sha256": "1333e24d3455b36112ae33480c1b4f283c016f3002ce5a1d6fe2aa4e6b327c04",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000021.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000021.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000022.jpg",
+      "label": "DetectDataset/train/labels/frame_000022.txt",
+      "image_sha256": "72df4811db75402a56968f257d1f8a03ae43d916e0518c2d50e8613491b3248c",
+      "label_sha256": "392f33fcacaeed29746e0ad96eda0bb7eeb46aa4e5e212a2bb6966ca7ec81e88",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000022.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000022.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000023.jpg",
+      "label": "DetectDataset/train/labels/frame_000023.txt",
+      "image_sha256": "76190843dd24c0f83f7aa03185e39b04e4b1ca07303cb8b1d340fcdd48f485b7",
+      "label_sha256": "e766b9aab57fa9eab17957aaded5d611b1589fce7424afd28a3921e529f3f95e",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000023.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000023.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000024.jpg",
+      "label": "DetectDataset/train/labels/frame_000024.txt",
+      "image_sha256": "68a97b4248e93a25024c7d015a3f0da40254441579ad93079f2648b79377f65f",
+      "label_sha256": "27f4faeb6bfd0fdfb80e7e38636f69a0e361aa01fcc45c1f98611880b40d6f5a",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000024.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000024.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000025.jpg",
+      "label": "DetectDataset/train/labels/frame_000025.txt",
+      "image_sha256": "ff7a0040b5903a3db78fc81e0fb64e7b6296aabaf9b4da946a69aee0326b4c97",
+      "label_sha256": "6b596cba84bbaff5f73858c073862acc7d6580815e3c56104d1ee851bdf0e726",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000025.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000025.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000026.jpg",
+      "label": "DetectDataset/train/labels/frame_000026.txt",
+      "image_sha256": "79e26a2f8b2585b567643115149f0b39c5e16fd15b1b3a763d3dc4ee3cc04181",
+      "label_sha256": "ec838d61d482e29fca17c6167f2c78e1c5a62779c4b4f5c82be4fbf1ce52eb33",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000026.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000026.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000027.jpg",
+      "label": "DetectDataset/train/labels/frame_000027.txt",
+      "image_sha256": "74e8e4912800c435b60f0dfe00195982e0a86d2cb8073462dfcd7cdb791e8d91",
+      "label_sha256": "e0703b90073afddc080ae07e8154af0cef7fb4988c3a99351bbebf6e5155569d",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000027.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000027.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000028.jpg",
+      "label": "DetectDataset/train/labels/frame_000028.txt",
+      "image_sha256": "dc238a1087a1920b1463d209fde38d6379eb2437c2effa5ca92b31f674d140ac",
+      "label_sha256": "7d770c23b42e3667ecf97b8c5e38adeaa71a6f4e9ddbb2ff76ad767f1ad116bd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000028.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000028.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000029.jpg",
+      "label": "DetectDataset/train/labels/frame_000029.txt",
+      "image_sha256": "7bb2bd922bbedfcf2f0b63ca3247bb3861e2224fcb20f29d537036ef40563e56",
+      "label_sha256": "1db2ded6aaf476849c25ba9c391d8de5c585e7a6b20c63c35004717088ae8aab",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000029.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000029.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000030.jpg",
+      "label": "DetectDataset/train/labels/frame_000030.txt",
+      "image_sha256": "3e27930e1e79fec977537a53fc5a333888e5376b3183a6a2c564160499b86034",
+      "label_sha256": "bd51190536f020f24e3c7428da8ca3127ae6ae0371f8d5e1f3f8026192a26023",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000030.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000030.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000031.jpg",
+      "label": "DetectDataset/train/labels/frame_000031.txt",
+      "image_sha256": "963f487bc35322e3723955361480d86cf4b2acb6781d0e7193f3aa674890402c",
+      "label_sha256": "d3c5d16369fe9034b5991c339980c72d7b6c915be7c4660cd0b6317a4fdea618",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000031.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000031.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000032.jpg",
+      "label": "DetectDataset/train/labels/frame_000032.txt",
+      "image_sha256": "a5c0646fcdd2d100b73f843b0f648f15db62a29934963f915bde53ed6f32e93c",
+      "label_sha256": "f30647aebe5c02b95cf0ed23e33f67977e837f44b8485a5706b8c6876a7205e7",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000032.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000032.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000033.jpg",
+      "label": "DetectDataset/train/labels/frame_000033.txt",
+      "image_sha256": "eb65102cc48a64d0f1624787fc92dd87e81436cc207fc7366ba73e8b2524e758",
+      "label_sha256": "34f17dfd87ddc30b56cdad605cc3f7e8e4763da31027430a6470c856f709775f",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000033.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000033.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000034.jpg",
+      "label": "DetectDataset/train/labels/frame_000034.txt",
+      "image_sha256": "1859dffa1ea74fa2904d13caca5d59826ba519b53ba5b21e3d01095dea46f284",
+      "label_sha256": "ad01d1e2b6db38b9ee3ccc79b7c321e9f78ca4ee6affad5351dee07cb3401365",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000034.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000034.txt"
+    },
+    {
+      "image": "DetectDataset/train/images/frame_000035.jpg",
+      "label": "DetectDataset/train/labels/frame_000035.txt",
+      "image_sha256": "b4209c306829b784a1c083f9b74126570706bb0405d88dac30b5f24a18d08cc4",
+      "label_sha256": "bdea86cd7a19eb6b305a36897359896fc4cda493c46da49c5022c26a5c4e604a",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/train/images/frame_000035.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/train/labels/frame_000035.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000002.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000002.txt",
+      "image_sha256": "fef4204680e3ea706f3b24e825ef6d06e9bfa517a632def20b1a492746b67ff8",
+      "label_sha256": "0b0885a30bda5a7c6739df612dc7f6645c8d5ca43e30c1a75199564ba2693b38",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000002.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000002.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000004.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000004.txt",
+      "image_sha256": "9104a6c7acd0e2b07809fbecb26fa9b13344975340e44cf002ac287ab95b2e05",
+      "label_sha256": "1334d389f4c354aa05f963fbf18b66a268489d2475c742197813d32932e1d06e",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000004.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000004.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000006.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000006.txt",
+      "image_sha256": "98ba4784d50dd57147f34d7273ab31bb6468685369caf16f768402eccd65db10",
+      "label_sha256": "13d07e63e1f0c1684439db58c0299e446dd8473217584313709038eb799d82e0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000006.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000006.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000008.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000008.txt",
+      "image_sha256": "f42e2e2a5e1a6c04d7f45164e7e88882d7e3228ed75b6e01fd419f83cf70f1e2",
+      "label_sha256": "40d4067f9d7d83b0359585d3d49bf8b85f220c11dab484cd4d8268da22dbdc57",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000008.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000008.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000010.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000010.txt",
+      "image_sha256": "4ec9a25067ff8f9cf0ee39cc6766c4cdbbeeef4978dd208cb72d162cef7bbde4",
+      "label_sha256": "f3be8adaee7bb4198fc2ce5d1213a25fbf11ec6383f2e02cc9560b79d519d59b",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000010.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000010.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000012.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000012.txt",
+      "image_sha256": "60fa908016a3a690ef961cd94aa942323a5eaec0709758e90f8d90f5dba5c3c8",
+      "label_sha256": "ff7a784bb40852936b4bcb0b6da100ca06fafdb0c39d1a47ff8645fab07a80a0",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000012.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000012.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000014.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000014.txt",
+      "image_sha256": "4a4b8ece533f49972ef56db3b552941bb165d4f884775ae7b50ab5a118df05d4",
+      "label_sha256": "8c8fa858a2fb5c0d7a88fde42ecd16ffb0ee92b68ee48abce9f5832561e6e226",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000014.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000014.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000016.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000016.txt",
+      "image_sha256": "726cdb343454b1a55110365eb871d7b4b2912bbf7647f39053c9fe2a99e60fdc",
+      "label_sha256": "e754cfdde7fb5b731b9aa270d247081e2b157ab3c27d892ced3ceff67e4ffbe4",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000016.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000016.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000018.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000018.txt",
+      "image_sha256": "844a47de56fca9afb4a5dc370993144a30b70d212d6b410ec21af2d186d472ba",
+      "label_sha256": "f2a519fa674820815ae101dc9bf89b423870cc673a1a7fdd5482d80bead02db1",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000018.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000018.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000020.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000020.txt",
+      "image_sha256": "b720174a624e5f963a1f2951b58fb5b64fe191e195d7e3243596f9347219a538",
+      "label_sha256": "589dd3aec4d75fca7f6c0b49ba9e153f6272b9b3b62b5873b4e71b039453e7db",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000020.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000020.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000022.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000022.txt",
+      "image_sha256": "72df4811db75402a56968f257d1f8a03ae43d916e0518c2d50e8613491b3248c",
+      "label_sha256": "392f33fcacaeed29746e0ad96eda0bb7eeb46aa4e5e212a2bb6966ca7ec81e88",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000022.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000022.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000025.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000025.txt",
+      "image_sha256": "ff7a0040b5903a3db78fc81e0fb64e7b6296aabaf9b4da946a69aee0326b4c97",
+      "label_sha256": "6b596cba84bbaff5f73858c073862acc7d6580815e3c56104d1ee851bdf0e726",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000025.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000025.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000028.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000028.txt",
+      "image_sha256": "dc238a1087a1920b1463d209fde38d6379eb2437c2effa5ca92b31f674d140ac",
+      "label_sha256": "7d770c23b42e3667ecf97b8c5e38adeaa71a6f4e9ddbb2ff76ad767f1ad116bd",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000028.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000028.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000031.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000031.txt",
+      "image_sha256": "963f487bc35322e3723955361480d86cf4b2acb6781d0e7193f3aa674890402c",
+      "label_sha256": "d3c5d16369fe9034b5991c339980c72d7b6c915be7c4660cd0b6317a4fdea618",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000031.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000031.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000034.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000034.txt",
+      "image_sha256": "1859dffa1ea74fa2904d13caca5d59826ba519b53ba5b21e3d01095dea46f284",
+      "label_sha256": "ad01d1e2b6db38b9ee3ccc79b7c321e9f78ca4ee6affad5351dee07cb3401365",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000034.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000034.txt"
+    },
+    {
+      "image": "DetectDataset/valid/images/1frame_000035.jpg",
+      "label": "DetectDataset/valid/labels/1frame_000035.txt",
+      "image_sha256": "b4209c306829b784a1c083f9b74126570706bb0405d88dac30b5f24a18d08cc4",
+      "label_sha256": "bdea86cd7a19eb6b305a36897359896fc4cda493c46da49c5022c26a5c4e604a",
+      "recoverable_image": "/home/b520/Downloads/yuheping/DetectDataset/valid/images/1frame_000035.jpg",
+      "recoverable_label": "/home/b520/Downloads/yuheping/DetectDataset/valid/labels/1frame_000035.txt"
+    }
+  ]
+}

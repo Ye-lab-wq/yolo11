@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "started_or_resumed_at": "2026-08-14T01:09:12.460469+08:00",
+  "current": null,
+  "completed": [
+    "adown_backbone_only_s0",
+    "adown_neck_only_s0"
+  ],
+  "placement": "Backbone Conv + neck ADown",
+  "phase_started_at": "2026-08-14T01:41:48.164098+08:00",
+  "protocol_valid": true,
+  "completed_at": "2026-08-14T02:14:33.855113+08:00"
+}

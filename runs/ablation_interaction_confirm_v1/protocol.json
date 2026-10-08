@@ -1,0 +1,100 @@
+{
+  "created_at": "2026-08-14T09:50:45.016453+08:00",
+  "frozen_protocol": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/INTERACTION_CONFIRMATION_PROTOCOL.md",
+  "environment": {
+    "python": "3.12.0 | packaged by Anaconda, Inc. | (main, Oct  2 2023, 17:29:18) [GCC 11.2.0]",
+    "platform": "Linux-6.5.0-35-generic-x86_64-with-glibc2.35",
+    "torch": "2.10.0+cu128",
+    "ultralytics": "8.4.19",
+    "gpu": "NVIDIA GeForce RTX 3090"
+  },
+  "train_args": {
+    "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+    "epochs": 60,
+    "patience": 60,
+    "batch": 16,
+    "imgsz": 640,
+    "device": 0,
+    "workers": 4,
+    "pretrained": false,
+    "optimizer": "AdamW",
+    "lr0": 0.001,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.1,
+    "box": 7.5,
+    "cls": 0.5,
+    "dfl": 1.5,
+    "focaler_iou": false,
+    "focaler_d": 0.0,
+    "focaler_u": 0.95,
+    "deterministic": true,
+    "amp": false,
+    "close_mosaic": 10,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "cutmix": 0.0,
+    "cache": false,
+    "plots": false,
+    "save": true,
+    "save_period": -1,
+    "project": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1"
+  },
+  "cells": [
+    {
+      "cell": "00",
+      "msef": false,
+      "adown": false,
+      "label": "P2",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_nearest.yaml",
+      "model_sha256": "413b2f8a970d04ace8e6329c21f028c09eb5ebeb7aab58a51dbf756d0c28bdcf",
+      "seed0_run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_nearest_ciou_s0"
+    },
+    {
+      "cell": "10",
+      "msef": true,
+      "adown": false,
+      "label": "P2+MSEFPaper",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper.yaml",
+      "model_sha256": "f47690c42a9b87ce7eb979f4c4ebdb37eabde1fe6d3f81de17a2b2f72c53ee67",
+      "seed0_run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0"
+    },
+    {
+      "cell": "01",
+      "msef": false,
+      "adown": true,
+      "label": "P2+ADown",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_adown.yaml",
+      "model_sha256": "28518c7e018a8c1d2140eba01b1a51cf656af2480b2dd72483fdde69cc9d0362",
+      "seed0_run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_adown_ciou_s0"
+    },
+    {
+      "cell": "11",
+      "msef": true,
+      "adown": true,
+      "label": "P2+MSEFPaper+ADown",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_adown.yaml",
+      "model_sha256": "2356fa361fa3c72fc5e1d4c573af707d0b27094501c323a5df80f897d6fa192a",
+      "seed0_run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_secondary_v1/msefbase_adown_ciou_s0"
+    }
+  ],
+  "replication_seeds": [
+    1,
+    2
+  ],
+  "test_access": "forbidden"
+}

@@ -1,12 +1,33 @@
-# 全部现存 best.pt 的独立测试集审计
+# 全部现存 best.pt 的验证集与独立测试集审计
 
 ## 结论
 
 - 当前迁移目录共发现 20 个 `weights/best.pt`，20 个 SHA256 均不同。
-- 20 个权重均已在同一个独立 test split 上完成评估，失败数为 0。
+- 20 个权重均已在同一个 valid split 和同一个独立 test split 上完成评估，两次失败数均为 0。
 - 本次没有训练、没有根据 test 选择 checkpoint，也没有测试任何 `last.pt`。
-- test split 固定为 560 images / 608 instances；推理参数统一为 `imgsz=640`、`batch=16`。
+- valid split 固定为 842 images / 993 instances；test split 固定为 560 images / 608 instances。
+- 两个划分的推理参数均统一为 `imgsz=640`、`batch=16`。
 - 唯一环境为 `/home/b520/anaconda3/envs/YHP`：Python 3.12.0、PyTorch 2.10.0+cu128、本地定制 Ultralytics 8.3.241、RTX 3090。
+
+## 主模型轻量化审计
+
+下表使用当前目录中映射到论文主表的五个 `best.pt`。参数量是融合前的模型参数总数，GFLOPs 由本地 Ultralytics/THOP 在 `640×640` 输入下统一计算，显存是融合后 FP32、batch=16 固定输入前向期间的 PyTorch 峰值 allocated memory。权重体积是当前 `.pt` 序列化文件大小，并非 TensorRT 等部署引擎体积。
+
+速度在同一张 RTX 3090 上测量，均为融合 Conv+BN 后的 PyTorch FP32 纯模型前向，不含图像读取、预处理和 NMS。batch=1 先预热 50 次，再测 10 组、每组 50 次；batch=16 先预热 20 次，再测 5 组、每组 20 次。表中延迟和 FPS 使用各组中位数，batch=16 延迟已经换算为每张图像。
+
+| 模型 | 参数量/M | best.pt/MiB | GFLOPs@640 | FP32 b1 延迟/ms | FP32 b1 FPS | FP32 b16 吞吐/FPS | b16 峰值显存/MiB |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| YOLOv8n | 3.011 | 5.97 | 8.19 | 6.26 | 159.7 | 1151.1 | 338.6 |
+| YOLO11n | 2.590 | 5.23 | 6.44 | 8.53 | 117.2 | 1132.0 | 429.4 |
+| YOLO11n + CAA | 2.777 | 5.62 | 6.81 | 9.85 | 101.5 | 917.0 | 428.5 |
+| YOLO11n + CAA + Focaler | 2.777 | 5.62 | 6.81 | 10.28 | 97.3 | 916.9 | 428.5 |
+| 最终 MEDA | 10.825 | 21.19 | 48.41 | 12.28 | 81.4 | 223.5 | 1017.4 |
+
+CAA 相对 YOLO11n 仅增加 7.23% 参数和 5.75% GFLOPs，仍可视为较轻的结构改动，但本机 b1 延迟增加约 15.4%，b16 吞吐下降约 19.0%。Focaler-IoU 只改变训练损失；两个 CAA checkpoint 使用相同 `yolo11-CAA.yaml`，参数量、GFLOPs 和推理图完全相同，所以两者少量 b1 FPS 差异属于测速噪声，不能解释为 Focaler 改变了推理复杂度。
+
+最终 MEDA 相对 YOLO11n 的参数量为 4.18 倍、`.pt` 体积为 4.06 倍、GFLOPs 为 7.52 倍、b16 峰值显存为 2.37 倍；b1 FPS 从 117.2 降至 81.4，b16 纯前向吞吐从 1132.0 降至 223.5。结合独立 test 仅有 mAP50:95 提升 1.92 个百分点，当前证据不支持把完整 MEDA 称为相对 YOLO11n 的“轻量化模型”。它在 RTX 3090 上仍超过实时帧率门槛，但这不等同于已经满足边缘设备实时性；论文没有提供目标边缘硬件、部署格式或统一速度实验。
+
+YOLOv8n 虽然参数量和 GFLOPs 都高于 YOLO11n，但本次 b1 更快，说明 GFLOPs/参数量与实际延迟并非单调关系；算子类型、层数、内存访问和 GPU 并行度也会影响 FPS。上述速度只能用于本机同口径横向比较，不能外推为 Jetson、CPU、TensorRT 或 FP16 的部署速度。
 
 ## 论文主表对应模型
 
@@ -22,7 +43,77 @@
 
 最终 MEDA 相对指定 YOLO11n 基线的 test mAP50:95 提升为 1.92 个百分点（63.68−61.75），不是论文表述的 4.59 个百分点；P、R、mAP50 分别变化 −2.77、−0.30、−0.39 个百分点。
 
-## 全部历史 best.pt
+因此，在独立 test 上，即使只和指定的单个 YOLO11n 基线比较，最终 MEDA 也只有 mAP50:95 占优，P、R 和 mAP50 均更低。若再从四个 YOLO11n 历史运行中分别挑每项最高值，YOLO11n 的 P/R/mAP50/mAP50:95 分别为 96.94/95.89/97.85/62.32%，MEDA 仍然只有 mAP50:95 更高；但这组“极限 YOLO11n”来自多个 checkpoint，只能用于上界审计，不能当成一个真实模型。
+
+## 统一验证集复核
+
+下面是在当前完整 valid split（842 images / 993 instances）上重新加载同一批 `best.pt` 得到的同步指标。推理参数、环境和兼容处理与 test 审计相同；这不是重新训练，也不是从 `results.csv` 取峰值。
+
+| 模型 | 当前目录中的 best.pt | P/% | R/% | mAP50/% | mAP50:95/% |
+|---|---|---:|---:|---:|---:|
+| YOLOv8n | `runs/detect/yolo8_100/weights/best.pt` | 92.01 | 93.66 | 95.16 | 56.69 |
+| YOLO11n | `runs/detect/yolo11_100/weights/best.pt` | 92.69 | 92.65 | 95.46 | 56.02 |
+| YOLO11n + CAA | `runs/train/train_c_120/weights/best.pt` | 91.15 | 91.94 | 93.82 | 53.77 |
+| YOLO11n + CAA + Focaler | `runs/train/train_ic_150_3_val/weights/best.pt` | 92.24 | 92.19 | 95.11 | 56.16 |
+| 最终 MEDA | `runs/detect/meda_200/weights/best.pt` | 93.06 | 92.25 | 95.88 | 59.05 |
+
+相对指定 YOLO11n，MEDA 在 valid 上的 P、R、mAP50、mAP50:95 分别变化 +0.37、−0.40、+0.42、+3.03 个百分点。若从四个 YOLO11n 运行中分别取单项最高值，则对应上界为 93.19/94.26/95.97/57.78%，MEDA 又只在 mAP50:95 上占优；同样，这个上界不是单一 checkpoint。
+
+### 全部历史 best.pt 的 valid 结果
+
+| 排名 | 运行目录 | P/% | R/% | mAP50/% | mAP50:95/% |
+|---:|---|---:|---:|---:|---:|
+| 1 | `train/train_meda2_150` | 92.48 | 93.05 | 95.64 | 59.18 |
+| 2 | `detect/meda_200` | 93.06 | 92.25 | 95.88 | 59.05 |
+| 3 | `train/train_meda2_datafiou_150` | 91.91 | 92.73 | 95.22 | 58.85 |
+| 4 | `train/train_meda2_datawiou_150` | 92.21 | 92.94 | 95.73 | 58.79 |
+| 5 | `train/train_yolo_100_3` | 93.19 | 90.95 | 95.29 | 57.78 |
+| 6 | `detect/yolo8_100` | 92.01 | 93.66 | 95.16 | 56.69 |
+| 7 | `train/train_ic_150_3_val` | 92.24 | 92.19 | 95.11 | 56.16 |
+| 8 | `train/train_ic_150_3` | 92.53 | 92.36 | 95.21 | 56.13 |
+| 9 | `train/train_meda1_150` | 92.49 | 93.05 | 95.46 | 56.07 |
+| 10 | `train/train_yolo_100_2` | 92.74 | 94.26 | 95.97 | 56.02 |
+| 11 | `detect/yolo11_100` | 92.69 | 92.65 | 95.46 | 56.02 |
+| 12 | `train/meda_yolo` | 92.82 | 92.37 | 95.00 | 55.50 |
+| 13 | `train/train_yolo_100` | 92.25 | 92.34 | 94.84 | 55.21 |
+| 14 | `train/train_ci_150` | 91.60 | 92.95 | 94.63 | 54.63 |
+| 15 | `train/train_ic_150_2` | 91.51 | 93.34 | 94.95 | 54.48 |
+| 16 | `train/train_ci_120` | 92.68 | 92.85 | 94.84 | 54.45 |
+| 17 | `train/train_meda1_100` | 92.22 | 93.55 | 94.98 | 54.38 |
+| 18 | `train/train_c_120` | 91.15 | 91.94 | 93.82 | 53.77 |
+| 19 | `train/train_c_100` | 91.45 | 93.69 | 95.27 | 53.74 |
+| 20 | `train/train` | 30.08 | 29.11 | 24.05 | 8.39 |
+
+## 作者 results.csv 中的验证指标峰值
+
+下表直接从作者每次训练的 `results.csv` 独立提取四个验证指标各自的最大值。括号内是出现该峰值的 epoch。**同一行的四个峰值通常来自不同 epoch，不能拼接成某个 `best.pt` 的联合成绩。** `meda_yolo` 没有提交 `results.csv`，因此无法提取。
+
+| 运行目录 | P峰值/% (epoch) | R峰值/% (epoch) | mAP50峰值/% (epoch) | mAP50:95峰值/% (epoch) |
+|---|---:|---:|---:|---:|
+| `detect/meda_200` | 93.30 (183) | 93.25 (132) | 95.95 (188) | 59.07 (194) |
+| `detect/yolo11_100` | 93.45 (83) | 93.66 (52) | 95.50 (83) | 54.48 (93) |
+| `detect/yolo8_100` | 93.47 (75) | 93.86 (66) | 95.88 (49) | 55.22 (99) |
+| `train/meda_yolo` | — | — | — | — |
+| `train/train` | 30.19 (1) | 29.04 (1) | 24.17 (1) | 8.43 (1) |
+| `train/train_c_100` | 93.16 (80) | 94.00 (88) | 95.58 (80) | 54.15 (88) |
+| `train/train_c_120` | 92.58 (54) | 93.03 (84) | 95.42 (85) | 53.94 (118) |
+| `train/train_ci_120` | 92.84 (94) | 93.56 (108) | 95.20 (108) | 54.83 (120) |
+| `train/train_ci_150` | 92.53 (56) | 94.37 (96) | 95.47 (117) | 55.12 (140) |
+| `train/train_ic_150_2` | 92.28 (83) | 93.30 (100) | 95.23 (83) | 53.99 (99) |
+| `train/train_ic_150_3` | 92.92 (138) | 93.14 (94) | 95.49 (125) | 55.53 (145) |
+| `train/train_ic_150_3_val` | 93.04 (138) | 93.25 (94) | 95.58 (125) | 56.14 (145) |
+| `train/train_meda1_100` | 92.95 (75) | 93.86 (67) | 96.16 (75) | 54.56 (97) |
+| `train/train_meda1_150` | 93.64 (96) | 93.45 (118) | 96.47 (122) | 56.15 (148) |
+| `train/train_meda2_150` | 93.24 (139) | 93.66 (99) | 95.98 (117) | 59.20 (148) |
+| `train/train_meda2_datafiou_150` | 92.75 (94) | 94.26 (128) | 96.13 (122) | 58.90 (149) |
+| `train/train_meda2_datawiou_150` | 93.05 (132) | 93.36 (112) | 96.16 (139) | 58.73 (149) |
+| `train/train_yolo_100` | 93.51 (57) | 93.26 (69) | 95.38 (52) | 55.36 (99) |
+| `train/train_yolo_100_2` | 93.67 (68) | 94.17 (64) | 95.86 (64) | 55.43 (64) |
+| `train/train_yolo_100_3` | 93.65 (72) | 94.15 (38) | 95.76 (66) | 57.05 (97) |
+
+论文表格中的 YOLOv8n、YOLO11n、CAA 和 CAA+Focaler 四行，均逐项等于上表对应运行在不同 epoch 的四个单项峰值。这证明论文表格不是单一 checkpoint 的同步验证结果。最终 MEDA 行的 P=93.30%、mAP50=95.95%、mAP50:95=59.07%也分别对应 `meda_200` 的 epoch 183、188、194；但论文 R=94.26% 不存在于 `meda_200`，却恰好等于 `train_meda2_datafiou_150` 在 epoch 128 的 Recall 峰值。前者是直接可复核的跨 epoch 拼接证据；后者强烈提示跨运行取值，但在缺少作者原始汇总脚本或说明时，不能仅凭数值相同证明其主观意图。
+
+## 全部历史 best.pt 的 test 结果
 
 以下仅用于归档和审计，按 test mAP50:95 排序。不能从这些历史探索运行中再挑最高者作为论文最终模型，否则 test 就被用于模型选择，失去独立测试集的意义。
 
@@ -58,10 +149,13 @@
 
 ## 可复核产物
 
-- 完整机器可读结果：`reproduction/results/all_existing_best_test/all_best_test_results.json`
-- 完整表格：`reproduction/results/all_existing_best_test/all_best_test_results.csv`
+- test 机器可读结果：`reproduction/results/all_existing_best_test/all_best_test_results.json`
+- test 表格：`reproduction/results/all_existing_best_test/all_best_test_results.csv`
+- valid 机器可读结果：`reproduction/results/all_existing_best_val/all_best_val_results.json`
+- valid 表格：`reproduction/results/all_existing_best_val/all_best_val_results.csv`
+- 主模型轻量化指标：`reproduction/results/lightweight_main_models.csv`
 - 批量评估脚本：`reproduction/evaluate_all_existing_best_on_test.py`
-- 每次 Ultralytics 输出：`reproduction/results/all_existing_best_test/runs/`
+- 每次 Ultralytics 输出：对应结果目录下的 `runs/`
 
 ## 数据集数量审计
 

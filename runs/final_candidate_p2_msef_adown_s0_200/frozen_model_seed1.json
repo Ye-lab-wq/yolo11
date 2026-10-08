@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-09-04T13:50:50.233238+08:00",
+  "seed": 1,
+  "selection_split": "validation",
+  "selection_rule": "maximum validation mAP50:95 over the fixed 200-epoch run",
+  "best_epoch_zero_based": 193,
+  "precision": 0.92519,
+  "recall": 0.92117,
+  "map50": 0.94932,
+  "map50_95": 0.58601,
+  "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_candidate_p2_msef_adown_s0_200/train_seed1/weights/best.pt",
+  "test_access_before_freeze": "none"
+}

@@ -1445,6 +1445,43 @@ class RandomHSV:
         return labels
 
 
+class RandomMotionBlur:
+    """Apply directional line-kernel blur without changing detection labels."""
+
+    def __init__(self, p: float = 0.0, min_kernel: int = 3, max_kernel: int = 7) -> None:
+        if not 0.0 <= p <= 1.0:
+            raise ValueError(f"motion-blur probability must be in [0, 1], received {p}")
+        if min_kernel < 3 or max_kernel < min_kernel:
+            raise ValueError(f"invalid motion-blur kernel range: {min_kernel}, {max_kernel}")
+        self.p = p
+        self.min_kernel = min_kernel if min_kernel % 2 else min_kernel + 1
+        self.max_kernel = max_kernel if max_kernel % 2 else max_kernel - 1
+        if self.max_kernel < self.min_kernel:
+            raise ValueError("motion-blur kernel range contains no odd length")
+
+    @staticmethod
+    def kernel(length: int, angle: float) -> np.ndarray:
+        center = (length - 1) / 2
+        horizontal = np.zeros((length, length), dtype=np.float32)
+        horizontal[int(center), :] = 1.0 / length
+        rotation = cv2.getRotationMatrix2D((center, center), angle, 1.0)
+        output = cv2.warpAffine(horizontal, rotation, (length, length), flags=cv2.INTER_LINEAR)
+        return output / output.sum()
+
+    def __call__(self, labels: dict[str, Any]) -> dict[str, Any]:
+        if self.p == 0.0 or random.random() >= self.p:
+            return labels
+        length = random.randrange(self.min_kernel, self.max_kernel + 1, 2)
+        angle = random.uniform(0.0, 180.0)
+        labels["img"] = cv2.filter2D(
+            labels["img"],
+            ddepth=-1,
+            kernel=self.kernel(length, angle),
+            borderType=cv2.BORDER_REFLECT_101,
+        )
+        return labels
+
+
 class RandomFlip:
     """Apply a random horizontal or vertical flip to an image with a given probability.
 
@@ -2462,6 +2499,11 @@ def v8_transforms(dataset, imgsz: int, hyp: IterableSimpleNamespace, stretch: bo
             MixUp(dataset, pre_transform=pre_transform, p=hyp.mixup),
             CutMix(dataset, pre_transform=pre_transform, p=hyp.cutmix),
             Albumentations(p=1.0, transforms=getattr(hyp, "augmentations", None)),
+            RandomMotionBlur(
+                p=hyp.motion_blur,
+                min_kernel=hyp.motion_blur_min,
+                max_kernel=hyp.motion_blur_max,
+            ),
             RandomHSV(hgain=hyp.hsv_h, sgain=hyp.hsv_s, vgain=hyp.hsv_v),
             RandomFlip(direction="vertical", p=hyp.flipud, flip_idx=flip_idx),
             RandomFlip(direction="horizontal", p=hyp.fliplr, flip_idx=flip_idx),

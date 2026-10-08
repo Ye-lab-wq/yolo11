@@ -1,0 +1,108 @@
+{
+  "valid": true,
+  "design": "2x2 MSEFPaper x full-path ADown, seeds 0/1/2",
+  "environment_expected": {
+    "python": "3.12.0",
+    "torch": "2.10.0+cu128",
+    "ultralytics": "8.3.241"
+  },
+  "test_access": "none",
+  "runs": [
+    {
+      "cell": "00",
+      "seed": 0,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_nearest_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "10",
+      "seed": 0,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "01",
+      "seed": 0,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_adown_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "11",
+      "seed": 0,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_secondary_v1/msefbase_adown_ciou_s0",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "00",
+      "seed": 1,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_00_s1",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "10",
+      "seed": 1,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_10_s1",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "01",
+      "seed": 1,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_01_s1",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "11",
+      "seed": 1,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_11_s1",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "00",
+      "seed": 2,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_00_s2",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "10",
+      "seed": 2,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_10_s2",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "01",
+      "seed": 2,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_01_s2",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "cell": "11",
+      "seed": 2,
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_11_s2",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    }
+  ]
+}

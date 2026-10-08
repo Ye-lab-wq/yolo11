@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-08-14T01:09:12.459802+08:00",
+  "frozen_protocol": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/ADOWN_PLACEMENT_PROTOCOL.md",
+  "train_args": {
+    "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+    "epochs": 60,
+    "patience": 60,
+    "batch": 16,
+    "imgsz": 640,
+    "device": 0,
+    "workers": 4,
+    "pretrained": false,
+    "optimizer": "AdamW",
+    "lr0": 0.001,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.1,
+    "box": 7.5,
+    "cls": 0.5,
+    "dfl": 1.5,
+    "focaler_iou": false,
+    "focaler_d": 0.0,
+    "focaler_u": 0.95,
+    "seed": 0,
+    "deterministic": true,
+    "amp": false,
+    "close_mosaic": 10,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "cutmix": 0.0,
+    "cache": false,
+    "plots": false,
+    "save": true,
+    "save_period": -1,
+    "project": "/home/b520/Downloads/yelin/yolo11/runs/ablation_adown_placement_v1"
+  },
+  "reused_endpoints": {
+    "neither": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0",
+    "joint": "/home/b520/Downloads/yelin/yolo11/runs/ablation_secondary_v1/msefbase_adown_ciou_s0"
+  },
+  "experiments": [
+    {
+      "name": "adown_backbone_only_s0",
+      "placement": "Backbone ADown + neck Conv",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_adown_backbone.yaml"
+    },
+    {
+      "name": "adown_neck_only_s0",
+      "placement": "Backbone Conv + neck ADown",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_adown_neck.yaml"
+    }
+  ],
+  "test_access": "forbidden"
+}

@@ -1,0 +1,87 @@
+{
+  "valid": true,
+  "direct_parent": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0",
+  "expected_epochs": 60,
+  "allowed_argument_differences": [
+    "bbox_loss_mode",
+    "focaler_iou",
+    "model",
+    "name",
+    "project",
+    "resume",
+    "save_dir"
+  ],
+  "test_access": "none",
+  "runs": [
+    {
+      "run": "msefbase_adown_ciou_s0",
+      "factor": "ADown",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_author_bilinear_ciou_s0",
+      "factor": "Uploaded static bilinear upsampling",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_official_dysample_ciou_s0",
+      "factor": "Reference DySampleOfficial",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_author_elan_ciou_s0",
+      "factor": "Uploaded ordinary-Conv ELAN",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_official_rep_ciou_s0",
+      "factor": "RepNCSPELAN4Official",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_ema_ciou_s0",
+      "factor": "EMA after P2 MSEFPaper",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_p5_msef_paper_ciou_s0",
+      "factor": "MSEFPaper at P5",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_no_c2psa_ciou_s0",
+      "factor": "Remove C2PSA",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_author_power_iou_s0",
+      "factor": "Uploaded power-IoU loss",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "msefbase_focaler_ciou_s0",
+      "factor": "Reference Focaler-CIoU",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    }
+  ]
+}

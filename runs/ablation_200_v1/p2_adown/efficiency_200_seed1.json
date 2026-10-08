@@ -1,0 +1,179 @@
+{
+  "environment": {
+    "python": "3.12.0",
+    "torch": "2.10.0+cu128",
+    "torch_cuda": "12.8",
+    "ultralytics": "8.3.241",
+    "gpu": "NVIDIA GeForce RTX 3090"
+  },
+  "protocol": {
+    "input": "640x640",
+    "precision": "FP32",
+    "graph": "PyTorch fused Conv+BN raw model forward",
+    "excluded": "file I/O, image preprocessing, NMS",
+    "batch1": "50 warmup; 10 groups x 50 iterations; median group latency",
+    "batch16": "20 warmup; 5 groups x 20 iterations; median per-image group latency"
+  },
+  "models": [
+    {
+      "model": "YOLO11n",
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_baseline_yolo11n_200/train_seed1/weights/best.pt",
+      "parameters": 2590035,
+      "parameters_m": 2.590035,
+      "checkpoint_mib": 5.236841201782227,
+      "gflops_640": 6.4406016,
+      "fp32_b1_latency_ms": 5.762192039837828,
+      "fp32_b1_fps": 173.54506637167617,
+      "fp32_b16_latency_ms_per_image": 0.8847127468470717,
+      "fp32_b16_throughput_fps": 1130.310378779765,
+      "fp32_b16_peak_allocated_mib": 377.0,
+      "batch1_group_ms": [
+        5.773835519794375,
+        5.781705979898106,
+        5.760639259824529,
+        5.764327639772091,
+        5.7637448198511265,
+        5.742941820062697,
+        5.7476425799541175,
+        5.7437997398665175,
+        5.880019519827329,
+        5.754803240124602
+      ],
+      "batch16_group_ms_per_image": [
+        0.8844971562666615,
+        0.8847127468470717,
+        0.8844474624766008,
+        0.8857111187808187,
+        0.8850207344039518
+      ]
+    },
+    {
+      "model": "P2",
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2/train_seed1/weights/best.pt",
+      "parameters": 2903812,
+      "parameters_m": 2.903812,
+      "checkpoint_mib": 6.032901763916016,
+      "gflops_640": 10.8307456,
+      "fp32_b1_latency_ms": 6.835755810025148,
+      "fp32_b1_fps": 146.28960246552768,
+      "fp32_b16_latency_ms_per_image": 1.5284988031453395,
+      "fp32_b16_throughput_fps": 654.2366915448043,
+      "fp32_b16_peak_allocated_mib": 911.837890625,
+      "batch1_group_ms": [
+        6.800811220018659,
+        6.787510919966735,
+        6.878286179853603,
+        6.861960219976027,
+        6.851704060100019,
+        6.814375639951322,
+        6.818631979986094,
+        6.830573060142342,
+        6.8541502198786475,
+        6.840938559907954
+      ],
+      "batch16_group_ms_per_image": [
+        1.52171850936611,
+        1.5295081125259458,
+        1.5258959125276306,
+        1.5287812906080944,
+        1.5284988031453395
+      ]
+    },
+    {
+      "model": "P2_MSEF",
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed1/weights/best.pt",
+      "parameters": 2920468,
+      "parameters_m": 2.920468,
+      "checkpoint_mib": 6.0670013427734375,
+      "gflops_640": 11.694182399999999,
+      "fp32_b1_latency_ms": 6.9486217499070335,
+      "fp32_b1_fps": 143.91343146766897,
+      "fp32_b16_latency_ms_per_image": 1.8780209874876164,
+      "fp32_b16_throughput_fps": 532.4754125020629,
+      "fp32_b16_peak_allocated_mib": 911.837890625,
+      "batch1_group_ms": [
+        6.940277999965474,
+        6.93075435992796,
+        6.935228040092625,
+        6.950946720025968,
+        6.988015040114988,
+        6.991557180008385,
+        6.979490400117356,
+        6.965614240034483,
+        6.943646340223495,
+        6.946296779788099
+      ],
+      "batch16_group_ms_per_image": [
+        1.8792621906413842,
+        1.8790524155974708,
+        1.876924540647451,
+        1.8776614593662089,
+        1.8780209874876164
+      ]
+    },
+    {
+      "model": "P2_ADown",
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_adown/train_seed1/weights/best.pt",
+      "parameters": 2278148,
+      "parameters_m": 2.278148,
+      "checkpoint_mib": 4.8524932861328125,
+      "gflops_640": 9.467596799999999,
+      "fp32_b1_latency_ms": 7.369909530098084,
+      "fp32_b1_fps": 135.68687592650696,
+      "fp32_b16_latency_ms_per_image": 1.6435151125278935,
+      "fp32_b16_throughput_fps": 608.4519651674503,
+      "fp32_b16_peak_allocated_mib": 912.837890625,
+      "batch1_group_ms": [
+        7.374432279902976,
+        7.380902740114834,
+        7.3722715402254835,
+        7.41313573991647,
+        7.389994639961515,
+        7.332469240063801,
+        7.359573740104679,
+        7.367547519970685,
+        7.3417015600716695,
+        7.359567240055185
+      ],
+      "batch16_group_ms_per_image": [
+        1.6414020999945933,
+        1.645940703110682,
+        1.64380973437801,
+        1.6435151125278935,
+        1.6430718656465615
+      ]
+    },
+    {
+      "model": "P2_MSEF_ADown",
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_candidate_p2_msef_adown_s0_200/train_seed1/weights/best.pt",
+      "parameters": 2294804,
+      "parameters_m": 2.294804,
+      "checkpoint_mib": 4.886592864990234,
+      "gflops_640": 10.331033600000001,
+      "fp32_b1_latency_ms": 7.5649220298510045,
+      "fp32_b1_fps": 132.1890689757308,
+      "fp32_b16_latency_ms_per_image": 1.9936640625019209,
+      "fp32_b16_throughput_fps": 501.58901833494656,
+      "fp32_b16_peak_allocated_mib": 912.337890625,
+      "batch1_group_ms": [
+        7.634848460147623,
+        7.567436939862091,
+        7.606279980100226,
+        7.5846805999754,
+        7.556692259968258,
+        7.555277539941017,
+        7.588661879999563,
+        7.546418400015682,
+        7.562407119839918,
+        7.535593319917098
+      ],
+      "batch16_group_ms_per_image": [
+        1.9956297125190758,
+        1.989899496857106,
+        1.9945514968640055,
+        1.9921487749797961,
+        1.9936640625019209
+      ]
+    }
+  ]
+}

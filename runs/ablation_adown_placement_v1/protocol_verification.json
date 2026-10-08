@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "design": "2x2 backbone ADown x neck ADown",
+  "test_access": "none",
+  "runs": [
+    {
+      "run": "adown_backbone_only_s0",
+      "placement": "Backbone ADown + neck Conv",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    },
+    {
+      "run": "adown_neck_only_s0",
+      "placement": "Backbone Conv + neck ADown",
+      "valid": true,
+      "epochs": 60,
+      "unexpected_argument_differences": {}
+    }
+  ]
+}

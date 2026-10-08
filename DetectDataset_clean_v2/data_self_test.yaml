@@ -1,0 +1,9 @@
+path: /home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2
+train:
+  - train/images
+  - self_train/images
+val: valid/images
+test: self_test/images
+
+nc: 1
+names: ['drone']

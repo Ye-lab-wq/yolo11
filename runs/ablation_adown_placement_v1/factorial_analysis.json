@@ -1,0 +1,7 @@
+{
+  "metric": "best validation mAP50:95",
+  "backbone_only_delta_pp": -0.4269999999999996,
+  "neck_only_delta_pp": -0.6080000000000085,
+  "joint_delta_pp": 0.873999999999997,
+  "interaction_pp": 1.9090000000000051
+}

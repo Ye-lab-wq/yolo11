@@ -173,6 +173,7 @@ CFG_FRACTION_KEYS = frozenset(
         "hsv_h",
         "hsv_s",
         "hsv_v",
+        "motion_blur",
         "translate",
         "scale",
         "perspective",
@@ -201,6 +202,8 @@ CFG_INT_KEYS = frozenset(
         "line_width",
         "nbs",
         "save_period",
+        "motion_blur_min",
+        "motion_blur_max",
     }
 )
 CFG_BOOL_KEYS = frozenset(

@@ -1,0 +1,13 @@
+{
+  "corrected_at": "2026-08-13T14:17:49+08:00",
+  "status": "declared_before replacement baseline training and before confirmatory selection",
+  "issue": "The first 60 epochs of a 200-epoch run use a different learning-rate horizon and Mosaic closure than a true 60-epoch run.",
+  "impact": "Old first-60 baseline and full-MEDA slices cannot be used for direct effect estimates. Candidate-to-candidate comparisons remain valid because all candidate runs used the true 60-epoch protocol.",
+  "correction": [
+    "Train YOLO11n from scratch for exactly 60 epochs under the identical screening arguments.",
+    "Train uploaded full MEDA from scratch for exactly 60 epochs under the identical screening arguments.",
+    "Move old first-60 slices to noncomparable_first60_references.csv.",
+    "Recompute every direct-parent delta before selection."
+  ],
+  "test_access": "none"
+}

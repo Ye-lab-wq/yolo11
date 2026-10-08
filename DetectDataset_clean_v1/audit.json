@@ -1,0 +1,218 @@
+{
+  "protocol_version": "clean_v1",
+  "source_dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset",
+  "output_dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v1",
+  "seed": 20260812,
+  "requested_ratios": {
+    "train": 0.7,
+    "valid": 0.15,
+    "test": 0.15
+  },
+  "materialization": "copy",
+  "rules": {
+    "deduplication": "one record per exact image SHA-256 across all legacy splits",
+    "source_grouping": "same normalized pre-Roboflow filename is atomic",
+    "capture_grouping": "explicit videoNN_frame, frameNNNN, and ambiguous videoNN families are atomic",
+    "label_conflicts": "exclude all copies of an exact image when canonical labels disagree",
+    "invalid_records": "exclude corrupt images and invalid YOLO labels",
+    "object_size": "equivalent box side after 640 letterbox scaling"
+  },
+  "input_records_scanned": 5534,
+  "invalid_records_excluded": [],
+  "conflicting_exact_images_excluded": [
+    {
+      "image_sha256": "22a71bbfa85502b0317438d5b7bb140b21ad2869b719b72624d1feb1c7075b06",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/6_JPEG.rf.87c600cef65b753ab4a879772e355bf6.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/6_JPEG.rf.87c600cef65b753ab4a879772e355bf6.txt",
+          "label_signature": "0 0.46875 0.5765625 0.1421875 0.1734375"
+        },
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/6_JPEG_jpg.rf.fe1d6f4a477730eb815cf48388750bbe.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/6_JPEG_jpg.rf.fe1d6f4a477730eb815cf48388750bbe.txt",
+          "label_signature": "0 0.46796875 0.58203125 0.15390625 0.14375"
+        }
+      ]
+    },
+    {
+      "image_sha256": "4f882e3ef3543138832aab1357559da9664c3a5e08be8ea909ec5f643501b366",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/video14_212_JPEG.rf.af51a8b29dbb08ad839fd770d46d4270.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/video14_212_JPEG.rf.af51a8b29dbb08ad839fd770d46d4270.txt",
+          "label_signature": "0 0.54375 0.49375 0.85703125 0.95390625"
+        },
+        {
+          "old_split": "test",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/test/images/video14_212_JPEG.rf.64e8c429d7a6e56881acb83bde412ada.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/test/labels/video14_212_JPEG.rf.64e8c429d7a6e56881acb83bde412ada.txt",
+          "label_signature": "0 0.4078125 0.4515625 0.5859375 0.86953125"
+        }
+      ]
+    },
+    {
+      "image_sha256": "4fd24affa9db3c2823a737f6fbe8392f7f840691aac28bfec7306becedad2005",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/114_JPEG.rf.93f7edae88b02d16d608ede6e987ab4b.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/114_JPEG.rf.93f7edae88b02d16d608ede6e987ab4b.txt",
+          "label_signature": "0 0.41796875 0.46171875 0.26796875 0.24296875"
+        },
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/114_jpg.rf.fe097c161e88ea2e58d4710523925ad3.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/114_jpg.rf.fe097c161e88ea2e58d4710523925ad3.txt",
+          "label_signature": "0 0.37734375 0.48203125 0.1875 0.203125"
+        },
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/74_JPEG.rf.35bd249ea96c4a132a51203bd515874f.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/74_JPEG.rf.35bd249ea96c4a132a51203bd515874f.txt",
+          "label_signature": "0 0.41015625 0.48046875 0.20859375 0.2546875"
+        }
+      ]
+    },
+    {
+      "image_sha256": "68523729f624eab33268ee094f68cb6ca10e79a630034cec3ec498705083aeae",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/43_JPEG.rf.76126c708815b4f152e5a4e412160346.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/43_JPEG.rf.76126c708815b4f152e5a4e412160346.txt",
+          "label_signature": "0 0.559375 0.36875 0.0859375 0.10625"
+        },
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/43_JPEG_jpg.rf.620918384e6253ab513f5c611c310f6a.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/43_JPEG_jpg.rf.620918384e6253ab513f5c611c310f6a.txt",
+          "label_signature": "0 0.55625 0.37734375 0.09296875 0.084375"
+        }
+      ]
+    },
+    {
+      "image_sha256": "911398b9fb34c2b378d5a9af9843e5c656ff11de3b6fb6d3c35d6f255297cc02",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/video17_1241_JPEG.rf.37abdd4da17136cd4f0ffa54d8df2d3f.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/video17_1241_JPEG.rf.37abdd4da17136cd4f0ffa54d8df2d3f.txt",
+          "label_signature": "0 0.53046875 0.64609375 0.3484375 0.55859375"
+        },
+        {
+          "old_split": "valid",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/valid/images/video17_1241_JPEG.rf.47ca96aa800983cc44dc90a1580e4fb4.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/valid/labels/video17_1241_JPEG.rf.47ca96aa800983cc44dc90a1580e4fb4.txt",
+          "label_signature": "0 0.49609375 0.61015625 0.34375 0.45703125"
+        }
+      ]
+    },
+    {
+      "image_sha256": "9eb58d502158c868f2594e6a7a9ae00a8ec4fe268550a066845d75a6af4b40a9",
+      "records": [
+        {
+          "old_split": "train",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/images/video18_1637_JPEG.rf.1f48fee5918f7051f86b9a9d888be38f.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/train/labels/video18_1637_JPEG.rf.1f48fee5918f7051f86b9a9d888be38f.txt",
+          "label_signature": "0 0.5765625 0.4984375 0.03203125 0.021875"
+        },
+        {
+          "old_split": "valid",
+          "image": "/home/b520/Downloads/yelin/yolo11/DetectDataset/valid/images/video18_1637_JPEG.rf.f87e47e060176f5cbe54b14f35d5c0be.jpg",
+          "label": "/home/b520/Downloads/yelin/yolo11/DetectDataset/valid/labels/video18_1637_JPEG.rf.f87e47e060176f5cbe54b14f35d5c0be.txt",
+          "label_signature": "0 0.37734375 0.421875 0.0265625 0.04140625\n0 0.5765625 0.4984375 0.03203125 0.021875"
+        }
+      ]
+    }
+  ],
+  "input_records_after_conflict_exclusion": 5521,
+  "unique_exact_images": 4304,
+  "duplicate_copies_removed": 1217,
+  "atomic_components": 1436,
+  "splits": {
+    "train": {
+      "images": 2961,
+      "instances": 3357,
+      "size_counts": {
+        "large": 1479,
+        "medium": 1134,
+        "small": 699,
+        "tiny": 45
+      },
+      "capture_groups": [
+        "explicit_video:video15",
+        "explicit_video:video18",
+        "explicit_video:video19",
+        "implicit_sequence:frame"
+      ]
+    },
+    "valid": {
+      "images": 683,
+      "instances": 692,
+      "size_counts": {
+        "small": 84,
+        "medium": 303,
+        "large": 295,
+        "tiny": 10
+      },
+      "capture_groups": [
+        "explicit_video:video14",
+        "explicit_video:video17"
+      ]
+    },
+    "test": {
+      "images": 660,
+      "instances": 679,
+      "size_counts": {
+        "medium": 249,
+        "small": 89,
+        "large": 331,
+        "tiny": 10
+      },
+      "capture_groups": [
+        "explicit_video:video16",
+        "implicit_sequence:video"
+      ]
+    }
+  },
+  "validation": {
+    "manifest_records": 4304,
+    "unique_hashes": 4304,
+    "unique_source_ids": 3971,
+    "capture_groups": {
+      "explicit_video:video14": [
+        "valid"
+      ],
+      "explicit_video:video15": [
+        "train"
+      ],
+      "explicit_video:video16": [
+        "test"
+      ],
+      "explicit_video:video17": [
+        "valid"
+      ],
+      "explicit_video:video18": [
+        "train"
+      ],
+      "explicit_video:video19": [
+        "train"
+      ],
+      "implicit_sequence:frame": [
+        "train"
+      ],
+      "implicit_sequence:video": [
+        "test"
+      ]
+    },
+    "leakage_violations": {
+      "exact_hash_cross_split": {},
+      "source_id_cross_split": {},
+      "capture_group_cross_split": {}
+    }
+  }
+}

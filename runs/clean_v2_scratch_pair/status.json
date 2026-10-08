@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-12T15:42:40.440633+08:00",
+  "current_phase": null,
+  "completed_phases": [
+    "train:yolo11n_seed0",
+    "eval:yolo11n_seed0:public_test",
+    "eval:yolo11n_seed0:self_test",
+    "eval:yolo11n_seed0:combined_test",
+    "train:meda_w025_focaler_seed0",
+    "eval:meda_w025_focaler_seed0:public_test",
+    "eval:meda_w025_focaler_seed0:self_test",
+    "eval:meda_w025_focaler_seed0:combined_test"
+  ],
+  "models": {
+    "yolo11n_seed0": {
+      "yaml": "yolo11n.yaml",
+      "parameters": 2624080,
+      "trainable_parameters": 2624064,
+      "scales": {
+        "n": [
+          0.5,
+          0.25,
+          1024
+        ],
+        "s": [
+          0.5,
+          0.5,
+          1024
+        ],
+        "m": [
+          0.5,
+          1.0,
+          512
+        ],
+        "l": [
+          1.0,
+          1.0,
+          512
+        ],
+        "x": [
+          1.0,
+          1.5,
+          512
+        ]
+      },
+      "box_loss": "standard CIoU"
+    },
+    "meda_w025_focaler_seed0": {
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/dut/models/meda_pro_w025.yaml",
+      "parameters": 2844348,
+      "trainable_parameters": 2844332,
+      "scales": {
+        "n": [
+          0.5,
+          0.25,
+          1024
+        ]
+      },
+      "box_loss": "Focaler-IoU (gamma=1.5)"
+    }
+  },
+  "phase_started_at": "2026-08-12T21:44:53.636434+08:00",
+  "best_weights": {
+    "yolo11n_seed0": "/home/b520/Downloads/yelin/yolo11/runs/clean_v2_scratch_pair/yolo11n_seed0/weights/best.pt",
+    "meda_w025_focaler_seed0": "/home/b520/Downloads/yelin/yolo11/runs/clean_v2_scratch_pair/meda_w025_focaler_seed0/weights/best.pt"
+  },
+  "latest_metrics": {
+    "model": "meda_w025_focaler_seed0",
+    "evaluation": "combined_test",
+    "precision": 0.9437101173892224,
+    "recall": 0.9327279364536346,
+    "map50": 0.9655428284031122,
+    "map50_95": 0.5872013219306637,
+    "fitness": 0.5872013219306637,
+    "preprocess_ms_per_image": 0.9507251360022148,
+    "inference_ms_per_image": 3.390098082892562,
+    "postprocess_ms_per_image": 1.2717098360895738,
+    "evaluated_at": "2026-08-12T21:45:18.763349+08:00"
+  },
+  "completed_at": "2026-08-12T21:45:18.765364+08:00"
+}

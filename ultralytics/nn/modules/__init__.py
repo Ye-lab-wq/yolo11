@@ -181,4 +181,15 @@ __all__ = (
     "v10Detect",
 )
 # MEDA-YOLO custom modules
-from .meda_modules import ADown, DySample, MSEF, ELSNHead, EMA, RepNCSPELAN4
+from .meda_modules import (
+    ADown,
+    ADownResidual,
+    DySample,
+    DySampleOfficial,
+    MSEF,
+    MSEFPaper,
+    ELSNHead,
+    EMA,
+    RepNCSPELAN4,
+    RepNCSPELAN4Official,
+)

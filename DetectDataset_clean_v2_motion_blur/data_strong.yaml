@@ -1,0 +1,7 @@
+path: /home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2_motion_blur/strong
+train: images
+val: images
+test: images
+
+names:
+  0: drone

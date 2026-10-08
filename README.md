@@ -1,6 +1,6 @@
 # YOLO11 微小无人机检测项目
 
-本目录用于整理并复现论文第三章对应的 YOLO11 无人机检测项目。当前阶段的主要任务是：使用作者提交的现存 `best.pt`，在固定验证集或独立测试集上复核结果；目前不进行重新训练。
+本目录保存论文第三章对应的作者材料、现存权重复核，以及在重建数据集上重新训练的受控消融。当前研究结果入口是 [200 轮三种子汇总](reproduction/results/clean_v2_200_3seed/RESULTS.md)、[合成运动模糊三种子结果](reproduction/results/motion_blur_training_3seed/RESULTS.md)和[模糊/清晰图可视化分析](reproduction/results/motion_blur_visual_analysis_3seed/ANALYSIS_ZH.md)。
 
 ## 1. 文件来源
 
@@ -9,13 +9,16 @@
 - 作者 ZIP：根目录训练/推理脚本、CAA、模型 YAML、YOLOv5 基线目录、示例图片和其他项目素材。
 - 服务器原项目 `/home/b520/Downloads/yuheping`：补齐完整定制 `ultralytics/`、完整数据集以及 `runs/` 中的权重、CSV 和参数记录。
 
-由本次整理新增的内容只有：
+作者材料之外新增的内容主要放在：
 
 - `paper_chapter3/`：按要求从论文中单独提取的第三章及低 Token 摘要。
-- `reproduction/`：现存权重测试脚本和已经生成的测试结果。
+- `reproduction/`：现存权重复核、干净数据重建、受控训练、测试脚本及结果。
+- `DetectDataset_clean_v2/`：去除跨划分同图重复后的研究数据；Git 只保存协议与清单。
+- `DetectDataset_clean_v2_motion_blur/`：可重复生成的合成模糊压力测试；Git 只保存生成规则与清单。
+- `external_benchmarks/`：独立来源数据的零微调测试协议；原始下载文件留在本机。
 - 本 `README.md`：项目入口说明。
 
-其余代码、模型配置、权重和数据均来自作者材料；目录位置经过整理，但没有重新实现作者模型。
+原作者的完整模型和旧权重保持原有语义。新实验使用 `reproduction/ablation/` 中独立命名的模型配置和本地 Ultralytics 扩展；它们与作者提交的最终 MEDA 权重是不同的实验对象。
 
 ## 2. 目录结构
 
@@ -37,10 +40,12 @@ yolo11/
 ├── train_caa.py              # 作者 CAA 训练脚本
 ├── train_meda.py             # 作者最终 MEDA 训练脚本
 ├── paper_chapter3/           # 第三章材料
-└── reproduction/            # 本次最小复现材料与结果
+├── DetectDataset_clean_v2/  # 重建数据集，本仓库只跟踪元数据
+├── external_benchmarks/      # 独立来源测试协议与数据入口
+└── reproduction/            # 审计、受控实验、结果与论文图
 ```
 
-GitHub 仓库只跟踪 `DetectDataset/data.yaml`，不上传数据集图像与标签；`runs/` 中只跟踪各运行的 `args.yaml` 和 `results.csv`，不上传权重、图表及其他生成文件。完整数据集、权重和运行产物仍保留在当前服务器本地。
+GitHub 仓库跟踪数据集 YAML/来源清单、`runs/` 中的训练配置、逐轮 CSV、测试 JSON、协议、状态和小型训练曲线，以及 `reproduction/results/` 中的统计表与可视化图。`.pt` 权重、原始图像/标签、外部 ZIP、训练批次图和缓存不上传。完整数据和权重仍保留在当前服务器本地。
 
 ## 3. 固定环境
 
@@ -156,10 +161,16 @@ PYTHONPATH="$PWD" /home/b520/anaconda3/envs/YHP/bin/yolo detect val \
 
 切换模型时只替换 `model=` 后的权重路径。由于项目根目录含有作者的 `CAA.py`，同样的命令也可读取主要 CAA checkpoint。
 
-一次性复核全部 20 个现存 `best.pt`：
+一次性复核全部 20 个现存 `best.pt`（默认独立 test）：
 
 ```bash
 /home/b520/anaconda3/envs/YHP/bin/python reproduction/evaluate_all_existing_best_on_test.py
+```
+
+同一批权重的 valid 复核：
+
+```bash
+/home/b520/anaconda3/envs/YHP/bin/python reproduction/evaluate_all_existing_best_on_test.py --split val
 ```
 
 完整结果见 [reproduction/RESULTS.md](reproduction/RESULTS.md)。
@@ -193,7 +204,8 @@ PYTHONPATH="$PWD" /home/b520/anaconda3/envs/YHP/bin/yolo detect train \
 
 ## 8. 当前复现边界
 
-- 当前已完成的是作者现存权重的 val/test 复核，不是重新训练。
+- 作者现存权重的 val/test 复核已完成；与之分开的受控实验也已完成五组模型各三种子的 200 轮训练、同口径测试及同机测速。后者见[受控实验结果索引](reproduction/results/clean_v2_200_3seed/RESULTS.md)。
 - 最终 MEDA 在独立 test 上的 mAP50:95 为 63.68%，指定 YOLO11n 基线为 61.75%，提升 1.92 个百分点。
 - 论文报告的 4.59 个百分点提升不能由这两个最终 `best.pt` 在独立 test 上复现。
-- `reproduction/` 中的测试排名只用于审计，不能再反馈为模型选择依据。
+- 重建数据集的公开测试划分已用于多轮研究分析，不应再称为从未接触的终稿测试集。新的外部来源测试协议在 `external_benchmarks/uav_eagle/PROTOCOL.md`；结果尚未生成。
+- `reproduction/` 中的历史测试排名只用于审计，不能再反馈为模型选择依据。

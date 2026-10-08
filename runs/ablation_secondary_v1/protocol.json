@@ -1,0 +1,124 @@
+{
+  "created_at": "2026-08-13T17:04:23.971379+08:00",
+  "frozen_protocol": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/SECONDARY_PROTOCOL.md",
+  "direct_parent": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0",
+  "dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "environment": {
+    "python": "3.12.0 | packaged by Anaconda, Inc. | (main, Oct  2 2023, 17:29:18) [GCC 11.2.0]",
+    "platform": "Linux-6.5.0-35-generic-x86_64-with-glibc2.35",
+    "torch": "2.10.0+cu128",
+    "ultralytics": "8.3.241",
+    "gpu": "NVIDIA GeForce RTX 3090"
+  },
+  "train_args": {
+    "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+    "epochs": 60,
+    "patience": 60,
+    "batch": 16,
+    "imgsz": 640,
+    "device": 0,
+    "workers": 4,
+    "pretrained": false,
+    "optimizer": "AdamW",
+    "lr0": 0.001,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.1,
+    "box": 7.5,
+    "cls": 0.5,
+    "dfl": 1.5,
+    "focaler_iou": false,
+    "focaler_d": 0.0,
+    "focaler_u": 0.95,
+    "seed": 0,
+    "deterministic": true,
+    "amp": false,
+    "close_mosaic": 10,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "cutmix": 0.0,
+    "cache": false,
+    "plots": false,
+    "save": true,
+    "save_period": -1,
+    "project": "/home/b520/Downloads/yelin/yolo11/runs/ablation_secondary_v1"
+  },
+  "experiments": [
+    {
+      "name": "msefbase_adown_ciou_s0",
+      "factor": "ADown",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_adown.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_author_bilinear_ciou_s0",
+      "factor": "Uploaded static bilinear upsampling",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_author_bilinear.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_official_dysample_ciou_s0",
+      "factor": "Reference DySampleOfficial",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_official_dysample.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_author_elan_ciou_s0",
+      "factor": "Uploaded ordinary-Conv ELAN",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_rep.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_official_rep_ciou_s0",
+      "factor": "RepNCSPELAN4Official",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_rep_official.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_ema_ciou_s0",
+      "factor": "EMA after P2 MSEFPaper",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_ema.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_p5_msef_paper_ciou_s0",
+      "factor": "MSEFPaper at P5",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_p5.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_no_c2psa_ciou_s0",
+      "factor": "Remove C2PSA",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper_no_c2psa.yaml",
+      "bbox_loss_mode": "ciou"
+    },
+    {
+      "name": "msefbase_author_power_iou_s0",
+      "factor": "Uploaded power-IoU loss",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper.yaml",
+      "bbox_loss_mode": "author_focal"
+    },
+    {
+      "name": "msefbase_focaler_ciou_s0",
+      "factor": "Reference Focaler-CIoU",
+      "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper.yaml",
+      "bbox_loss_mode": "focaler_ciou"
+    }
+  ],
+  "selection_split": "val",
+  "test_access": "forbidden during secondary screen"
+}

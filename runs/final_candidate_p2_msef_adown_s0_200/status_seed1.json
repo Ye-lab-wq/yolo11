@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "started_or_resumed_at": "2026-09-04T12:00:55.797394+08:00",
+  "current_phase": null,
+  "completed_phases": [
+    "train_200_epochs",
+    "freeze_best_on_validation",
+    "evaluate_combined_test",
+    "evaluate_public_test",
+    "evaluate_self_test"
+  ],
+  "completed_at": "2026-09-04T13:51:25.291060+08:00"
+}

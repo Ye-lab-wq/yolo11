@@ -1,0 +1,27 @@
+{
+  "experiment": "DUT-trained MEDA-Pro w0.25 zero-shot evaluation on DetectDataset test",
+  "training_initialization": "random",
+  "fine_tuned_on_detectdataset": false,
+  "checkpoint": "/media/b520/KESU/Dataset/DUT-Anti-UAV/runs/dut_meda_pro_fixed_w025_scratch_seed0_e100/weights/best.pt",
+  "data": "/home/b520/Downloads/yelin/yolo11/reproduction/data.yaml",
+  "split": "test",
+  "images": 560,
+  "instances": 608,
+  "imgsz": 640,
+  "batch": 16,
+  "iou": 0.7,
+  "max_det": 300,
+  "augment": false,
+  "half": false,
+  "metrics": {
+    "precision": 0.6968399269036554,
+    "recall": 0.5179385898382147,
+    "mAP50": 0.5681933599660974,
+    "mAP50_95": 0.2021997503919756
+  },
+  "speed_ms_per_image": {
+    "preprocess": 0.6724019726139626,
+    "inference": 2.947417209257505,
+    "postprocess": 0.7318911782931536
+  }
+}

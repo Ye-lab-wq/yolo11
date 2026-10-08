@@ -5,10 +5,10 @@ import torch.nn.functional as F
 # ✅ 改为从具体的底层文件导入，避免通过 __init__.py 导致循环引用
 from .conv import RepConv  #meda2
 from .conv import Conv
-from .block import C3k2, Bottleneck # 视你是否用了这些基础块
+from .block import C3k2, Bottleneck, RepNCSPELAN4 as UltralyticsRepNCSPELAN4 # 视你是否用了这些基础块
 # 如果需要 Detect，它通常在 head.py
 # from .head import Detect
-from .dysample import DySample  # 👈 这一行是核心！
+from .dysample import DySample, DySampleOfficial
 # ==================== ADown ====================
 # 注意：ADown 已在 ultralytics.nn.modules 中内置，我们直接复用，但为了统一注册，这里也写一份
 class ADown(nn.Module):
@@ -34,6 +34,36 @@ class ADown(nn.Module):
 
         # 现在两者都是 16x16，可以 cat 了
         return torch.cat((x1, x2), 1)
+
+
+class ADownResidual(ADown):
+    """ADown with a zero-initialized full-channel low-frequency residual.
+
+    The original two ADown branches each observe only half of the input
+    channels. This variant retains the original path unchanged and adds a
+    stride-2 average-pooled residual that observes every input channel. A
+    linear 1x1 projection is used only when the input and output channel counts
+    differ. ``alpha`` starts at zero, so initialization is exactly equivalent
+    to the parent ADown rather than silently changing its starting behavior.
+    """
+
+    def __init__(self, c1, c2):
+        super().__init__(c1, c2)
+        self.residual_projection = (
+            nn.Identity()
+            if c1 == c2
+            else nn.Sequential(
+                nn.Conv2d(c1, c2, kernel_size=1, stride=1, bias=False),
+                nn.BatchNorm2d(c2),
+            )
+        )
+        self.alpha = nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        main = super().forward(x)
+        residual = F.avg_pool2d(x, kernel_size=2, stride=2)
+        residual = self.residual_projection(residual)
+        return main + torch.tanh(self.alpha) * residual
 
 # ==================== MSEF ====================
 # ==================== MSEF ====================
@@ -177,6 +207,28 @@ class MSEF(nn.Module):
         out = self.cv_final(out)                 # (B, c2, H, W)
         return out
 
+
+class MSEFPaper(nn.Module):
+    """Equation-consistent MSEF using the paper's 3x3/5x5 branches and multiplicative edge gating."""
+
+    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
+        super().__init__()
+        hidden = int(c2 * e)
+        self.local = Conv(c1, hidden, 3, 1, 1)
+        self.pools = nn.ModuleList([nn.AvgPool2d(k, 1, k // 2) for k in (3, 5)])
+        self.projections = nn.ModuleList([Conv(c1, hidden, 1, 1, 0) for _ in self.pools])
+        self.edge_logits = nn.ModuleList([nn.Conv2d(hidden, hidden, 1) for _ in self.pools])
+        self.fuse = Conv(hidden * (1 + len(self.pools)), c2, 1, 1, 0)
+
+    def forward(self, x):
+        local = self.local(x)
+        features = [local]
+        for pool, projection, edge_logits in zip(self.pools, self.projections, self.edge_logits):
+            residual = local - projection(pool(x))
+            edge_weight = torch.sigmoid(edge_logits(residual))
+            features.append(local + local * edge_weight)
+        return self.fuse(torch.cat(features, 1))
+
 # ==================== ELSN Shared Head ====================
 class ELSNHead(nn.Module):
     """共享检测头（简化版，只实现参数共享，不改变输出结构）"""
@@ -253,3 +305,9 @@ class RepNCSPELAN4(nn.Module):
         y = list(self.cv1(x).chunk(2, 1))
         y.extend((m := self.cv2(y[-1]), self.cv3(m)))
         return self.cv4(torch.cat(y, 1))
+
+
+class RepNCSPELAN4Official(UltralyticsRepNCSPELAN4):
+    """Unshadowed Ultralytics RepNCSPELAN4 containing RepCSP/RepConv branches."""
+
+    pass

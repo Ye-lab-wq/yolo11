@@ -1,0 +1,14 @@
+child,parent,child_best_epoch,parent_best_epoch,child_map50_95,parent_map50_95,delta_map50_95_pp,child_parameters,parent_parameters,parameter_change_pct,b1_latency_change_pct,screen_decision,decision_basis
+p2_nearest_ciou_s0,yolo11n_ciou_s0,59,57,0.55457,0.55116,0.3410000000000024,2903812,2590035,12.114778371720835,,advance,accuracy
+p2_no_c2psa_ciou_s0,p2_nearest_ciou_s0,60,59,0.55299,0.55457,-0.15800000000000258,2654084,2903812,-8.60000578549851,,do_not_advance,threshold_not_met
+p2_adown_ciou_s0,p2_nearest_ciou_s0,59,59,0.55555,0.55457,0.09799999999999809,2278148,2903812,-21.54629845182815,,do_not_advance,threshold_not_met
+p2_author_bilinear_ciou_s0,p2_nearest_ciou_s0,56,59,0.5505,0.55457,-0.4070000000000018,2903812,2903812,0.0,,do_not_advance,threshold_not_met
+p2_official_dysample_ciou_s0,p2_nearest_ciou_s0,56,59,0.56123,0.55457,0.6659999999999999,2918244,2903812,0.4970018720220182,,advance,accuracy
+p2_rep_ciou_s0,p2_nearest_ciou_s0,59,59,0.56444,0.55457,0.9870000000000045,3201732,2903812,10.259617358148532,,advance,accuracy
+p2_rep_official_ciou_s0,p2_nearest_ciou_s0,56,59,0.5539,0.55457,-0.06700000000000594,3157572,2903812,8.738857749744122,,do_not_advance,threshold_not_met
+p2_msef_author_ciou_s0,p2_nearest_ciou_s0,56,59,0.55409,0.55457,-0.048000000000003595,2923380,2903812,0.6738728264777505,,do_not_advance,threshold_not_met
+p2_msef_paper_ciou_s0,p2_nearest_ciou_s0,59,59,0.56642,0.55457,1.1850000000000027,2920468,2903812,0.5735908523003541,,advance,accuracy
+p2_msef_author_ema_ciou_s0,p2_msef_author_ciou_s0,59,56,0.54654,0.55409,-0.7549999999999946,2923428,2923380,0.001641935020413321,,do_not_advance,threshold_not_met
+p2_p5_msef_author_ciou_s0,p2_nearest_ciou_s0,57,59,0.55302,0.55457,-0.15500000000000513,3461124,2903812,19.192427057950034,,do_not_advance,threshold_not_met
+p2_nearest_author_focal_s0,p2_nearest_ciou_s0,58,59,0.55937,0.55457,0.48000000000000265,2903812,2903812,0.0,,advance,accuracy
+p2_nearest_focaler_ciou_s0,p2_nearest_ciou_s0,59,59,0.55523,0.55457,0.06599999999999939,2903812,2903812,0.0,,do_not_advance,threshold_not_met

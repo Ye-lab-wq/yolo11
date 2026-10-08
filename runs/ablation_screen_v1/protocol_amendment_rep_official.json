@@ -1,0 +1,19 @@
+{
+  "amended_at": "2026-08-13T14:10:16+08:00",
+  "status": "declared_before_training",
+  "reason": "Implementation audit found that meda_modules.py shadows Ultralytics' built-in RepNCSPELAN4 with an ordinary-Conv implementation. The uploaded and unshadowed official implementations must be separated to test the paper's re-parameterization claim.",
+  "added_experiment": {
+    "name": "p2_rep_official_ciou_s0",
+    "model": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_rep_official.yaml",
+    "bbox_loss_mode": "ciou",
+    "direct_parent": "p2_nearest_ciou_s0"
+  },
+  "unchanged_protocol": {
+    "epochs": 60,
+    "seed": 0,
+    "pretrained": false,
+    "selection_split": "validation only",
+    "test_access": "forbidden during screen",
+    "all_other_training_arguments": "identical to protocol.json"
+  }
+}

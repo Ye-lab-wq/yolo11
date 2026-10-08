@@ -1,0 +1,21 @@
+{
+  "status": "completed",
+  "started_or_resumed_at": "2026-08-14T00:41:06.339579+08:00",
+  "current": null,
+  "completed": [
+    "msefbase_adown_ciou_s0",
+    "msefbase_author_bilinear_ciou_s0",
+    "msefbase_official_dysample_ciou_s0",
+    "msefbase_author_elan_ciou_s0",
+    "msefbase_official_rep_ciou_s0",
+    "msefbase_ema_ciou_s0",
+    "msefbase_p5_msef_paper_ciou_s0",
+    "msefbase_no_c2psa_ciou_s0",
+    "msefbase_author_power_iou_s0",
+    "msefbase_focaler_ciou_s0"
+  ],
+  "factor": "Reference Focaler-CIoU",
+  "phase_started_at": "2026-08-14T00:41:06.352347+08:00",
+  "completed_at": "2026-08-14T00:46:33.062657+08:00",
+  "protocol_valid": true
+}

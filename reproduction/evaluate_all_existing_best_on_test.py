@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Evaluate every migrated historical best.pt once on the fixed test split."""
+"""Evaluate every migrated historical best.pt on a fixed dataset split."""
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -17,7 +18,6 @@ PROJECT = ROOT.parent
 SOURCE = PROJECT
 RUNS = PROJECT / "runs"
 DATA = ROOT / "data.yaml"
-OUT = ROOT / "results" / "all_existing_best_test"
 sys.path.insert(0, str(SOURCE))
 # Some early checkpoints serialized DySample as ``dysample.DySample`` rather
 # than through its package path.  The original project contains this exact
@@ -70,16 +70,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def write_outputs(report: dict[str, object]) -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "all_best_test_results.json").write_text(
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--split", choices=("val", "test"), default="test")
+    return parser.parse_args()
+
+
+def write_outputs(report: dict[str, object], out: Path, split: str) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    (out / f"all_best_{split}_results.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     columns = [
         "run", "model_arg", "status", "checkpoint_version", "sha256", "reused_from",
         "compatibility_adapter", "parameters", "precision", "recall", "mAP50", "mAP50-95", "error",
     ]
-    with (OUT / "all_best_test_results.csv").open("w", newline="", encoding="utf-8") as f:
+    with (out / f"all_best_{split}_results.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=columns)
         writer.writeheader()
         for item in report["results"]:
@@ -87,9 +93,14 @@ def write_outputs(report: dict[str, object]) -> None:
 
 
 def main() -> int:
+    args = parse_args()
+    split = args.split
+    out = ROOT / "results" / f"all_existing_best_{split}"
+    split_counts = {"val": (842, 993), "test": (560, 608)}
+    images, instances = split_counts[split]
     weights = sorted(RUNS.rglob("weights/best.pt"))
     report: dict[str, object] = {
-        "policy": "Every migrated historical best.pt evaluated on test; no training; no last.pt",
+        "policy": f"Every migrated historical best.pt evaluated on {split}; no training; no last.pt",
         "environment": {
             "conda": "/home/b520/anaconda3/envs/YHP",
             "python": platform.python_version(),
@@ -100,9 +111,9 @@ def main() -> int:
             "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
         },
         "data": str(DATA.resolve()),
-        "split": "test",
-        "images": 560,
-        "instances": 608,
+        "split": split,
+        "images": images,
+        "instances": instances,
         "discovered_best_checkpoints": len(weights),
         "results": [],
     }
@@ -144,13 +155,13 @@ def main() -> int:
                 item["compatibility_adapter"] = "; ".join(adapters) or None
                 metrics = model.val(
                     data=str(DATA),
-                    split="test",
+                    split=split,
                     imgsz=640,
                     batch=16,
                     device=0,
                     workers=4,
                     plots=False,
-                    project=str(OUT / "runs"),
+                    project=str(out / "runs"),
                     name=run.replace("/", "__"),
                     exist_ok=True,
                     verbose=False,
@@ -171,7 +182,7 @@ def main() -> int:
                 item["traceback"] = traceback.format_exc()
 
         report["results"].append(item)
-        write_outputs(report)
+        write_outputs(report, out, split)
         print(
             f"  status={item['status']} mAP50-95={item.get('mAP50-95')} error={item.get('error')}",
             flush=True,
@@ -180,7 +191,7 @@ def main() -> int:
     report["successful_records"] = sum(item["status"] != "failed" for item in report["results"])
     report["failed_records"] = sum(item["status"] == "failed" for item in report["results"])
     report["unique_weight_hashes_evaluated"] = len(by_hash)
-    write_outputs(report)
+    write_outputs(report, out, split)
     return 1 if report["failed_records"] else 0
 
 

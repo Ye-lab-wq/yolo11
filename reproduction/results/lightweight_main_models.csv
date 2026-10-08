@@ -1,0 +1,6 @@
+model,weights,parameters,weight_mib,gflops_640,fp32_fused_batch1_median_ms,fp32_fused_batch1_fps,fp32_fused_batch16_median_ms_per_image,fp32_fused_batch16_throughput_fps,batch16_peak_allocated_mib
+YOLOv8n,runs/detect/yolo8_100/weights/best.pt,3011043,5.9666,8.1941504,6.2626917,159.6758,0.8687352,1151.0987,338.5781
+YOLO11n,runs/detect/yolo11_100/weights/best.pt,2590035,5.2251,6.4406016,8.5332025,117.1893,0.8834044,1131.9843,429.3975
+YOLO11n + CAA,runs/train/train_c_120/weights/best.pt,2777299,5.6169,6.8110848,9.8509000,101.5136,1.0904602,917.0440,428.5269
+YOLO11n + CAA + Focaler,runs/train/train_ic_150_3_val/weights/best.pt,2777299,5.6205,6.8110848,10.2780017,97.2952,1.0906400,916.8929,428.5269
+Final MEDA,runs/detect/meda_200/weights/best.pt,10825268,21.1940,48.4132160,12.2839331,81.4072,4.4732956,223.5488,1017.3770

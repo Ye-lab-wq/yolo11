@@ -1,0 +1,47 @@
+{
+  "split": "public_test",
+  "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data_public_test.yaml",
+  "selection_status": "frozen_before_test",
+  "imgsz": 640,
+  "batch": 4,
+  "device": "0",
+  "confidence_floor": 0.001,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "size_ranges": {
+    "tiny": "area < 16^2 pixels",
+    "small_only": "16^2 <= area < 32^2 pixels",
+    "coco_small": "area < 32^2 pixels",
+    "coco_medium": "32^2 <= area < 96^2 pixels",
+    "coco_large": "area >= 96^2 pixels"
+  },
+  "models": {
+    "YOLO11n_P2_ADown_seed2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_adown/train_seed2/weights/best.pt",
+      "ultralytics": {
+        "precision": 0.9469770012422787,
+        "recall": 0.9386142029966716,
+        "mAP50": 0.964376174742999,
+        "mAP75": 0.6560482493256805,
+        "mAP50_95": 0.5900756280704827
+      },
+      "coco_style": {
+        "images": 625,
+        "instances": 685,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 240,
+        "instances_coco_large_ge96": 309,
+        "AP": 0.5699389299236316,
+        "AP50": 0.9479563407458464,
+        "AP75": 0.6195501252452943,
+        "AP_tiny_lt16": 0.17208863743517208,
+        "AP_small_16_32": 0.38810463653167204,
+        "AP_coco_small_lt32": 0.36871609680278516,
+        "AP_coco_medium_32_96": 0.5547785019700168,
+        "AP_coco_large_ge96": 0.6361732766108581
+      }
+    }
+  }
+}

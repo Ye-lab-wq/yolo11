@@ -1,0 +1,1746 @@
+{
+  "environment": {
+    "python": "3.12.0",
+    "torch": "2.10.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "imgsz": 640,
+    "prediction_confidence_floor": 0.001,
+    "nms_iou": 0.7,
+    "inference_batch": 4
+  },
+  "split": "test",
+  "images": 560,
+  "exact_train_duplicate_images": 199,
+  "nonduplicate_images": 361,
+  "area_definition": "tiny <16 px; small 16-32; medium 32-96; large >=96 by sqrt(box area)",
+  "models": {
+    "YOLO11n": {
+      "weights": "runs/detect/yolo11_100/weights/best.pt",
+      "all": {
+        "ground_truth": 608,
+        "AP50": 0.9726451718427718,
+        "AP75": 0.6775782477124841,
+        "AP50_95": 0.6070154366184246,
+        "max_recall_iou50": 0.9819078947368421,
+        "max_recall_iou75": 0.7598684210526315
+      },
+      "by_size": {
+        "tiny": {
+          "ground_truth": 4,
+          "AP50": 0.7589285714285715,
+          "AP75": 0.25961538461538464,
+          "AP50_95": 0.30740995115995123,
+          "max_recall_iou50": 0.75,
+          "max_recall_iou75": 0.25
+        },
+        "small": {
+          "ground_truth": 115,
+          "AP50": 0.8962772164701961,
+          "AP75": 0.31099784027576566,
+          "AP50_95": 0.4153771652595587,
+          "max_recall_iou50": 0.9478260869565217,
+          "max_recall_iou75": 0.5565217391304348
+        },
+        "medium": {
+          "ground_truth": 264,
+          "AP50": 0.9870910015299121,
+          "AP75": 0.614930624866009,
+          "AP50_95": 0.5821423541672494,
+          "max_recall_iou50": 0.9962121212121212,
+          "max_recall_iou75": 0.7462121212121212
+        },
+        "large": {
+          "ground_truth": 225,
+          "AP50": 0.9817366572967802,
+          "AP75": 0.8530756401203653,
+          "AP50_95": 0.6987887416279532,
+          "max_recall_iou50": 0.9866666666666667,
+          "max_recall_iou75": 0.8888888888888888
+        }
+      },
+      "exact_train_duplicates": {
+        "ground_truth": 201,
+        "AP50": 0.9907762741303843,
+        "AP75": 0.8088867112596231,
+        "AP50_95": 0.675488503773928,
+        "max_recall_iou50": 0.9900497512437811,
+        "max_recall_iou75": 0.845771144278607
+      },
+      "nonduplicates": {
+        "ground_truth": 407,
+        "AP50": 0.9595994762793023,
+        "AP75": 0.6067109644320868,
+        "AP50_95": 0.570791942543936,
+        "max_recall_iou50": 0.9778869778869779,
+        "max_recall_iou75": 0.7174447174447175
+      },
+      "by_size_exact_train_duplicates": {
+        "tiny": {
+          "ground_truth": 0,
+          "AP50": null,
+          "AP75": null,
+          "AP50_95": null,
+          "max_recall_iou50": null,
+          "max_recall_iou75": null
+        },
+        "small": {
+          "ground_truth": 25,
+          "AP50": 0.924301382388704,
+          "AP75": 0.3601906565656565,
+          "AP50_95": 0.4600690510378288,
+          "max_recall_iou50": 0.96,
+          "max_recall_iou75": 0.64
+        },
+        "medium": {
+          "ground_truth": 80,
+          "AP50": 0.995,
+          "AP75": 0.7036059075203704,
+          "AP50_95": 0.6460836560845292,
+          "max_recall_iou50": 1.0,
+          "max_recall_iou75": 0.775
+        },
+        "large": {
+          "ground_truth": 96,
+          "AP50": 0.9841360759493669,
+          "AP75": 0.9421479853895481,
+          "AP50_95": 0.7316647577321524,
+          "max_recall_iou50": 0.9895833333333334,
+          "max_recall_iou75": 0.9583333333333334
+        }
+      },
+      "by_size_nonduplicates": {
+        "tiny": {
+          "ground_truth": 4,
+          "AP50": 0.7612500000000002,
+          "AP75": 0.2622727272727273,
+          "AP50_95": 0.309221837944664,
+          "max_recall_iou50": 0.75,
+          "max_recall_iou75": 0.25
+        },
+        "small": {
+          "ground_truth": 90,
+          "AP50": 0.894811508292754,
+          "AP75": 0.3141288522471121,
+          "AP50_95": 0.411437667078418,
+          "max_recall_iou50": 0.9444444444444444,
+          "max_recall_iou75": 0.5333333333333333
+        },
+        "medium": {
+          "ground_truth": 184,
+          "AP50": 0.9790352916045537,
+          "AP75": 0.5667807935489975,
+          "AP50_95": 0.550089008478189,
+          "max_recall_iou50": 0.9945652173913043,
+          "max_recall_iou75": 0.7336956521739131
+        },
+        "large": {
+          "ground_truth": 129,
+          "AP50": 0.9750529012835455,
+          "AP75": 0.7853473229088251,
+          "AP50_95": 0.676189901562594,
+          "max_recall_iou50": 0.9844961240310077,
+          "max_recall_iou75": 0.8372093023255814
+        }
+      },
+      "fixed_threshold": {
+        "confidence": 0.25,
+        "recall_by_size": {
+          "large": {
+            "ground_truth": 225,
+            "recall_iou50_conf025": 0.9733333333333334,
+            "recall_iou75_conf025": 0.88
+          },
+          "medium": {
+            "ground_truth": 264,
+            "recall_iou50_conf025": 0.9772727272727273,
+            "recall_iou75_conf025": 0.696969696969697
+          },
+          "small": {
+            "ground_truth": 115,
+            "recall_iou50_conf025": 0.9304347826086956,
+            "recall_iou75_conf025": 0.4782608695652174
+          },
+          "tiny": {
+            "ground_truth": 4,
+            "recall_iou50_conf025": 0.75,
+            "recall_iou75_conf025": 0.25
+          }
+        },
+        "misses_iou50": 21,
+        "false_positives_iou50": 48,
+        "false_positive_error_types": {
+          "localization": 27,
+          "background_or_unlabeled": 21
+        },
+        "top_misses": [
+          {
+            "path": "DetectDataset/test/images/video533_JPEG.rf.61ab15ef77a56626a05264d5e5ca0f29.jpg",
+            "group": "large",
+            "box": [
+              262.0,
+              273.5,
+              442.0,
+              425.5
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1073_JPEG.rf.fdf552ddc6d967f59a1043d2cd9d8c00.jpg",
+            "group": "medium",
+            "box": [
+              216.75,
+              474.5,
+              299.25,
+              563.5
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video1390_JPEG_jpg.rf.ecfcefd72da66aaa9dbfbad864c1287b.jpg",
+            "group": "small",
+            "box": [
+              293.75,
+              392.0,
+              322.25,
+              417.0
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video14_204_JPEG.rf.e0b2120015f89c44692af6b6f00f5fe4.jpg",
+            "group": "medium",
+            "box": [
+              72.0,
+              128.75,
+              155.0,
+              182.25
+            ],
+            "best_iou_at_conf025": 0.015473386264811057
+          },
+          {
+            "path": "DetectDataset/test/images/video16_673_JPEG.rf.4bf0a8e50c2ed597ee11f8bba19bb29c.jpg",
+            "group": "medium",
+            "box": [
+              374.5,
+              64.0,
+              417.5,
+              122.0
+            ],
+            "best_iou_at_conf025": 0.14372607892634584
+          },
+          {
+            "path": "DetectDataset/test/images/video16_678_JPEG.rf.18a85f782dc131e80a9a598bc05202e6.jpg",
+            "group": "medium",
+            "box": [
+              359.75,
+              59.5,
+              404.25,
+              106.5
+            ],
+            "best_iou_at_conf025": 0.18020742068821052
+          },
+          {
+            "path": "DetectDataset/test/images/video16_690_JPEG.rf.ee6d198c404ea74379b8f45253b01551.jpg",
+            "group": "medium",
+            "box": [
+              344.5,
+              44.75,
+              385.5,
+              87.25
+            ],
+            "best_iou_at_conf025": 0.20074308870769128
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1060_JPEG.rf.7a071dc3aadcc1827863fe7d60260ae3.jpg",
+            "group": "large",
+            "box": [
+              296.75,
+              233.0,
+              425.25,
+              387.0
+            ],
+            "best_iou_at_conf025": 0.23322456740484826
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1062_JPEG.rf.6a9f3effb47ef5cfc52d842a57724e90.jpg",
+            "group": "large",
+            "box": [
+              284.5,
+              330.75,
+              412.5,
+              485.25
+            ],
+            "best_iou_at_conf025": 0.23700583142960815
+          },
+          {
+            "path": "DetectDataset/test/images/pic_1026_jpg.rf.155d6177f46e0e439462b8520176f77c.jpg",
+            "group": "large",
+            "box": [
+              124.0,
+              355.0,
+              536.0,
+              637.0
+            ],
+            "best_iou_at_conf025": 0.2717481840386714
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1335_JPEG.rf.b5060392aba5f7b449a63a5ce8fb29f3.jpg",
+            "group": "tiny",
+            "box": [
+              389.75,
+              282.5,
+              404.25,
+              298.5
+            ],
+            "best_iou_at_conf025": 0.3024538805197714
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1242_JPEG.rf.acc8a18b94789581337d900a93103f10.jpg",
+            "group": "small",
+            "box": [
+              345.25,
+              141.25,
+              364.75,
+              161.75
+            ],
+            "best_iou_at_conf025": 0.39183281666179864
+          },
+          {
+            "path": "DetectDataset/test/images/video16_736_JPEG.rf.8ea4d6093245af91e1c40a9c53f434cb.jpg",
+            "group": "small",
+            "box": [
+              17.5,
+              43.5,
+              39.5,
+              83.5
+            ],
+            "best_iou_at_conf025": 0.3949126449111315
+          },
+          {
+            "path": "DetectDataset/test/images/video1366_JPEG_jpg.rf.8d8727bb27d4409555181a02611da2d3.jpg",
+            "group": "small",
+            "box": [
+              388.5,
+              475.5,
+              406.5,
+              497.5
+            ],
+            "best_iou_at_conf025": 0.434278845093699
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2189_JPEG.rf.3f34142221b19e2c128f5441e619da56.jpg",
+            "group": "small",
+            "box": [
+              99.5,
+              190.25,
+              134.5,
+              217.75
+            ],
+            "best_iou_at_conf025": 0.4453045273201675
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1268_JPEG.rf.7dd905d874696c51015b7a5e88339a8e.jpg",
+            "group": "large",
+            "box": [
+              309.75,
+              376.75,
+              428.25,
+              526.25
+            ],
+            "best_iou_at_conf025": 0.4670541404617052
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1633_JPEG.rf.b94512b97720efc9bb1344374b876b70.jpg",
+            "group": "medium",
+            "box": [
+              389.25,
+              308.5,
+              422.75,
+              340.5
+            ],
+            "best_iou_at_conf025": 0.46915348378746813
+          },
+          {
+            "path": "DetectDataset/test/images/video16_735_JPEG.rf.55e109b4db3033e7756d095383b793a5.jpg",
+            "group": "small",
+            "box": [
+              51.5,
+              56.0,
+              78.5,
+              87.0
+            ],
+            "best_iou_at_conf025": 0.4751312859393121
+          },
+          {
+            "path": "DetectDataset/test/images/32_JPEG.rf.db8b5476f8c274cba277972248ef295c.jpg",
+            "group": "small",
+            "box": [
+              160.25,
+              124.5,
+              173.75,
+              144.5
+            ],
+            "best_iou_at_conf025": 0.4752650589461522
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1065_JPEG.rf.450d1b65112ab45d3201e3d31b041e42.jpg",
+            "group": "large",
+            "box": [
+              316.5,
+              477.25,
+              423.5,
+              567.75
+            ],
+            "best_iou_at_conf025": 0.487817195069037
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1336_JPEG.rf.609097275e398e134d0354780876595b.jpg",
+            "group": "small",
+            "box": [
+              382.5,
+              283.25,
+              398.5,
+              304.75
+            ],
+            "best_iou_at_conf025": 0.4994630312965653
+          }
+        ],
+        "top_false_positives": [
+          {
+            "path": "DetectDataset/test/images/video17_1065_JPEG.rf.450d1b65112ab45d3201e3d31b041e42.jpg",
+            "confidence": 0.8145906329154968,
+            "box": [
+              304.19,
+              470.36,
+              444.79,
+              611.55
+            ],
+            "best_iou_to_any_gt": 0.487817195069037,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1268_JPEG.rf.7dd905d874696c51015b7a5e88339a8e.jpg",
+            "confidence": 0.8029457330703735,
+            "box": [
+              308.91,
+              376.23,
+              558.43,
+              528.24
+            ],
+            "best_iou_to_any_gt": 0.4670541404617052,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video14_204_JPEG.rf.e0b2120015f89c44692af6b6f00f5fe4.jpg",
+            "confidence": 0.7629455327987671,
+            "box": [
+              60.19,
+              0.0,
+              529.15,
+              611.94
+            ],
+            "best_iou_to_any_gt": 0.015473386264811057,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1060_JPEG.rf.7a071dc3aadcc1827863fe7d60260ae3.jpg",
+            "confidence": 0.757742702960968,
+            "box": [
+              318.82,
+              276.86,
+              398.42,
+              334.84
+            ],
+            "best_iou_to_any_gt": 0.23322456740484826,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/pic_1026_jpg.rf.155d6177f46e0e439462b8520176f77c.jpg",
+            "confidence": 0.6917866468429565,
+            "box": [
+              0.0,
+              0.0,
+              623.61,
+              613.77
+            ],
+            "best_iou_to_any_gt": 0.2717481840386714,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video1366_JPEG_jpg.rf.8d8727bb27d4409555181a02611da2d3.jpg",
+            "confidence": 0.6869148015975952,
+            "box": [
+              384.6,
+              468.3,
+              409.95,
+              504.26
+            ],
+            "best_iou_to_any_gt": 0.434278845093699,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2189_JPEG.rf.3f34142221b19e2c128f5441e619da56.jpg",
+            "confidence": 0.6830601096153259,
+            "box": [
+              95.05,
+              180.38,
+              140.57,
+              227.87
+            ],
+            "best_iou_to_any_gt": 0.4453045273201675,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1062_JPEG.rf.6a9f3effb47ef5cfc52d842a57724e90.jpg",
+            "confidence": 0.6735950112342834,
+            "box": [
+              313.07,
+              362.57,
+              385.7,
+              427.11
+            ],
+            "best_iou_to_any_gt": 0.23700583142960815,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_673_JPEG.rf.98b2e1dad7e67d78bef1a340e03361b8.jpg",
+            "confidence": 0.6661579608917236,
+            "box": [
+              1.56,
+              195.31,
+              32.25,
+              230.6
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/32_JPEG.rf.db8b5476f8c274cba277972248ef295c.jpg",
+            "confidence": 0.6433547139167786,
+            "box": [
+              157.04,
+              119.21,
+              176.46,
+              148.46
+            ],
+            "best_iou_to_any_gt": 0.4752650589461522,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/pic_1044_jpg.rf.66c7f1c2a0cf50759e79c7156b9e4d98.jpg",
+            "confidence": 0.6276690363883972,
+            "box": [
+              0.79,
+              40.92,
+              638.77,
+              463.76
+            ],
+            "best_iou_to_any_gt": 0.5620016761530924,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1633_JPEG.rf.b94512b97720efc9bb1344374b876b70.jpg",
+            "confidence": 0.5868266820907593,
+            "box": [
+              394.1,
+              313.75,
+              416.77,
+              335.93
+            ],
+            "best_iou_to_any_gt": 0.46915348378746813,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1617_JPEG.rf.24ae57f029ed398f60e4df69cee8c992.jpg",
+            "confidence": 0.5715326070785522,
+            "box": [
+              392.2,
+              282.48,
+              419.54,
+              313.33
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1336_JPEG.rf.609097275e398e134d0354780876595b.jpg",
+            "confidence": 0.5624715089797974,
+            "box": [
+              377.84,
+              278.67,
+              402.68,
+              306.4
+            ],
+            "best_iou_to_any_gt": 0.4994630312965653,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1242_JPEG.rf.acc8a18b94789581337d900a93103f10.jpg",
+            "confidence": 0.543928325176239,
+            "box": [
+              341.05,
+              130.09,
+              369.09,
+              166.47
+            ],
+            "best_iou_to_any_gt": 0.39183281666179864,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1335_JPEG.rf.b5060392aba5f7b449a63a5ce8fb29f3.jpg",
+            "confidence": 0.5400504469871521,
+            "box": [
+              384.79,
+              275.64,
+              411.38,
+              304.49
+            ],
+            "best_iou_to_any_gt": 0.3024538805197714,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1283_JPEG.rf.2b0ab41a072f2ae2f9c2d547ed9fe995.jpg",
+            "confidence": 0.4832059442996979,
+            "box": [
+              168.54,
+              177.94,
+              191.86,
+              203.92
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_678_JPEG.rf.18a85f782dc131e80a9a598bc05202e6.jpg",
+            "confidence": 0.4525054693222046,
+            "box": [
+              368.76,
+              75.66,
+              385.89,
+              97.66
+            ],
+            "best_iou_to_any_gt": 0.18020742068821052,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1347_JPEG.rf.e752d2f97fdd72479906f323c76f0786.jpg",
+            "confidence": 0.436966210603714,
+            "box": [
+              292.71,
+              211.35,
+              311.13,
+              236.24
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1291_JPEG.rf.322d9ac3fe19acd321cce35962f8d9f0.jpg",
+            "confidence": 0.43218788504600525,
+            "box": [
+              86.66,
+              157.01,
+              110.02,
+              187.46
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2984_JPEG.rf.387727ddfd6c993b8db0b8ed1eb5b76e.jpg",
+            "confidence": 0.42685171961784363,
+            "box": [
+              227.22,
+              329.67,
+              308.11,
+              396.13
+            ],
+            "best_iou_to_any_gt": 0.5307461795351703,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video14_202_JPEG.rf.cd530027ab5d32cb76581d0dd4605b33.jpg",
+            "confidence": 0.41533392667770386,
+            "box": [
+              91.37,
+              0.0,
+              440.78,
+              580.68
+            ],
+            "best_iou_to_any_gt": 0.6033071923164939,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_690_JPEG.rf.ee6d198c404ea74379b8f45253b01551.jpg",
+            "confidence": 0.4087004065513611,
+            "box": [
+              352.23,
+              60.77,
+              369.17,
+              81.41
+            ],
+            "best_iou_to_any_gt": 0.20074308870769128,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_553_JPEG.rf.4e97ccd2ba4fe075be5f30ad83d6be57.jpg",
+            "confidence": 0.391971617937088,
+            "box": [
+              348.05,
+              209.77,
+              379.7,
+              243.2
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1530_JPEG.rf.287bbc6012fe2f7d4c84b9af87eb2c83.jpg",
+            "confidence": 0.3919021785259247,
+            "box": [
+              237.59,
+              237.79,
+              258.62,
+              260.74
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_736_JPEG.rf.8ea4d6093245af91e1c40a9c53f434cb.jpg",
+            "confidence": 0.38542163372039795,
+            "box": [
+              19.78,
+              51.39,
+              37.02,
+              71.54
+            ],
+            "best_iou_to_any_gt": 0.3949126449111315,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_673_JPEG.rf.4bf0a8e50c2ed597ee11f8bba19bb29c.jpg",
+            "confidence": 0.38318079710006714,
+            "box": [
+              379.37,
+              79.79,
+              396.72,
+              100.45
+            ],
+            "best_iou_to_any_gt": 0.14372607892634584,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1106_JPEG.rf.c169d5851c1bacb37fd04fc53d7a4c48.jpg",
+            "confidence": 0.37666723132133484,
+            "box": [
+              278.14,
+              434.55,
+              329.07,
+              481.86
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1298_JPEG.rf.50a476852ff145090b957927329d115b.jpg",
+            "confidence": 0.36840590834617615,
+            "box": [
+              205.23,
+              172.34,
+              221.09,
+              191.49
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video10252_JPEG.rf.b5bf540c6140c4866c481a9f29af2f64.jpg",
+            "confidence": 0.3619803488254547,
+            "box": [
+              2.31,
+              186.99,
+              20.51,
+              211.46
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_735_JPEG.rf.55e109b4db3033e7756d095383b793a5.jpg",
+            "confidence": 0.361275315284729,
+            "box": [
+              54.02,
+              60.74,
+              72.46,
+              82.3
+            ],
+            "best_iou_to_any_gt": 0.4751312859393121,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video13189_JPEG.rf.04a56c3ae568427df15c388c5c588cdf.jpg",
+            "confidence": 0.3504962623119354,
+            "box": [
+              206.95,
+              77.16,
+              246.82,
+              128.35
+            ],
+            "best_iou_to_any_gt": 0.6660506866338242,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2969_JPEG.rf.1b5fdac212ba45cdcaefaf72bf4a2250.jpg",
+            "confidence": 0.34738510847091675,
+            "box": [
+              194.47,
+              320.33,
+              281.08,
+              382.11
+            ],
+            "best_iou_to_any_gt": 0.6846588548136621,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1102_JPEG.rf.adf7244a6bcc943dbe89d9a9a4e11e19.jpg",
+            "confidence": 0.34647348523139954,
+            "box": [
+              277.36,
+              434.4,
+              328.25,
+              480.42
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1299_JPEG.rf.45c48eaa39300226caaab8cdf65e6ac4.jpg",
+            "confidence": 0.3393058776855469,
+            "box": [
+              173.64,
+              180.57,
+              193.23,
+              203.06
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video19_2951_JPEG.rf.103af10d6e1d567be0e0c2f988899341.jpg",
+            "confidence": 0.3363625705242157,
+            "box": [
+              0.33,
+              93.67,
+              74.37,
+              207.56
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2993_JPEG.rf.c2e879e05da404489669ac1dad78cd62.jpg",
+            "confidence": 0.3343782126903534,
+            "box": [
+              237.21,
+              299.03,
+              322.26,
+              364.18
+            ],
+            "best_iou_to_any_gt": 0.8177082339207896,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1517_JPEG.rf.d296444f77be89c19aa29f5759196c12.jpg",
+            "confidence": 0.33032920956611633,
+            "box": [
+              231.13,
+              236.64,
+              246.61,
+              256.15
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1114_JPEG.rf.9aba1f6b27527fc4b56c2300686c094f.jpg",
+            "confidence": 0.32263070344924927,
+            "box": [
+              277.49,
+              433.55,
+              329.77,
+              480.92
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1062_JPEG.rf.6a9f3effb47ef5cfc52d842a57724e90.jpg",
+            "confidence": 0.3166172504425049,
+            "box": [
+              566.98,
+              0.07,
+              639.32,
+              36.41
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          }
+        ]
+      }
+    },
+    "MEDA": {
+      "weights": "runs/detect/meda_200/weights/best.pt",
+      "all": {
+        "ground_truth": 608,
+        "AP50": 0.9723976151820434,
+        "AP75": 0.702727542286263,
+        "AP50_95": 0.6300546100327086,
+        "max_recall_iou50": 0.9868421052631579,
+        "max_recall_iou75": 0.7828947368421053
+      },
+      "by_size": {
+        "tiny": {
+          "ground_truth": 4,
+          "AP50": 0.7471787709497208,
+          "AP75": 0.25039772727272724,
+          "AP50_95": 0.35308570627207597,
+          "max_recall_iou50": 0.75,
+          "max_recall_iou75": 0.5
+        },
+        "small": {
+          "ground_truth": 115,
+          "AP50": 0.945343972931165,
+          "AP75": 0.2780475674369106,
+          "AP50_95": 0.41760371167307814,
+          "max_recall_iou50": 0.991304347826087,
+          "max_recall_iou75": 0.6260869565217392
+        },
+        "medium": {
+          "ground_truth": 264,
+          "AP50": 0.9773193381963224,
+          "AP75": 0.6337768428204965,
+          "AP50_95": 0.5978963485275187,
+          "max_recall_iou50": 0.9924242424242424,
+          "max_recall_iou75": 0.7537878787878788
+        },
+        "large": {
+          "ground_truth": 225,
+          "AP50": 0.9804388506656703,
+          "AP75": 0.8852441505515071,
+          "AP50_95": 0.7305930780307764,
+          "max_recall_iou50": 0.9822222222222222,
+          "max_recall_iou75": 0.9022222222222223
+        }
+      },
+      "exact_train_duplicates": {
+        "ground_truth": 201,
+        "AP50": 0.993992899289929,
+        "AP75": 0.8634939670392731,
+        "AP50_95": 0.7441178208309576,
+        "max_recall_iou50": 0.9950248756218906,
+        "max_recall_iou75": 0.8756218905472637
+      },
+      "nonduplicates": {
+        "ground_truth": 407,
+        "AP50": 0.9565930524566455,
+        "AP75": 0.6032506850514511,
+        "AP50_95": 0.5662468353598759,
+        "max_recall_iou50": 0.9828009828009828,
+        "max_recall_iou75": 0.7371007371007371
+      },
+      "by_size_exact_train_duplicates": {
+        "tiny": {
+          "ground_truth": 0,
+          "AP50": null,
+          "AP75": null,
+          "AP50_95": null,
+          "max_recall_iou50": null,
+          "max_recall_iou75": null
+        },
+        "small": {
+          "ground_truth": 25,
+          "AP50": 0.9821030303030304,
+          "AP75": 0.26411684782608696,
+          "AP50_95": 0.47751956860168815,
+          "max_recall_iou50": 1.0,
+          "max_recall_iou75": 0.52
+        },
+        "medium": {
+          "ground_truth": 80,
+          "AP50": 0.9845414634146341,
+          "AP75": 0.8172189800091995,
+          "AP50_95": 0.7175361966954494,
+          "max_recall_iou50": 0.9875,
+          "max_recall_iou75": 0.85
+        },
+        "large": {
+          "ground_truth": 96,
+          "AP50": 0.995,
+          "AP75": 0.9839722197260182,
+          "AP50_95": 0.8103297898515918,
+          "max_recall_iou50": 1.0,
+          "max_recall_iou75": 0.9895833333333334
+        }
+      },
+      "by_size_nonduplicates": {
+        "tiny": {
+          "ground_truth": 4,
+          "AP50": 0.7481451612903225,
+          "AP75": 0.2517148760330579,
+          "AP50_95": 0.3540633718075908,
+          "max_recall_iou50": 0.75,
+          "max_recall_iou75": 0.5
+        },
+        "small": {
+          "ground_truth": 90,
+          "AP50": 0.9278762848154721,
+          "AP75": 0.2804980567968967,
+          "AP50_95": 0.39651286153647225,
+          "max_recall_iou50": 0.9888888888888889,
+          "max_recall_iou75": 0.6555555555555556
+        },
+        "medium": {
+          "ground_truth": 184,
+          "AP50": 0.9700860319711583,
+          "AP75": 0.5241648406666906,
+          "AP50_95": 0.5356283895896947,
+          "max_recall_iou50": 0.9945652173913043,
+          "max_recall_iou75": 0.7119565217391305
+        },
+        "large": {
+          "ground_truth": 129,
+          "AP50": 0.9610751617662678,
+          "AP75": 0.801784259828431,
+          "AP50_95": 0.6723528318156384,
+          "max_recall_iou50": 0.9689922480620154,
+          "max_recall_iou75": 0.8372093023255814
+        }
+      },
+      "fixed_threshold": {
+        "confidence": 0.25,
+        "recall_by_size": {
+          "large": {
+            "ground_truth": 225,
+            "recall_iou50_conf025": 0.9733333333333334,
+            "recall_iou75_conf025": 0.8977777777777778
+          },
+          "medium": {
+            "ground_truth": 264,
+            "recall_iou50_conf025": 0.9734848484848485,
+            "recall_iou75_conf025": 0.7121212121212122
+          },
+          "small": {
+            "ground_truth": 115,
+            "recall_iou50_conf025": 0.9565217391304348,
+            "recall_iou75_conf025": 0.46956521739130436
+          },
+          "tiny": {
+            "ground_truth": 4,
+            "recall_iou50_conf025": 0.75,
+            "recall_iou75_conf025": 0.0
+          }
+        },
+        "misses_iou50": 19,
+        "false_positives_iou50": 84,
+        "false_positive_error_types": {
+          "background_or_unlabeled": 35,
+          "localization": 49
+        },
+        "top_misses": [
+          {
+            "path": "DetectDataset/test/images/video17_1100_JPEG.rf.cdfd79a7037a8577d3c8368105804c83.jpg",
+            "group": "large",
+            "box": [
+              148.25,
+              76.25,
+              237.75,
+              191.75
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1232_JPEG.rf.f00762ebc56ad80854da80ff3dad9641.jpg",
+            "group": "large",
+            "box": [
+              340.25,
+              413.25,
+              639.75,
+              639.75
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video533_JPEG.rf.61ab15ef77a56626a05264d5e5ca0f29.jpg",
+            "group": "large",
+            "box": [
+              262.0,
+              273.5,
+              442.0,
+              425.5
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video13188_JPEG.rf.6b1d1aa7efff850750089d3907ae69b5.jpg",
+            "group": "medium",
+            "box": [
+              104.5,
+              105.75,
+              141.5,
+              142.25
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video321_JPEG.rf.0ba39d6305aa145babf1b274a04a70ff.jpg",
+            "group": "medium",
+            "box": [
+              318.0,
+              338.75,
+              386.0,
+              377.25
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video1390_JPEG_jpg.rf.ecfcefd72da66aaa9dbfbad864c1287b.jpg",
+            "group": "small",
+            "box": [
+              293.75,
+              392.0,
+              322.25,
+              417.0
+            ],
+            "best_iou_at_conf025": 0.0
+          },
+          {
+            "path": "DetectDataset/test/images/video14_204_JPEG.rf.e0b2120015f89c44692af6b6f00f5fe4.jpg",
+            "group": "medium",
+            "box": [
+              72.0,
+              128.75,
+              155.0,
+              182.25
+            ],
+            "best_iou_at_conf025": 0.015727500352418364
+          },
+          {
+            "path": "DetectDataset/test/images/video16_673_JPEG.rf.4bf0a8e50c2ed597ee11f8bba19bb29c.jpg",
+            "group": "medium",
+            "box": [
+              374.5,
+              64.0,
+              417.5,
+              122.0
+            ],
+            "best_iou_at_conf025": 0.16922515934839566
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1060_JPEG.rf.7a071dc3aadcc1827863fe7d60260ae3.jpg",
+            "group": "large",
+            "box": [
+              296.75,
+              233.0,
+              425.25,
+              387.0
+            ],
+            "best_iou_at_conf025": 0.18332831548105485
+          },
+          {
+            "path": "DetectDataset/test/images/video16_678_JPEG.rf.18a85f782dc131e80a9a598bc05202e6.jpg",
+            "group": "medium",
+            "box": [
+              359.75,
+              59.5,
+              404.25,
+              106.5
+            ],
+            "best_iou_at_conf025": 0.20508702071804377
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1062_JPEG.rf.6a9f3effb47ef5cfc52d842a57724e90.jpg",
+            "group": "large",
+            "box": [
+              284.5,
+              330.75,
+              412.5,
+              485.25
+            ],
+            "best_iou_at_conf025": 0.20641442713806923
+          },
+          {
+            "path": "DetectDataset/test/images/video16_690_JPEG.rf.ee6d198c404ea74379b8f45253b01551.jpg",
+            "group": "medium",
+            "box": [
+              344.5,
+              44.75,
+              385.5,
+              87.25
+            ],
+            "best_iou_at_conf025": 0.21363046745017406
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1335_JPEG.rf.b5060392aba5f7b449a63a5ce8fb29f3.jpg",
+            "group": "tiny",
+            "box": [
+              389.75,
+              282.5,
+              404.25,
+              298.5
+            ],
+            "best_iou_at_conf025": 0.26541497858450436
+          },
+          {
+            "path": "DetectDataset/test/images/pic_1026_jpg.rf.155d6177f46e0e439462b8520176f77c.jpg",
+            "group": "large",
+            "box": [
+              124.0,
+              355.0,
+              536.0,
+              637.0
+            ],
+            "best_iou_at_conf025": 0.33534000295142075
+          },
+          {
+            "path": "DetectDataset/test/images/video1366_JPEG_jpg.rf.8d8727bb27d4409555181a02611da2d3.jpg",
+            "group": "small",
+            "box": [
+              388.5,
+              475.5,
+              406.5,
+              497.5
+            ],
+            "best_iou_at_conf025": 0.35501683731957
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1242_JPEG.rf.acc8a18b94789581337d900a93103f10.jpg",
+            "group": "small",
+            "box": [
+              345.25,
+              141.25,
+              364.75,
+              161.75
+            ],
+            "best_iou_at_conf025": 0.4043557435693135
+          },
+          {
+            "path": "DetectDataset/test/images/video15_413_JPEG.rf.91e7c892db5558e2718cbda8f0e13b25.jpg",
+            "group": "medium",
+            "box": [
+              288.0,
+              259.5,
+              346.0,
+              333.5
+            ],
+            "best_iou_at_conf025": 0.47079888206818954
+          },
+          {
+            "path": "DetectDataset/test/images/video16_735_JPEG.rf.55e109b4db3033e7756d095383b793a5.jpg",
+            "group": "small",
+            "box": [
+              51.5,
+              56.0,
+              78.5,
+              87.0
+            ],
+            "best_iou_at_conf025": 0.4815918745857183
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2189_JPEG.rf.3f34142221b19e2c128f5441e619da56.jpg",
+            "group": "small",
+            "box": [
+              99.5,
+              190.25,
+              134.5,
+              217.75
+            ],
+            "best_iou_at_conf025": 0.493198965120864
+          }
+        ],
+        "top_false_positives": [
+          {
+            "path": "DetectDataset/test/images/video14_204_JPEG.rf.e0b2120015f89c44692af6b6f00f5fe4.jpg",
+            "confidence": 0.8628854155540466,
+            "box": [
+              67.4,
+              0.0,
+              517.56,
+              627.19
+            ],
+            "best_iou_to_any_gt": 0.015727500352418364,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1060_JPEG.rf.7a071dc3aadcc1827863fe7d60260ae3.jpg",
+            "confidence": 0.82867032289505,
+            "box": [
+              323.68,
+              280.48,
+              395.32,
+              331.12
+            ],
+            "best_iou_to_any_gt": 0.18332831548105485,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video15_413_JPEG.rf.91e7c892db5558e2718cbda8f0e13b25.jpg",
+            "confidence": 0.8003703355789185,
+            "box": [
+              300.29,
+              274.69,
+              339.38,
+              326.38
+            ],
+            "best_iou_to_any_gt": 0.47079888206818954,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1268_JPEG.rf.7dd905d874696c51015b7a5e88339a8e.jpg",
+            "confidence": 0.7307108044624329,
+            "box": [
+              307.99,
+              399.46,
+              557.5,
+              533.0
+            ],
+            "best_iou_to_any_gt": 0.41720271753192645,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1062_JPEG.rf.6a9f3effb47ef5cfc52d842a57724e90.jpg",
+            "confidence": 0.722424328327179,
+            "box": [
+              316.96,
+              362.24,
+              386.38,
+              421.04
+            ],
+            "best_iou_to_any_gt": 0.20641442713806923,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2189_JPEG.rf.3f34142221b19e2c128f5441e619da56.jpg",
+            "confidence": 0.6597426533699036,
+            "box": [
+              96.03,
+              181.64,
+              139.6,
+              226.43
+            ],
+            "best_iou_to_any_gt": 0.493198965120864,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2725_JPEG.rf.8b27693fe11887877d76bca2a042a0ed.jpg",
+            "confidence": 0.6515530943870544,
+            "box": [
+              461.65,
+              0.44,
+              639.86,
+              173.31
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video1366_JPEG_jpg.rf.8d8727bb27d4409555181a02611da2d3.jpg",
+            "confidence": 0.6468602418899536,
+            "box": [
+              382.38,
+              467.36,
+              411.85,
+              505.21
+            ],
+            "best_iou_to_any_gt": 0.35501683731957,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/pic_1026_jpg.rf.155d6177f46e0e439462b8520176f77c.jpg",
+            "confidence": 0.6056990623474121,
+            "box": [
+              22.95,
+              0.0,
+              635.09,
+              371.57
+            ],
+            "best_iou_to_any_gt": 0.02026725793166898,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video13190_JPEG.rf.cf9dd9fcedb114e133f4c331a17a2dcc.jpg",
+            "confidence": 0.5887162089347839,
+            "box": [
+              430.32,
+              133.31,
+              486.91,
+              244.43
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1084_JPEG.rf.07677c61c00d0f7d9c8afd26b031ca86.jpg",
+            "confidence": 0.5824033617973328,
+            "box": [
+              285.86,
+              411.68,
+              323.14,
+              450.16
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1336_JPEG.rf.609097275e398e134d0354780876595b.jpg",
+            "confidence": 0.5374326109886169,
+            "box": [
+              377.6,
+              275.88,
+              404.2,
+              306.94
+            ],
+            "best_iou_to_any_gt": 0.41635340665197024,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_673_JPEG.rf.98b2e1dad7e67d78bef1a340e03361b8.jpg",
+            "confidence": 0.5279073715209961,
+            "box": [
+              1.06,
+              195.41,
+              33.52,
+              231.63
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video19_908_JPEG.rf.daea738bf80f098a4117fb7f86d58afd.jpg",
+            "confidence": 0.5262954831123352,
+            "box": [
+              202.06,
+              605.54,
+              245.91,
+              639.4
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1617_JPEG.rf.24ae57f029ed398f60e4df69cee8c992.jpg",
+            "confidence": 0.5256313681602478,
+            "box": [
+              393.19,
+              282.44,
+              419.85,
+              312.47
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video13148_JPEG_jpg.rf.ed2cd8d19ebe53d49e45182a84425833.jpg",
+            "confidence": 0.5192509889602661,
+            "box": [
+              284.03,
+              0.0,
+              640.0,
+              564.93
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1242_JPEG.rf.acc8a18b94789581337d900a93103f10.jpg",
+            "confidence": 0.511457085609436,
+            "box": [
+              340.18,
+              131.1,
+              368.94,
+              165.48
+            ],
+            "best_iou_to_any_gt": 0.4043557435693135,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video17_1265_JPEG_jpg.rf.4d84f97386a7976a85298907a2bdfd47.jpg",
+            "confidence": 0.5090979933738708,
+            "box": [
+              299.38,
+              405.44,
+              427.41,
+              549.94
+            ],
+            "best_iou_to_any_gt": 0.48436793443131876,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1335_JPEG.rf.b5060392aba5f7b449a63a5ce8fb29f3.jpg",
+            "confidence": 0.5062169432640076,
+            "box": [
+              384.28,
+              273.73,
+              412.54,
+              304.66
+            ],
+            "best_iou_to_any_gt": 0.26541497858450436,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1283_JPEG.rf.2b0ab41a072f2ae2f9c2d547ed9fe995.jpg",
+            "confidence": 0.4985816180706024,
+            "box": [
+              167.93,
+              177.16,
+              190.99,
+              204.14
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1291_JPEG.rf.322d9ac3fe19acd321cce35962f8d9f0.jpg",
+            "confidence": 0.48787808418273926,
+            "box": [
+              85.21,
+              157.28,
+              111.52,
+              189.51
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_678_JPEG.rf.18a85f782dc131e80a9a598bc05202e6.jpg",
+            "confidence": 0.4819709360599518,
+            "box": [
+              367.81,
+              74.59,
+              386.62,
+              97.39
+            ],
+            "best_iou_to_any_gt": 0.20508702071804377,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1122_JPEG.rf.a98d9204b3c46718f3efe62f50d8d4a5.jpg",
+            "confidence": 0.46789276599884033,
+            "box": [
+              262.36,
+              408.82,
+              312.85,
+              466.75
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1075_JPEG.rf.ef6595e81b163948f8af6d4e14c2f7f5.jpg",
+            "confidence": 0.4512867331504822,
+            "box": [
+              219.23,
+              480.83,
+              299.15,
+              560.34
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2188_JPEG.rf.9a7bdfe69942d90b301440717dcb3b51.jpg",
+            "confidence": 0.4210165739059448,
+            "box": [
+              98.13,
+              184.2,
+              138.18,
+              220.32
+            ],
+            "best_iou_to_any_gt": 0.6987204808521986,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_266_JPEG.rf.9a75e9804af1cb0d74690f2a546827be.jpg",
+            "confidence": 0.41405144333839417,
+            "box": [
+              0.31,
+              490.27,
+              60.72,
+              543.18
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1071_JPEG.rf.cdfebad2282a8e721eac15582fd10cce.jpg",
+            "confidence": 0.4060530662536621,
+            "box": [
+              218.59,
+              479.81,
+              298.17,
+              561.55
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_735_JPEG.rf.55e109b4db3033e7756d095383b793a5.jpg",
+            "confidence": 0.4046209454536438,
+            "box": [
+              54.09,
+              59.91,
+              72.18,
+              82.19
+            ],
+            "best_iou_to_any_gt": 0.4815918745857183,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_553_JPEG.rf.4e97ccd2ba4fe075be5f30ad83d6be57.jpg",
+            "confidence": 0.39753592014312744,
+            "box": [
+              348.6,
+              211.95,
+              379.12,
+              241.9
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_673_JPEG.rf.4bf0a8e50c2ed597ee11f8bba19bb29c.jpg",
+            "confidence": 0.3971013128757477,
+            "box": [
+              378.25,
+              79.34,
+              397.78,
+              100.95
+            ],
+            "best_iou_to_any_gt": 0.16922515934839566,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video16_690_JPEG.rf.ee6d198c404ea74379b8f45253b01551.jpg",
+            "confidence": 0.3969937860965729,
+            "box": [
+              352.25,
+              60.05,
+              369.5,
+              81.63
+            ],
+            "best_iou_to_any_gt": 0.21363046745017406,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_545_JPEG.rf.60507e35240fb76d3dcfe0d51f815924.jpg",
+            "confidence": 0.38683199882507324,
+            "box": [
+              89.98,
+              195.49,
+              126.27,
+              232.53
+            ],
+            "best_iou_to_any_gt": 0.6413974676231893,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1405_JPEG_jpg.rf.ccbe2647cae1414e96dee5510955f8ca.jpg",
+            "confidence": 0.37186941504478455,
+            "box": [
+              350.31,
+              306.47,
+              369.91,
+              325.68
+            ],
+            "best_iou_to_any_gt": 0.5603542604814409,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1357_JPEG.rf.8bea8fe061b9650cc2865b975344d205.jpg",
+            "confidence": 0.35073167085647583,
+            "box": [
+              299.32,
+              188.32,
+              320.26,
+              212.27
+            ],
+            "best_iou_to_any_gt": 0.42873054156955526,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1315_JPEG_jpg.rf.ef95478de1e0b94e4e413c55186ce3e9.jpg",
+            "confidence": 0.3441988527774811,
+            "box": [
+              229.29,
+              209.8,
+              246.01,
+              230.71
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1566_JPEG.rf.4081db325aa391564639354f9fccdf9a.jpg",
+            "confidence": 0.3438926041126251,
+            "box": [
+              318.06,
+              279.79,
+              334.51,
+              299.17
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1709_JPEG.rf.8e6fb760e28af10373640734e256d01f.jpg",
+            "confidence": 0.33525171875953674,
+            "box": [
+              94.7,
+              115.6,
+              117.18,
+              139.29
+            ],
+            "best_iou_to_any_gt": 0.5367726366966963,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1275_JPEG.rf.ca0c0c9969416dfe02fa8cb3de12a361.jpg",
+            "confidence": 0.3352435231208801,
+            "box": [
+              493.41,
+              219.39,
+              517.62,
+              246.24
+            ],
+            "best_iou_to_any_gt": 0.7878096004327139,
+            "error_type": "localization"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_1299_JPEG.rf.45c48eaa39300226caaab8cdf65e6ac4.jpg",
+            "confidence": 0.33446332812309265,
+            "box": [
+              172.84,
+              179.29,
+              193.76,
+              203.7
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          },
+          {
+            "path": "DetectDataset/test/images/video18_2163_JPEG.rf.822ae48619f9efcb1d11626e41d80f15.jpg",
+            "confidence": 0.33442479372024536,
+            "box": [
+              630.41,
+              121.39,
+              640.0,
+              145.09
+            ],
+            "best_iou_to_any_gt": 0.0,
+            "error_type": "background_or_unlabeled"
+          }
+        ]
+      }
+    }
+  }
+}

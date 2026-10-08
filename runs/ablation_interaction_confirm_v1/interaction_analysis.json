@@ -1,0 +1,20 @@
+{
+  "design": "2x2 MSEFPaper x full-path ADown on fixed YOLO11n-P2 parent",
+  "primary_metric": "best validation mAP50:95 within true 60-epoch budget",
+  "interaction_formula": "100 * (cell_11 - cell_10 - cell_01 + cell_00)",
+  "discovery_seed0_interaction_pp": 0.7759999999999989,
+  "held_out_seed_interactions_pp": [
+    -0.7010000000000072,
+    -0.17300000000000093
+  ],
+  "held_out_interaction_mean_pp": -0.43700000000000405,
+  "held_out_interaction_sample_sd_pp": 0.3733523804665015,
+  "all_three_interaction_mean_pp": -0.03266666666666973,
+  "all_three_interaction_sample_sd_pp": 0.7484332524235794,
+  "directionally_replicated": false,
+  "practically_stable_threshold_pp": 0.3,
+  "practically_stable": false,
+  "advance_to_200_epoch_confirmation": false,
+  "inference_note": "No p-value: only two held-out replication seeds; report seed-wise effects and dispersion.",
+  "test_access": "none"
+}

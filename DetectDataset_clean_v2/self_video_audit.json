@@ -1,0 +1,42 @@
+{
+  "subsets": {
+    "self_train": "36 unique sequential frames used for training",
+    "self_test": "16 unique timestamp-sampled frames used for final testing only"
+  },
+  "evaluation_scope": "within-video unseen-frame evaluation; self_train and self_test come from the same video, so this is not unseen-video or source-disjoint evaluation",
+  "provenance": {
+    "status": "self-collected, confirmed by project owner on 2026-08-12",
+    "source_video": "/home/b520/Downloads/yuheping/original_vedio.mp4",
+    "source_video_sha256": "5a0d6031980f39958339c8bfddbf07450538389ba342bb9b2f24693697b283dc",
+    "video_metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "hevc",
+          "width": 1280,
+          "height": 720,
+          "avg_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "44.931000"
+      }
+    }
+  },
+  "recovered_paths": 104,
+  "unique_images_imported": 52,
+  "split_counts": {
+    "self_train": 36,
+    "self_test": 16
+  },
+  "duplicate_path_copies_removed": 52,
+  "duplicate_image_groups": 36,
+  "conflicting_label_groups": 0,
+  "exact_overlap_with_public_clean_dataset": 0,
+  "instances": 52,
+  "dimensions": {
+    "1280x720": 52
+  },
+  "source_group": "self_collected:original_vedio",
+  "manifest": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/self_video_manifest.csv"
+}

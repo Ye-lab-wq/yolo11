@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "started_or_resumed_at": "2026-09-30T14:39:20.764882+08:00",
+  "completed": [
+    "p2_motion_blur_s2",
+    "p2_msef_motion_blur_s2"
+  ],
+  "current": null,
+  "completed_at": "2026-09-30T15:39:49.781021+08:00"
+}

@@ -1,0 +1,381 @@
+{
+  "purpose": "seed-1 visual evidence for the P2 and full-path ADown ablation",
+  "split": "DetectDataset_clean_v2 combined test (public test + 16 self-video frames)",
+  "images": 641,
+  "instances": 701,
+  "inference": {
+    "imgsz": 640,
+    "prediction_confidence_floor": 0.001,
+    "nms_iou": 0.7,
+    "max_det": 300,
+    "display_confidence": 0.25
+  },
+  "weights": {
+    "YOLO11n": {
+      "path": "runs/final_baseline_yolo11n_200/train_seed1/weights/best.pt",
+      "sha256": "6b73eb2fae3b1f98d753af3500aa152ab9739ae868bef3314d808ee7c24ddd63"
+    },
+    "+P2": {
+      "path": "runs/ablation_200_v1/p2/train_seed1/weights/best.pt",
+      "sha256": "aec08d074a5c917c568513f3c2e27898773473228e35b51b7002035063c05107"
+    },
+    "+P2+ADown": {
+      "path": "runs/ablation_200_v1/p2_adown/train_seed1/weights/best.pt",
+      "sha256": "8fde6855a88548e24c59d13597c2a7c88361307194385f2b8e4c06be64a39849"
+    }
+  },
+  "selection_rules": {
+    "P2 improvement": "top two unique images among targets <96 px with P2 IoU>=0.50 and largest positive P2-minus-baseline IoU at confidence>=0.25",
+    "ADown improvement": "top two remaining unique images with P2+ADown IoU>=0.75 and largest positive ADown-minus-P2 IoU at confidence>=0.25",
+    "Counterexample": "remaining unique image with the most negative ADown-minus-P2 IoU while P2 IoU>=0.50 at confidence>=0.25",
+    "manual_image_selection": false
+  },
+  "selected_examples": [
+    {
+      "path": "DetectDataset_clean_v2/test/images/video1373__f7b9dcb0775617e4.jpg",
+      "target_index": 0,
+      "gt_box": [
+        158.75,
+        96.0,
+        205.25,
+        184.0
+      ],
+      "equivalent_side_px": 63.968742366877905,
+      "models": {
+        "YOLO11n": {
+          "iou": 0.0,
+          "confidence": 0.0,
+          "box": null
+        },
+        "+P2": {
+          "iou": 0.8513970130415959,
+          "confidence": 0.7497376799583435,
+          "box": [
+            157.9066925048828,
+            93.7269515991211,
+            211.0950164794922,
+            183.90097045898438
+          ]
+        },
+        "+P2+ADown": {
+          "iou": 0.7957974011314496,
+          "confidence": 0.6972470879554749,
+          "box": [
+            156.4185791015625,
+            91.36135864257812,
+            211.00509643554688,
+            182.307861328125
+          ]
+        }
+      },
+      "p2_delta_iou": 0.8513970130415959,
+      "adown_delta_iou": -0.055599611910146285,
+      "selection_group": "P2 improvement",
+      "crop_xyxy": [
+        28,
+        0,
+        336,
+        308
+      ]
+    },
+    {
+      "path": "DetectDataset_clean_v2/test/images/foto14559__782ab57c51a27b27.jpg",
+      "target_index": 0,
+      "gt_box": [
+        314.25,
+        280.0,
+        325.75,
+        295.0
+      ],
+      "equivalent_side_px": 13.133925536563698,
+      "models": {
+        "YOLO11n": {
+          "iou": 0.0,
+          "confidence": 0.26980283856391907,
+          "box": [
+            613.52978515625,
+            565.8800048828125,
+            639.446533203125,
+            622.8411865234375
+          ]
+        },
+        "+P2": {
+          "iou": 0.843845181916805,
+          "confidence": 0.28126975893974304,
+          "box": [
+            313.72271728515625,
+            278.71990966796875,
+            326.27044677734375,
+            295.01141357421875
+          ]
+        },
+        "+P2+ADown": {
+          "iou": 0.0,
+          "confidence": 0.0,
+          "box": null
+        }
+      },
+      "p2_delta_iou": 0.843845181916805,
+      "adown_delta_iou": -0.843845181916805,
+      "selection_group": "P2 improvement",
+      "crop_xyxy": [
+        272,
+        240,
+        368,
+        336
+      ]
+    },
+    {
+      "path": "DetectDataset_clean_v2/test/images/0005__aa871f1ff5e8efd7.jpg",
+      "target_index": 0,
+      "gt_box": [
+        177.99999999999997,
+        264.99999999999994,
+        366.0,
+        420.99999999999994
+      ],
+      "equivalent_side_px": 171.25419702886117,
+      "models": {
+        "YOLO11n": {
+          "iou": 0.8393280065567893,
+          "confidence": 0.6691995859146118,
+          "box": [
+            168.3262481689453,
+            278.66998291015625,
+            361.56683349609375,
+            418.97308349609375
+          ]
+        },
+        "+P2": {
+          "iou": 0.0,
+          "confidence": 0.0,
+          "box": null
+        },
+        "+P2+ADown": {
+          "iou": 0.8965601689786072,
+          "confidence": 0.5969940423965454,
+          "box": [
+            170.9147491455078,
+            271.1380615234375,
+            370.87445068359375,
+            419.4610595703125
+          ]
+        }
+      },
+      "p2_delta_iou": -0.8393280065567893,
+      "adown_delta_iou": 0.8965601689786072,
+      "selection_group": "ADown improvement",
+      "crop_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ]
+    },
+    {
+      "path": "DetectDataset_clean_v2/test/images/august-24-2017-labuan-malaysia-260nw-702821578__a9230eeee9963b8f.jpg",
+      "target_index": 0,
+      "gt_box": [
+        269.25,
+        287.75,
+        513.75,
+        466.25
+      ],
+      "equivalent_side_px": 208.90966947463204,
+      "models": {
+        "YOLO11n": {
+          "iou": 0.7745379827485344,
+          "confidence": 0.6133120656013489,
+          "box": [
+            258.27069091796875,
+            304.52703857421875,
+            493.91888427734375,
+            460.90460205078125
+          ]
+        },
+        "+P2": {
+          "iou": 0.46961940199167973,
+          "confidence": 0.27880775928497314,
+          "box": [
+            340.10931396484375,
+            324.93243408203125,
+            494.61077880859375,
+            457.58953857421875
+          ]
+        },
+        "+P2+ADown": {
+          "iou": 0.7973449744513007,
+          "confidence": 0.5893692970275879,
+          "box": [
+            254.9600830078125,
+            310.55938720703125,
+            509.67071533203125,
+            462.50115966796875
+          ]
+        }
+      },
+      "p2_delta_iou": -0.30491858075685463,
+      "adown_delta_iou": 0.327725572459621,
+      "selection_group": "ADown improvement",
+      "crop_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ]
+    },
+    {
+      "path": "DetectDataset_clean_v2/test/images/pic_1032__cff54d60821402c5.jpg",
+      "target_index": 0,
+      "gt_box": [
+        90.0,
+        20.249999999999986,
+        547.0,
+        620.75
+      ],
+      "equivalent_side_px": 523.8592368184416,
+      "models": {
+        "YOLO11n": {
+          "iou": 0.6398321725477313,
+          "confidence": 0.713509738445282,
+          "box": [
+            147.82095336914062,
+            63.29962158203125,
+            504.3261413574219,
+            555.825927734375
+          ]
+        },
+        "+P2": {
+          "iou": 0.8067997092106167,
+          "confidence": 0.7578288912773132,
+          "box": [
+            96.24029541015625,
+            54.68890380859375,
+            563.4697265625,
+            560.7987060546875
+          ]
+        },
+        "+P2+ADown": {
+          "iou": 0.0,
+          "confidence": 0.0,
+          "box": null
+        }
+      },
+      "p2_delta_iou": 0.16696753666288544,
+      "adown_delta_iou": -0.8067997092106167,
+      "selection_group": "Counterexample",
+      "crop_xyxy": [
+        0,
+        0,
+        640,
+        640
+      ]
+    }
+  ],
+  "coco_style_metrics": {
+    "YOLO11n": {
+      "images": 641,
+      "instances": 701,
+      "instances_tiny_lt16": 9,
+      "instances_small_16_32": 127,
+      "instances_coco_small_lt32": 136,
+      "instances_coco_medium_32_96": 243,
+      "instances_coco_large_ge96": 322,
+      "AP": 0.56386621980606,
+      "AP50": 0.9360575793081524,
+      "AP75": 0.6053331856611325,
+      "AP_tiny_lt16": 0.18118811881188118,
+      "AP_small_16_32": 0.36611523167182397,
+      "AP_coco_small_lt32": 0.3485801404035061,
+      "AP_coco_medium_32_96": 0.548186113872768,
+      "AP_coco_large_ge96": 0.6399828634877922
+    },
+    "+P2": {
+      "images": 641,
+      "instances": 701,
+      "instances_tiny_lt16": 9,
+      "instances_small_16_32": 127,
+      "instances_coco_small_lt32": 136,
+      "instances_coco_medium_32_96": 243,
+      "instances_coco_large_ge96": 322,
+      "AP": 0.5682184455753313,
+      "AP50": 0.9570234709918054,
+      "AP75": 0.5955924961556196,
+      "AP_tiny_lt16": 0.19418292512808286,
+      "AP_small_16_32": 0.39023797552543277,
+      "AP_coco_small_lt32": 0.37311604061059755,
+      "AP_coco_medium_32_96": 0.5532133750530391,
+      "AP_coco_large_ge96": 0.62378963960337
+    },
+    "+P2+ADown": {
+      "images": 641,
+      "instances": 701,
+      "instances_tiny_lt16": 9,
+      "instances_small_16_32": 127,
+      "instances_coco_small_lt32": 136,
+      "instances_coco_medium_32_96": 243,
+      "instances_coco_large_ge96": 322,
+      "AP": 0.578572527121002,
+      "AP50": 0.9507398527854809,
+      "AP75": 0.6416976602395154,
+      "AP_tiny_lt16": 0.14516343275194396,
+      "AP_small_16_32": 0.4096305251133346,
+      "AP_coco_small_lt32": 0.38993578292469294,
+      "AP_coco_medium_32_96": 0.5549283120575594,
+      "AP_coco_large_ge96": 0.6457471420724806
+    }
+  },
+  "ap_by_iou_percent": {
+    "YOLO11n": [
+      93.60575793081523,
+      92.46130420914128,
+      89.10274903607302,
+      83.24263045568414,
+      73.05116544317528,
+      60.533318566113245,
+      44.127726848809004,
+      22.9724400511334,
+      4.715608399715482,
+      0.05351886540005352
+    ],
+    "+P2": [
+      95.70234709918054,
+      93.93030053354192,
+      89.88047941036237,
+      85.22335268304332,
+      76.96247799901181,
+      59.55924961556196,
+      41.15286102137364,
+      21.7253331696702,
+      3.558624048368136,
+      0.5234199952174471
+    ],
+    "+P2+ADown": [
+      95.0739852785481,
+      93.26264428125948,
+      89.86423694914244,
+      85.0420103601386,
+      77.6223288808849,
+      64.16976602395154,
+      43.599611522519645,
+      23.00250869656068,
+      6.735272211127265,
+      0.20016291686937013
+    ]
+  },
+  "complexity": {
+    "YOLO11n": {
+      "parameters_m": 2.590035,
+      "gflops": 6.3
+    },
+    "+P2": {
+      "parameters_m": 2.903812,
+      "gflops": 10.8
+    },
+    "+P2+ADown": {
+      "parameters_m": 2.278148,
+      "gflops": 9.5
+    }
+  },
+  "figure_processing": "native RGB crops only; identical crop per model; nearest-neighbor display interpolation; no brightness, contrast, denoising, or selective image adjustment"
+}

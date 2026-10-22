@@ -2,7 +2,7 @@
 
 ## Same-protocol results
 
-Single-run seed-1 COCO-style results on 641 images / 701 instances:
+Single-run seed-1 COCO-style results on the one rebuilt dataset's full test (641 images / 701 instances: 625 original-source plus 16 self-video):
 
 | Model | AP50:95/% | AP50/% | AP75/% | AP 16-32 px/% | AP >=96 px/% | Params/M | GFLOPs |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -28,8 +28,8 @@ This is not evidence of a systematic large-target collapse: among 120 targets wi
 
 ## Figure construction
 
-The paper-style qualitative grid uses deterministic geometry-based selection rather than manual image picking: one P2 gain, one MSEF gain, one ADown gain, one combined-model gain, and one ADown regression. Ground truth is shown only in its own column with a green solid box; each model column uses red solid prediction boxes at confidence >=0.25. Low-score candidates are excluded from the main qualitative grid and shown only in the separately labelled diagnostic figure. Each row uses an identical native-pixel crop across models, with no brightness, contrast, denoising, or selective adjustment.
+The paper-style qualitative grid uses deterministic geometry-based selection rather than manual image picking: one P2 gain, one MSEF gain, one ADown gain, one combined-model gain, and one ADown regression. Thin solid green ground-truth boxes appear in every panel; each model column also uses thin solid red prediction boxes at confidence >=0.25. All status and confidence text sits below the image area so it cannot obscure either box. Low-score candidates are excluded from the main qualitative grid and shown only in the separately labelled diagnostic figure. Each row uses an identical native-pixel crop across models, with no brightness, contrast, denoising, or selective adjustment.
 
 The quantitative figure reports AP-versus-IoU, size-stratified AP, direct-parent changes, and the parameter/AP75 trade-off. The <16 px subset is exploratory because it contains only nine instances. No uncertainty interval is shown because these figures use the requested single selected seed. All plotted values use the COCO-style evaluator consistently.
 
-Alt text: Four-panel quantitative comparison and five-row qualitative crop grid compare seed-1 YOLO11n, YOLO11n+P2, YOLO11n+P2+MSEF, YOLO11n+P2+ADown, and the full combination. The main grid uses conventional separate solid ground-truth and prediction boxes. The figures expose both direct module effects and the non-additive MSEF-ADown interaction, retain an ADown regression, and separately diagnose the low-score but well-localized candidate for the user-flagged very large target.
+Alt text: Four-panel quantitative comparison and five-row qualitative crop grid compare seed-1 YOLO11n, YOLO11n+P2, YOLO11n+P2+MSEF, YOLO11n+P2+ADown, and the full combination. Every prediction panel overlays green ground-truth and red prediction boxes. The figures expose both direct module effects and the non-additive MSEF-ADown interaction, retain an ADown regression, and separately diagnose the low-score but well-localized candidate for the user-flagged very large target.

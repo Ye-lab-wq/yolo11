@@ -1,0 +1,74 @@
+{
+  "split": "combined_test",
+  "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "selection_status": "frozen_before_test",
+  "imgsz": 640,
+  "batch": 8,
+  "device": "cpu",
+  "confidence_floor": 0.001,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "size_ranges": {
+    "tiny": "area < 16^2 pixels",
+    "small_only": "16^2 <= area < 32^2 pixels",
+    "coco_small": "area < 32^2 pixels",
+    "coco_medium": "32^2 <= area < 96^2 pixels",
+    "coco_large": "area >= 96^2 pixels"
+  },
+  "models": {
+    "P2_standard": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_interaction_confirm_v1/cell_00_s1/weights/best.pt",
+      "ultralytics": {
+        "precision": 0.9210883369128866,
+        "recall": 0.9158087225128835,
+        "mAP50": 0.9519412891131969,
+        "mAP75": 0.6102137311764431,
+        "mAP50_95": 0.5693819308026943
+      },
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.555324338899976,
+        "AP50": 0.9403061000770179,
+        "AP75": 0.5906688642463975,
+        "AP_tiny_lt16": 0.17450201939698606,
+        "AP_small_16_32": 0.3769944154296538,
+        "AP_coco_small_lt32": 0.3605295786688078,
+        "AP_coco_medium_32_96": 0.5502030810097365,
+        "AP_coco_large_ge96": 0.6103295307793104
+      }
+    },
+    "P2_blur_train": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_motion_blur_replicates_v1/seed1/p2_motion_blur_s1/weights/best.pt",
+      "ultralytics": {
+        "precision": 0.9293901386628397,
+        "recall": 0.9200486788198623,
+        "mAP50": 0.9447619636184597,
+        "mAP75": 0.566883836959799,
+        "mAP50_95": 0.548501029761481
+      },
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.536287898010574,
+        "AP50": 0.9354633540741777,
+        "AP75": 0.5675244445971476,
+        "AP_tiny_lt16": 0.1797815495835298,
+        "AP_small_16_32": 0.39370054437363206,
+        "AP_coco_small_lt32": 0.3744100817077316,
+        "AP_coco_medium_32_96": 0.5250232501304323,
+        "AP_coco_large_ge96": 0.5933285438039994
+      }
+    }
+  }
+}

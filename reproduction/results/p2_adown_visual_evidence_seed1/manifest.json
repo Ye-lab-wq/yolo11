@@ -1,6 +1,6 @@
 {
   "purpose": "seed-1 visual evidence for the P2 and full-path ADown ablation",
-  "split": "DetectDataset_clean_v2 combined test (public test + 16 self-video frames)",
+  "split": "DetectDataset_clean_v2 full test (625 original-source + 16 self-video frames; historical code name combined_test)",
   "images": 641,
   "instances": 701,
   "inference": {

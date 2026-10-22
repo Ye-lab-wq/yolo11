@@ -1,0 +1,335 @@
+{
+  "split": "external_test",
+  "data": "/home/b520/Downloads/yelin/yolo11/external_benchmarks/uav_eagle/UAV-Eagle/images",
+  "selection_status": "frozen_before_test",
+  "imgsz": 640,
+  "batch": 16,
+  "device": "0",
+  "confidence_floor": 0.001,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "size_ranges": {
+    "tiny": "area < 16^2 pixels",
+    "small_only": "16^2 <= area < 32^2 pixels",
+    "coco_small": "area < 32^2 pixels",
+    "coco_medium": "32^2 <= area < 96^2 pixels",
+    "coco_large": "area >= 96^2 pixels"
+  },
+  "models": {
+    "yolo11n_s0": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/clean_v2_scratch_pair/yolo11n_seed0/weights/best.pt",
+      "weights_sha256": "c3221203ae686a4d2964582dff4c054bdae3c7c75499c04dbb9549cc87f65c48",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3301664918823915,
+        "AP50": 0.7852418002642861,
+        "AP75": 0.18365712117574035,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.26653745992297234,
+        "AP_coco_large_ge96": 0.38418490265692296
+      }
+    },
+    "yolo11n_s1": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_baseline_yolo11n_200/train_seed1/weights/best.pt",
+      "weights_sha256": "6b73eb2fae3b1f98d753af3500aa152ab9739ae868bef3314d808ee7c24ddd63",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.31864531884271263,
+        "AP50": 0.7783878829785783,
+        "AP75": 0.1635732395848014,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.24797035195020387,
+        "AP_coco_large_ge96": 0.3759764307682564
+      }
+    },
+    "yolo11n_s2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_baseline_yolo11n_200/train_seed2/weights/best.pt",
+      "weights_sha256": "0679ae944a89cfd1d38aa83374454f17364fac48b0b2373acb90e12e9666f92a",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.33385010929464215,
+        "AP50": 0.7730587049512633,
+        "AP75": 0.18832289480302924,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.27165047808148646,
+        "AP_coco_large_ge96": 0.38539349948338486
+      }
+    },
+    "p2_s0": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2/train_seed0/weights/best.pt",
+      "weights_sha256": "5fac6d70570606d9f0ad04a3399bdc46b3c33d519b64f58fdfa5f78ba538d2b5",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3559997409445594,
+        "AP50": 0.7787536511117135,
+        "AP75": 0.24004852074335498,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.28669507065246974,
+        "AP_coco_large_ge96": 0.4158344111053536
+      }
+    },
+    "p2_s1": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2/train_seed1/weights/best.pt",
+      "weights_sha256": "aec08d074a5c917c568513f3c2e27898773473228e35b51b7002035063c05107",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.351747638378637,
+        "AP50": 0.7950642596612905,
+        "AP75": 0.22465681903687423,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.282010743604382,
+        "AP_coco_large_ge96": 0.41232031765076343
+      }
+    },
+    "p2_s2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2/train_seed2/weights/best.pt",
+      "weights_sha256": "c20e3917a0948a5f6ac3c7a76d3c08c3fb5ab43913cbaff211d52abad874b3c4",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3421818067602433,
+        "AP50": 0.7724436586064386,
+        "AP75": 0.22090370342762305,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.26412628500471247,
+        "AP_coco_large_ge96": 0.4139252570601403
+      }
+    },
+    "p2_msef_s0": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed0/weights/best.pt",
+      "weights_sha256": "94147b7bd09b6e75fd247227d14f557b2d5089d5b692709e9530fa4056fd4ab6",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.35336688152268264,
+        "AP50": 0.7860735290550206,
+        "AP75": 0.21150750623690115,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.28527109273970563,
+        "AP_coco_large_ge96": 0.4077192338582289
+      }
+    },
+    "p2_msef_s1": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed1/weights/best.pt",
+      "weights_sha256": "3e1e108c84e8f0fc0ec8de5e2107661e624103cfcd35a321282efc9ff9151cf7",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3486469166820424,
+        "AP50": 0.7800610386223529,
+        "AP75": 0.21525726353248917,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.27065734278588643,
+        "AP_coco_large_ge96": 0.41469948845502125
+      }
+    },
+    "p2_msef_s2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed2/weights/best.pt",
+      "weights_sha256": "b1bc5a1824066ba9e8b144808282506e22aeceab2e7a23286f81f24bb92ac87e",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.33197787052427463,
+        "AP50": 0.766164670417807,
+        "AP75": 0.20655987289404237,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.26537992228916973,
+        "AP_coco_large_ge96": 0.3900747943899976
+      }
+    },
+    "p2_adown_s0": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_adown/train_seed0/weights/best.pt",
+      "weights_sha256": "3661a12c677feea071c3b584daf1fbb00203e7fae29d8639ef083d326cb1dd2a",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.36302685439288424,
+        "AP50": 0.801075667131071,
+        "AP75": 0.26353042916190655,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.2933183922469416,
+        "AP_coco_large_ge96": 0.4178258745241761
+      }
+    },
+    "p2_adown_s1": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_adown/train_seed1/weights/best.pt",
+      "weights_sha256": "8fde6855a88548e24c59d13597c2a7c88361307194385f2b8e4c06be64a39849",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3513896792875095,
+        "AP50": 0.7930212847217553,
+        "AP75": 0.2443101737968505,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.27458812801591265,
+        "AP_coco_large_ge96": 0.4120546270396799
+      }
+    },
+    "p2_adown_s2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_adown/train_seed2/weights/best.pt",
+      "weights_sha256": "b8d7365d7189524f6324c6ad254ea45d1abb97ff50bc96f2806e3d3b4dc06e34",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3489485605503408,
+        "AP50": 0.7981288624630156,
+        "AP75": 0.2294134316157634,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.2729688037213481,
+        "AP_coco_large_ge96": 0.410454808929394
+      }
+    },
+    "full_s0": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_candidate_p2_msef_adown_s0_200/train_seed0/weights/best.pt",
+      "weights_sha256": "1ea7de8c3ebc78f120a840336e661a34c6c227572fd4054178ef0dc2035883c9",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.34482139538585366,
+        "AP50": 0.7811809062162381,
+        "AP75": 0.20587135210377783,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.26702013024093935,
+        "AP_coco_large_ge96": 0.41380989647878136
+      }
+    },
+    "full_s1": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_candidate_p2_msef_adown_s0_200/train_seed1/weights/best.pt",
+      "weights_sha256": "d25cb9ca6d1415d7f9d13d29d9d70bd7f259ba808990815a3691d17a1d009ea3",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.3585739997815397,
+        "AP50": 0.7799617241676803,
+        "AP75": 0.27603329825355244,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.2773362691488082,
+        "AP_coco_large_ge96": 0.4234966165416967
+      }
+    },
+    "full_s2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/final_candidate_p2_msef_adown_s0_200/train_seed2/weights/best.pt",
+      "weights_sha256": "156f7b860f61483feae7ba592fe68e040d0c09dfc5315e0d3a7b32870d019e15",
+      "coco_style": {
+        "images": 510,
+        "instances": 617,
+        "instances_tiny_lt16": 0,
+        "instances_small_16_32": 0,
+        "instances_coco_small_lt32": 0,
+        "instances_coco_medium_32_96": 282,
+        "instances_coco_large_ge96": 335,
+        "AP": 0.342791185960188,
+        "AP50": 0.7798748270277793,
+        "AP75": 0.24429330152807535,
+        "AP_tiny_lt16": null,
+        "AP_small_16_32": null,
+        "AP_coco_small_lt32": null,
+        "AP_coco_medium_32_96": 0.2615784473727245,
+        "AP_coco_large_ge96": 0.41516936561509865
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@
 
 ## Same-protocol results
 
-All values below are single-run seed-1 COCO-style results on the same 641-image/701-instance combined test set.
+All values below are single-run seed-1 COCO-style results on the one rebuilt dataset's full 641-image/701-instance test set (625 original-source images plus 16 self-video frames).
 
 | Model | AP50:95/% | AP50/% | AP75/% | AP 16-32 px/% | Parameters/M | GFLOPs |
 |---|---:|---:|---:|---:|---:|---:|
@@ -27,7 +27,7 @@ All values below are single-run seed-1 COCO-style results on the same 641-image/
 
 These values use the COCO-style evaluator consistently. They should not be numerically mixed with Ultralytics summary metrics without explicitly naming the evaluator.
 
-The qualitative grid uses deterministic, geometry-based example selection rather than manual image picking. Yellow dashed boxes are ground truth; solid colored boxes are predictions at confidence >=0.25. Each row uses an identical native-pixel crop across models and is magnified only for display. The counterexample is retained to avoid presenting improvements as universal.
+The qualitative grid uses deterministic, geometry-based example selection rather than manual image picking. Thin solid green ground-truth boxes are shown in every panel; thin solid red boxes are predictions at confidence >=0.25. Each row uses an identical native-pixel crop across models and is magnified only for display. The counterexample is retained to avoid presenting improvements as universal.
 
 The quantitative figure reports single-run seed-1 COCO-style metrics on 641 images/701 instances. Panel (a) shows AP as the IoU matching threshold becomes stricter; panel (b) reports size-stratified AP50:95, with the tiny subset explicitly marked exploratory because it contains only nine instances; panel (c) shows the parameter/AP75 trade-off, with marker area encoding GFLOPs. No uncertainty interval is shown because the requested figure uses one selected seed.
 

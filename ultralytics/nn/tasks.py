@@ -101,6 +101,9 @@ from ultralytics.nn.modules import (
     DySampleOfficial,
     MSEF,
     MSEFPaper,
+    MSEFHighPass,
+    MSEFHighPassAtrous,
+    MSEFEdgeAddOn,
     ELSNHead,
     EMA,
     RepNCSPELAN4,
@@ -1557,6 +1560,9 @@ def parse_model(d, ch, verbose=True):
             ADownResidual,
             MSEF,  # 添加这一行
             MSEFPaper,
+            MSEFHighPass,
+            MSEFHighPassAtrous,
+            MSEFEdgeAddOn,
             DySample,
             DySampleOfficial,
             EMA,  # ✨ 确保这里有 EMA
@@ -1586,6 +1592,9 @@ def parse_model(d, ch, verbose=True):
             #RepNCSPELAN4,
             MSEF,  # 添加这一行，这样解析器会自动把重复次数 n 插入到 args 中
             MSEFPaper,
+            MSEFHighPass,
+            MSEFHighPassAtrous,
+            MSEFEdgeAddOn,
             C2fAttn,
             C3,
             C3TR,

@@ -1,0 +1,12 @@
+{
+  "run": "p2_c3k2_msef_edge_addon_ciou_s0",
+  "dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "epochs": 60,
+  "best_epoch": 59,
+  "precision": 0.91128,
+  "recall": 0.86966,
+  "map50": 0.93797,
+  "map50_95": 0.55499,
+  "parameters": 2910021,
+  "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_addon_screen_v1/p2_c3k2_msef_edge_addon_ciou_s0/weights/best.pt"
+}

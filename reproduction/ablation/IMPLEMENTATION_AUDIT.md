@@ -66,9 +66,17 @@ combined test set. This five-model comparison separates the two single branches 
 | Factor and controlled parent | Intended effect | Observed direct-parent change | Verdict |
 |---|---|---|---|
 | P2 versus YOLO11n | Preserve stride-4 small-target detail | AP50 +2.10 points; 16-32 px AP +2.41; AP75 -0.97 | Small/lenient-IoU effect supported; strict localization not supported |
-| MSEFPaper versus P2 | Strengthen multi-scale edge cues for blurred/tiny targets | AP75 +2.81; AP50 -0.91; 16-32 px AP -0.28 | Strict localization supported; blur/tiny mechanism remains unverified |
-| ADown versus P2 | Retain complementary cues with a lighter downsampler | AP50:95 +1.04; AP75 +4.61; 16-32 px AP +1.94; params -21.5%; GFLOPs -12.0% | Strongly supported in the no-MSEF branch |
+| MSEFPaper versus P2 | Strengthen multi-scale edge cues for blurred/tiny targets | AP75 +2.81; AP50 -0.91; 16-32 px AP -0.28 | Seed-1 localization gain only; blur/tiny mechanism and multi-seed generalization unverified |
+| ADown versus P2 | Retain complementary cues with a lighter downsampler | AP50:95 +1.04; AP75 +4.61; 16-32 px AP +1.94; params -21.5%; GFLOPs -12.0% | Seed-1 positive; later direct-parent three-seed effect is mixed |
 | MSEFPaper added to P2+ADown | Combine edge enhancement with efficient downsampling | AP50:95 -0.34; AP75 -1.48; 16-32 px AP -2.84; GFLOPs +8.4% | Negative interaction; the full combination is not supported by this seed-1 test |
+
+The table above is deliberately **seed-1-specific**. Subsequent 200-epoch
+three-seed internal and external tests change the strength of attribution:
+`P2+ADown` beats YOLO11n in all paired seeds, whereas its incremental AP over
+P2 is mixed; MSEFPaper does not provide a consistent gain. See
+[`PAPER_CLAIMS_AUDIT.md`](../PAPER_CLAIMS_AUDIT.md) for the complete claim
+boundary and source links. Do not quote the seed-1 verdict alone as a final
+multi-seed conclusion.
 
 The chapter specifically claims that dynamic motion/camera-follow blur suppresses high-frequency rotor and airframe
 edges. It places MSEF before both P2 (distant tiny-target edge compensation) and P5 (large close-target motion-smear

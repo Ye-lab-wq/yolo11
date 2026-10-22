@@ -1,0 +1,160 @@
+{
+  "split": "combined_test",
+  "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "selection_status": "frozen_before_test",
+  "imgsz": 640,
+  "batch": 4,
+  "device": "0",
+  "confidence_floor": 0.001,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "size_ranges": {
+    "tiny": "area < 16^2 pixels",
+    "small_only": "16^2 <= area < 32^2 pixels",
+    "coco_small": "area < 32^2 pixels",
+    "coco_medium": "32^2 <= area < 96^2 pixels",
+    "coco_large": "area >= 96^2 pixels"
+  },
+  "models": {
+    "P2": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_nearest_ciou_s0/weights/best.pt",
+      "weights_sha256": "913e1c3d196690f9c7ddf8b5ae1868cac540d30802b400377d6e44048f8b6889",
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.5492841282396836,
+        "AP50": 0.9422117226692875,
+        "AP75": 0.5903906011625264,
+        "AP_tiny_lt16": 0.18880566628091378,
+        "AP_small_16_32": 0.3842842689866415,
+        "AP_coco_small_lt32": 0.3665268468484829,
+        "AP_coco_medium_32_96": 0.5371658256654221,
+        "AP_coco_large_ge96": 0.60341166605995
+      },
+      "ultralytics": {
+        "precision": 0.9385103834027452,
+        "recall": 0.9144682030781627,
+        "mAP50": 0.9516141713956896,
+        "mAP75": 0.6041909400088635,
+        "mAP50_95": 0.5590060034314784
+      }
+    },
+    "P2_MSEFPaper": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/ablation_screen_v1/p2_msef_paper_ciou_s0/weights/best.pt",
+      "weights_sha256": "298ca29839cfad710daa776ac724b266ac13c750493ebc01fe94d568ec81141f",
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.5585126283924443,
+        "AP50": 0.9437317634855161,
+        "AP75": 0.6092676353449616,
+        "AP_tiny_lt16": 0.21196278968556193,
+        "AP_small_16_32": 0.3812632383153834,
+        "AP_coco_small_lt32": 0.3653966266763803,
+        "AP_coco_medium_32_96": 0.5514403479403848,
+        "AP_coco_large_ge96": 0.6117537756911554
+      },
+      "ultralytics": {
+        "precision": 0.9363873481531783,
+        "recall": 0.9029475155855518,
+        "mAP50": 0.9509486935842397,
+        "mAP75": 0.62686209588688,
+        "mAP50_95": 0.5659235421133925
+      }
+    },
+    "P2_MSEF_HighPass": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/msef_highpass_screen_v1/p2_msef_highpass_ciou_s0/weights/best.pt",
+      "weights_sha256": "edb582313ff363638093da7de9420682ef0ad8ad1042baef1464355e99a69b28",
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.5470918272710743,
+        "AP50": 0.9401121664310595,
+        "AP75": 0.577985809503154,
+        "AP_tiny_lt16": 0.13707131427428454,
+        "AP_small_16_32": 0.3731647351278329,
+        "AP_coco_small_lt32": 0.35506680993886863,
+        "AP_coco_medium_32_96": 0.5314699303282245,
+        "AP_coco_large_ge96": 0.6138131443776945
+      },
+      "ultralytics": {
+        "precision": 0.9368817429132313,
+        "recall": 0.905848787446505,
+        "mAP50": 0.9478973914064666,
+        "mAP75": 0.5858780396258507,
+        "mAP50_95": 0.557966672872789
+      }
+    },
+    "P2_MSEF_HighPass_Atrous": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/msef_atrous_screen_v1/p2_msef_highpass_atrous_ciou_s0/weights/best.pt",
+      "weights_sha256": "d4ad744b2c4234716be94736536f42ba382a4b3d52a00261f9c583c2da4f7438",
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.5557405979763429,
+        "AP50": 0.949265643271088,
+        "AP75": 0.5974297116431763,
+        "AP_tiny_lt16": 0.2175954738330976,
+        "AP_small_16_32": 0.4146941701244097,
+        "AP_coco_small_lt32": 0.39636082855648785,
+        "AP_coco_medium_32_96": 0.5337113072291787,
+        "AP_coco_large_ge96": 0.6180023165072738
+      },
+      "ultralytics": {
+        "precision": 0.9422436772908185,
+        "recall": 0.9076334155528905,
+        "mAP50": 0.95896295883412,
+        "mAP75": 0.6064459725292344,
+        "mAP50_95": 0.5689926906004604
+      }
+    },
+    "P2_C3k2_MSEF_EdgeAddon": {
+      "weights": "/home/b520/Downloads/yelin/yolo11/runs/msef_addon_screen_v1/p2_c3k2_msef_edge_addon_ciou_s0/weights/best.pt",
+      "weights_sha256": "921ca69bc7e59dbb0ccf925ac207ad4406b43ca717a4eb4d9befcd077a737ea8",
+      "coco_style": {
+        "images": 641,
+        "instances": 701,
+        "instances_tiny_lt16": 9,
+        "instances_small_16_32": 127,
+        "instances_coco_small_lt32": 136,
+        "instances_coco_medium_32_96": 243,
+        "instances_coco_large_ge96": 322,
+        "AP": 0.5513072790899559,
+        "AP50": 0.939549483171602,
+        "AP75": 0.6066401509646674,
+        "AP_tiny_lt16": 0.17775829011472577,
+        "AP_small_16_32": 0.3987832361764955,
+        "AP_coco_small_lt32": 0.3795868497194126,
+        "AP_coco_medium_32_96": 0.5422899020735512,
+        "AP_coco_large_ge96": 0.6074072248957918
+      },
+      "ultralytics": {
+        "precision": 0.937485705942194,
+        "recall": 0.8984972025611919,
+        "mAP50": 0.9566418507844691,
+        "mAP75": 0.6344620299950998,
+        "mAP50_95": 0.5692096131373552
+      }
+    }
+  }
+}

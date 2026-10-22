@@ -1,0 +1,12 @@
+{
+  "run": "p2_msef_highpass_atrous_ciou_s0",
+  "dataset": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+  "epochs": 60,
+  "best_epoch": 59,
+  "precision": 0.89699,
+  "recall": 0.89781,
+  "map50": 0.94181,
+  "map50_95": 0.55404,
+  "parameters": 2916966,
+  "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_atrous_screen_v1/p2_msef_highpass_atrous_ciou_s0/weights/best.pt"
+}

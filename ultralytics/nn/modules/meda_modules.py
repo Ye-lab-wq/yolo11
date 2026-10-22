@@ -229,6 +229,96 @@ class MSEFPaper(nn.Module):
             features.append(local + local * edge_weight)
         return self.fuse(torch.cat(features, 1))
 
+
+class MSEFHighPass(nn.Module):
+    """Exploratory P2 edge block with same-feature high-pass residuals.
+
+    This is not the published MEDA-YOLO implementation. It changes only the
+    edge computation of the local MSEFPaper replacement for a controlled screen.
+    """
+
+    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
+        super().__init__()
+        hidden = int(c2 * e)
+        self.local = Conv(c1, hidden, 3, 1, 1)
+        self.base = Conv(hidden, c2, 1, 1, 0)
+        self.edge_logits = nn.ModuleList(nn.Conv2d(hidden, hidden, 1) for _ in (3, 5))
+        self.edge_fuse = nn.Conv2d(2 * hidden, c2, 1, bias=False)
+        # At initialization the edge path cannot alter the base features.
+        self.edge_scale = nn.Parameter(torch.zeros(1))
+
+    @staticmethod
+    def _high_pass(x, kernel_size):
+        radius = kernel_size // 2
+        # Replication avoids artificial edges around a constant feature map.
+        padded = F.pad(x, (radius, radius, radius, radius), mode="replicate")
+        return x - F.avg_pool2d(padded, kernel_size=kernel_size, stride=1)
+
+    def forward(self, x):
+        local = self.local(x)
+        edge_features = []
+        for kernel_size, logits in zip((3, 5), self.edge_logits):
+            high_pass = self._high_pass(local, kernel_size)
+            edge_features.append(high_pass * torch.sigmoid(logits(high_pass)))
+        return self.base(local) + self.edge_scale * self.edge_fuse(torch.cat(edge_features, 1))
+
+
+class MSEFHighPassAtrous(MSEFHighPass):
+    """High-pass candidate with one zero-initialized dilated depthwise branch.
+
+    The parent feature and edge paths are unchanged. The added 3x3, dilation-2
+    branch tests whether a wider local context helps at the same P2 position.
+    This exploratory block is not the published MEDA-YOLO implementation.
+    """
+
+    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
+        super().__init__(c1, c2, n, shortcut, g, e)
+        hidden = int(c2 * e)
+        self.atrous_depthwise = nn.Conv2d(hidden, hidden, 3, padding=2, dilation=2, groups=hidden, bias=False)
+        self.atrous_project = nn.Conv2d(hidden, c2, 1, bias=False)
+        self.atrous_scale = nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        local = self.local(x)
+        edge_features = []
+        for kernel_size, logits in zip((3, 5), self.edge_logits):
+            high_pass = self._high_pass(local, kernel_size)
+            edge_features.append(high_pass * torch.sigmoid(logits(high_pass)))
+        high_pass_5 = self._high_pass(local, 5)
+        atrous = self.atrous_project(self.atrous_depthwise(high_pass_5))
+        return (
+            self.base(local)
+            + self.edge_scale * self.edge_fuse(torch.cat(edge_features, 1))
+            + self.atrous_scale * atrous
+        )
+
+
+class MSEFEdgeAddOn(nn.Module):
+    """Add a high-pass edge path after, rather than instead of, P2 C3k2.
+
+    Its zero-initialized residual preserves the parent computation when the
+    shared parent weights are held fixed. This is an exploratory candidate,
+    not an implementation of the published MEDA-YOLO block.
+    """
+
+    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
+        super().__init__()
+        if c1 != c2:
+            raise ValueError(f"MSEFEdgeAddOn requires equal input/output channels: {c1} != {c2}")
+        hidden = max(1, int(c2 * e))
+        self.local = Conv(c1, hidden, 3, 1, 1)
+        self.edge_logits = nn.ModuleList(nn.Conv2d(hidden, hidden, 1) for _ in (3, 5))
+        self.edge_fuse = nn.Conv2d(2 * hidden, c2, 1, bias=False)
+        self.edge_scale = nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        local = self.local(x)
+        edges = []
+        for kernel_size, logits in zip((3, 5), self.edge_logits):
+            high_pass = MSEFHighPass._high_pass(local, kernel_size)
+            edges.append(high_pass * torch.sigmoid(logits(high_pass)))
+        return x + self.edge_scale * self.edge_fuse(torch.cat(edges, 1))
+
 # ==================== ELSN Shared Head ====================
 class ELSNHead(nn.Module):
     """共享检测头（简化版，只实现参数共享，不改变输出结构）"""

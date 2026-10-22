@@ -196,6 +196,49 @@ def prediction(raw: dict[str, object], seed: int, model: str, condition: str, st
     return raw[f"{seed}|{model}|{condition}"].get(stem, [])
 
 
+def ensure_light_seed1_predictions(raw: dict[str, object], device: str, batch: int) -> None:
+    """Cache only the two missing light-blur predictions needed for a four-condition case grid."""
+    paths = paths_for("light")
+    if len(paths) != 625:
+        raise RuntimeError(f"Expected 625 light-blur test images, found {len(paths)}")
+    for model_name in ("P2_standard", "P2_blur_train"):
+        key = f"1|{model_name}|light"
+        if key in raw:
+            continue
+        print(f"qualitative inference: {key} ({len(paths)} images)", flush=True)
+        model = YOLO(str(MODELS[1][model_name]))
+        records: dict[str, list[dict[str, object]]] = {}
+        for start in range(0, len(paths), batch):
+            chunk = paths[start : start + batch]
+            results = model.predict(
+                source=[str(path) for path in chunk],
+                imgsz=640,
+                conf=DISPLAY_CONFIDENCE,
+                iou=NMS_IOU,
+                max_det=300,
+                batch=batch,
+                device=device,
+                workers=4,
+                stream=True,
+                verbose=False,
+            )
+            for result in results:
+                boxes = result.boxes.xyxy.detach().cpu().numpy()
+                scores = result.boxes.conf.detach().cpu().numpy()
+                records[Path(result.path).stem] = [
+                    {"box": [float(value) for value in box], "confidence": float(score)}
+                    for box, score in zip(boxes, scores)
+                ]
+            if (start // batch + 1) % 25 == 0:
+                print(f"  {model_name}: {min(start + batch, len(paths))}/{len(paths)}", flush=True)
+        if len(records) != len(paths):
+            raise RuntimeError(f"Incomplete light-blur predictions for {model_name}: {len(records)}/{len(paths)}")
+        raw[key] = records
+        write_json(OUTPUT / "raw_predictions.json", raw)
+        del model
+        gc.collect()
+
+
 def build_per_image(raw: dict[str, object]) -> list[dict[str, object]]:
     rows = []
     for condition in CONDITIONS:
@@ -333,33 +376,39 @@ def clear_focus_box(
     return gt[int(np.argmax(losses))]
 
 
-def draw_boxes(ax: plt.Axes, boxes: list[list[float]], crop: tuple[int, int, int, int], color: str, scores: list[float] | None = None) -> None:
+def draw_boxes(
+    ax: plt.Axes,
+    boxes: list[list[float]],
+    crop: tuple[int, int, int, int],
+    color: str,
+    scores: list[float] | None = None,
+) -> None:
     left, top, right, bottom = crop
-    for index, box in enumerate(boxes):
+    for box in boxes:
         x1, y1, x2, y2 = box
         if x2 <= left or x1 >= right or y2 <= top or y1 >= bottom:
             continue
-        ax.add_patch(Rectangle((x1 - left, y1 - top), x2 - x1, y2 - y1, fill=False, edgecolor=color, linewidth=2.4))
-        label = "GT" if scores is None else f"{scores[index]:.2f}"
-        ax.text(
-            max(2, x1 - left + 2),
-            max(2, y1 - top + 2),
-            label,
-            color="white",
-            fontsize=7,
-            va="top",
-            bbox={"facecolor": color, "edgecolor": "none", "pad": 1.2, "alpha": 0.92},
-            clip_on=True,
-        )
+        ax.add_patch(Rectangle((x1 - left, y1 - top), x2 - x1, y2 - y1, fill=False, edgecolor=color, linewidth=0.9))
 
 
-def show_panel(ax: plt.Axes, path: Path, crop: tuple[int, int, int, int], boxes: list[list[float]], color: str, scores: list[float] | None, subtitle: str) -> None:
+def show_panel(
+    ax: plt.Axes,
+    path: Path,
+    crop: tuple[int, int, int, int],
+    boxes: list[list[float]],
+    color: str,
+    scores: list[float] | None,
+    subtitle: str,
+    gt_boxes: list[list[float]] | None = None,
+) -> None:
     with Image.open(path) as image:
         array = np.asarray(image.convert("RGB").crop(crop))
-    ax.imshow(array)
+    ax.imshow(array, interpolation="nearest")
+    if gt_boxes is not None:
+        draw_boxes(ax, gt_boxes, crop, GT_COLOR)
     draw_boxes(ax, boxes, crop, color, scores)
-    ax.text(0.02, 0.02, subtitle, transform=ax.transAxes, fontsize=7, color="white", va="bottom", bbox={"facecolor": "black", "alpha": 0.65, "edgecolor": "none", "pad": 1.5})
     ax.set_axis_off()
+    ax.text(0.5, -0.035, subtitle, transform=ax.transAxes, ha="center", va="top", fontsize=7, clip_on=False)
 
 
 def prediction_panel(ax: plt.Axes, raw: dict[str, object], seed: int, model: str, condition: str, stem: str, path: Path, crop: tuple[int, int, int, int], gt: list[list[float]]) -> None:
@@ -373,15 +422,15 @@ def prediction_panel(ax: plt.Axes, raw: dict[str, object], seed: int, model: str
         PRED_COLOR,
         [float(item["confidence"]) for item in values],
         f"TP50 {metrics['tp50']}/{metrics['gt']} · TP75 {metrics['tp75']}/{metrics['gt']} · mIoU {metrics['mean_best_iou']:.2f}",
+        gt_boxes=gt,
     )
 
 
 def qualitative_grid(raw: dict[str, object], examples: list[dict[str, object]], blurred: bool, output_name: str) -> None:
     maps = {condition: image_map(condition) for condition in CONDITIONS}
     columns = 8 if blurred else 7
-    titles = (["Clean + GT", "Blurred + GT"] if blurred else ["Clean + GT"]) + [f"S{seed} P2 std" for seed in MODELS for _ in (0,)]
     # Interleave standard and final within each seed.
-    titles = (["Clean + GT", "Blurred + GT"] if blurred else ["Clean + GT"]) + [title for seed in MODELS for title in (f"S{seed} P2 std", f"S{seed} Blur+MSEF")]
+    titles = (["Clean + GT", "Blurred + GT"] if blurred else ["Clean + GT"]) + [title for seed in MODELS for title in (f"S{seed} P2 standard", f"S{seed} P2+MSEF+blur train")]
     with mpl.rc_context({"font.size": 8, "axes.titlesize": 9, "figure.facecolor": "white", "savefig.facecolor": "white", "pdf.fonttype": 42, "ps.fonttype": 42}):
         fig, axes = plt.subplots(len(examples), columns, figsize=(18, 3.0 * len(examples)), squeeze=False, layout="constrained")
         for column, title in enumerate(titles):
@@ -404,12 +453,135 @@ def qualitative_grid(raw: dict[str, object], examples: list[dict[str, object]], 
                 prediction_panel(axes[row_index, offset + seed_index * 2 + 1], raw, seed, "P2_MSEF_blur_train", condition, stem, path, crop, gt)
         fig.suptitle(
             ("Consensus improvements under deterministic motion blur" if blurred else "Clear-image counterexamples: standard P2 versus blur-trained P2+MSEF")
-            + f"\nSolid green = ground truth; solid red = prediction; confidence ≥ {DISPLAY_CONFIDENCE:.2f}; identical crop within each row",
+            + f"\nGreen GT in every panel; red prediction; confidence ≥ {DISPLAY_CONFIDENCE:.2f}; identical crop within each row",
             fontsize=13,
             fontweight="bold",
         )
         fig.savefig(OUTPUT / f"{output_name}.png", dpi=300)
         fig.savefig(OUTPUT / f"{output_name}.pdf")
+        plt.close(fig)
+
+
+def blur_training_only_figure(raw: dict[str, object], rows: list[dict[str, object]]) -> None:
+    """Isolate blur augmentation by holding architecture and seed fixed."""
+    light_rows = []
+    for stem, path in image_map("light").items():
+        gt = ground_truth(path)
+        standard = image_metrics(gt, prediction(raw, 1, "P2_standard", "light", stem))
+        blur_train = image_metrics(gt, prediction(raw, 1, "P2_blur_train", "light", stem))
+        light_rows.append({
+            "seed": 1,
+            "condition": "light",
+            "stem": stem,
+            "gt": len(gt),
+            **{f"P2_standard_{key}": value for key, value in standard.items()},
+            **{f"P2_blur_train_{key}": value for key, value in blur_train.items()},
+        })
+    rows = [*rows, *light_rows]
+    selected = []
+    used_stems: set[str] = set()
+    paths = {condition: image_map(condition) for condition in ("clean", "light", "moderate", "strong")}
+
+    def visible_target_size(row: dict[str, object]) -> bool:
+        box = ground_truth(paths[str(row["condition"])][str(row["stem"])])[0]
+        equivalent_side = math.sqrt((box[2] - box[0]) * (box[3] - box[1]))
+        return 16 <= equivalent_side <= 150
+
+    for condition, direction in (("clean", -1), ("light", -1), ("moderate", 1), ("strong", 1)):
+        candidates = [
+            row for row in rows
+            if row["seed"] == 1
+            and row["condition"] == condition
+            and row["gt"] == 1
+            and row["stem"] not in used_stems
+            and visible_target_size(row)
+            and direction * (int(row["P2_blur_train_tp50"]) - int(row["P2_standard_tp50"])) > 0
+        ]
+        candidates.sort(
+            key=lambda row: (
+                -direction * (int(row["P2_blur_train_tp75"]) - int(row["P2_standard_tp75"])),
+                -direction * (float(row["P2_blur_train_mean_best_iou"]) - float(row["P2_standard_mean_best_iou"])),
+                str(row["stem"]),
+            )
+        )
+        if not candidates:
+            raise RuntimeError(f"No single-target P2 blur-training example for {condition}")
+        selected.append(candidates[0])
+        used_stems.add(str(candidates[0]["stem"]))
+    write_json(
+        OUTPUT / "blur_training_only_seed1_manifest.json",
+        {
+            "manual_image_selection": False,
+            "comparison": "seed-1 P2 standard training versus same-architecture P2 blur training",
+            "rule": "single-target images with GT equivalent side 16–150 native pixels; clean/light require TP50 loss, moderate/strong require TP50 gain; rank by signed TP75 and mean-best-IoU difference, then filename; distinct image stems",
+            "display_confidence": DISPLAY_CONFIDENCE,
+            "nms_iou": NMS_IOU,
+            "examples": [
+                {
+                    "condition": row["condition"],
+                    "stem": row["stem"],
+                    "standard_tp50": row["P2_standard_tp50"],
+                    "blur_trained_tp50": row["P2_blur_train_tp50"],
+                    "standard_mean_best_iou": row["P2_standard_mean_best_iou"],
+                    "blur_trained_mean_best_iou": row["P2_blur_train_mean_best_iou"],
+                }
+                for row in selected
+            ],
+        },
+    )
+    titles = ("Test input + GT", "P2 standard training", "P2 + blur training")
+    with mpl.rc_context({"font.size": 8, "axes.titlesize": 9, "figure.facecolor": "white", "savefig.facecolor": "white", "pdf.fonttype": 42}):
+        fig, axes = plt.subplots(4, 3, figsize=(9, 9.8), squeeze=False, layout="constrained")
+        for column, title in enumerate(titles):
+            axes[0, column].set_title(title, fontweight="bold")
+        for row_index, row in enumerate(selected):
+            condition, stem = str(row["condition"]), str(row["stem"])
+            path = paths[condition][stem]
+            gt = ground_truth(path)
+            crop = crop_box(path, gt)
+            show_panel(axes[row_index, 0], path, crop, gt, GT_COLOR, None, f"{condition} · {stem[:18]}")
+            prediction_panel(axes[row_index, 1], raw, 1, "P2_standard", condition, stem, path, crop, gt)
+            prediction_panel(axes[row_index, 2], raw, 1, "P2_blur_train", condition, stem, path, crop, gt)
+        fig.suptitle(
+            "Four selected test cases — same P2 architecture, seed 1\n"
+            "Green = ground truth; red = prediction; confidence ≥ 0.25; identical crop per row",
+            fontsize=11,
+        )
+        fig.savefig(OUTPUT / "blur_training_only_seed1.png", dpi=300)
+        fig.savefig(OUTPUT / "blur_training_only_seed1.pdf")
+        plt.close(fig)
+
+
+def blur_input_closeups(examples: list[dict[str, object]]) -> None:
+    """Show native-pixel clean/blurred crops so the input perturbation remains visible."""
+    metadata = {
+        (row["severity"], Path(row["generated"]).stem): row
+        for row in csv.DictReader((BENCHMARK / "manifest.csv").open(encoding="utf-8", newline=""))
+    }
+    with mpl.rc_context({"font.size": 8, "axes.titlesize": 9, "figure.facecolor": "white", "savefig.facecolor": "white", "pdf.fonttype": 42}):
+        fig, axes = plt.subplots(len(examples), 2, figsize=(6.4, 2.1 * len(examples)), squeeze=False, layout="constrained")
+        axes[0, 0].set_title("Original test image", fontweight="bold")
+        axes[0, 1].set_title("Deterministically blurred test image", fontweight="bold")
+        for row_index, example in enumerate(examples):
+            severity, stem = str(example["condition"]), str(example["stem"])
+            clean = image_map("clean")[stem]
+            blurred = image_map(severity)[stem]
+            gt = ground_truth(blurred)
+            target = max(gt, key=lambda box: (box[2] - box[0]) * (box[3] - box[1]))
+            with Image.open(clean) as source:
+                width, height = source.size
+            side = min(width, height, max(48, int(round(2.5 * max(target[2] - target[0], target[3] - target[1])))))
+            cx, cy = (target[0] + target[2]) / 2, (target[1] + target[3]) / 2
+            left = min(max(int(round(cx - side / 2)), 0), width - side)
+            top = min(max(int(round(cy - side / 2)), 0), height - side)
+            crop = (left, top, left + side, top + side)
+            record = metadata[(severity, stem)]
+            subtitle = f"{severity} · {record['native_kernel']} px, {record['angle_degrees']}° · {side} px native crop"
+            for column, path in enumerate((clean, blurred)):
+                show_panel(axes[row_index, column], path, crop, gt, GT_COLOR, None, subtitle)
+        fig.suptitle("Identical native-pixel crops, enlarged for display only; green = unchanged GT", fontsize=10)
+        fig.savefig(OUTPUT / "motion_blur_input_closeups.png", dpi=300)
+        fig.savefig(OUTPUT / "motion_blur_input_closeups.pdf")
         plt.close(fig)
 
 
@@ -458,6 +630,57 @@ def quantitative_figure() -> None:
         plt.close(fig)
 
 
+def p2_blur_training_seed1_figure() -> None:
+    """Show the direct, single-seed P2 comparison without MSEF as a separate figure."""
+    source = METRICS / "seed_results.csv"
+    records = list(csv.DictReader(source.open(encoding="utf-8", newline="")))
+    conditions = ("clean", "light", "moderate", "strong")
+    labels = ("Clean", "Light (3 px)", "Moderate (7 px)", "Strong (11 px)")
+    models = ("P2_standard", "P2_blur_train")
+    selected = {
+        (row["model"], row["condition"]): row
+        for row in records
+        if int(row["seed"]) == 1 and row["model"] in models and row["condition"] in conditions
+    }
+    if len(selected) != len(models) * len(conditions):
+        raise RuntimeError("Incomplete seed-1 P2 blur-training test results")
+    if {(row["images"], row["instances"]) for row in selected.values()} != {("625", "685")}:
+        raise RuntimeError("The selected conditions do not share the expected test-image count")
+    standard = np.array([float(selected[("P2_standard", condition)]["AP50_95_percent"]) for condition in conditions])
+    blur_train = np.array([float(selected[("P2_blur_train", condition)]["AP50_95_percent"]) for condition in conditions])
+    difference = blur_train - standard
+    x = np.arange(len(conditions))
+    with mpl.rc_context({"font.size": 9, "axes.titlesize": 10, "figure.facecolor": "white", "savefig.facecolor": "white", "pdf.fonttype": 42, "ps.fonttype": 42}):
+        fig, (top, bottom) = plt.subplots(
+            2, 1, figsize=(7.2, 5.8), sharex=True, height_ratios=(2.1, 1), layout="constrained"
+        )
+        top.plot(x, standard, color="#0072B2", marker="o", linewidth=1.8, markersize=6, label="P2 standard training")
+        top.plot(x, blur_train, color="#D55E00", marker="s", linestyle="--", linewidth=1.8, markersize=6, label="P2 + blur training")
+        for index in range(len(x)):
+            standard_higher = standard[index] >= blur_train[index]
+            top.annotate(f"{standard[index]:.2f}", (x[index], standard[index]), xytext=(0, 7 if standard_higher else -15), textcoords="offset points", ha="center", color="#005582", fontsize=8)
+            top.annotate(f"{blur_train[index]:.2f}", (x[index], blur_train[index]), xytext=(0, -15 if standard_higher else 7), textcoords="offset points", ha="center", color="#A64200", fontsize=8)
+        top.set(ylabel="AP50–95 (%)", ylim=(40, 58))
+        top.set_yticks(np.arange(40, 59, 4))
+        top.grid(axis="y", alpha=0.22)
+        top.legend(loc="lower left", frameon=False)
+        bottom.axhline(0, color="#666666", linewidth=0.8)
+        bottom.vlines(x, 0, difference, color="#777777", linewidth=1.3)
+        bottom.scatter(x, difference, color="#4D4D4D", marker="D", s=28, zorder=3)
+        for index, value in enumerate(difference):
+            bottom.annotate(
+                f"{value:+.2f}", (x[index], value),
+                xytext=(0, 7 if value >= 0 else -14), textcoords="offset points", ha="center", fontsize=8,
+            )
+        bottom.set(ylabel="Blur training effect\n(percentage points)", ylim=(-3, 6))
+        bottom.set_xticks(x, labels)
+        bottom.grid(axis="y", alpha=0.22)
+        fig.suptitle("P2 motion-blur training: direct seed-1 test comparison\nSame architecture; 625 images / 685 instances per condition", fontsize=11)
+        fig.savefig(OUTPUT / "p2_blur_training_test_seed1.png", dpi=300)
+        fig.savefig(OUTPUT / "p2_blur_training_test_seed1.pdf")
+        plt.close(fig)
+
+
 def main() -> None:
     args = parse_args()
     device = "0" if args.device == "auto" and torch.cuda.is_available() else ("cpu" if args.device == "auto" else args.device)
@@ -467,6 +690,7 @@ def main() -> None:
             if not path.is_file():
                 raise FileNotFoundError(path)
     raw = collect_predictions(device, args.batch)
+    ensure_light_seed1_predictions(raw, device, args.batch)
     rows = build_per_image(raw)
     write_csv(OUTPUT / "per_image_analysis.csv", rows)
     blurred, clear, summary = choose_examples(rows)
@@ -486,10 +710,13 @@ def main() -> None:
     )
     qualitative_grid(raw, blurred, True, "qualitative_blur_consensus_3seed")
     qualitative_grid(raw, clear, False, "qualitative_clear_regressions_3seed")
+    blur_training_only_figure(raw, rows)
+    blur_input_closeups(blurred)
     quantitative_figure()
+    p2_blur_training_seed1_figure()
     notes = f"""# Motion-blur visual analysis
 
-The figures use deterministic geometry-based selection, not manual image picking. A consensus example requires the paired direction to occur in at least two of three seeds. All model panels use the same native-pixel crop, confidence threshold {DISPLAY_CONFIDENCE:.2f}, and NMS IoU {NMS_IOU:.2f}. Ground truth is a solid green box in dedicated columns; predictions are solid vermillion boxes. No brightness, contrast, sharpening, denoising, or selective image adjustment was applied.
+The figures use deterministic geometry-based selection, not manual image picking. A consensus example requires the paired direction to occur in at least two of three seeds. All model panels use the same native-pixel crop, confidence threshold {DISPLAY_CONFIDENCE:.2f}, and NMS IoU {NMS_IOU:.2f}. Thin solid green ground-truth boxes are overlaid in every model panel; predictions are thin solid vermillion boxes. `motion_blur_input_closeups` shows an identical native-pixel crop before and after the deterministic test corruption, magnified for display only; the largest annotated target in each selected image sets the crop center. No brightness, contrast, sharpening, denoising, or selective image adjustment was applied.
 
 ## Population counts
 
@@ -515,9 +742,9 @@ The broad gain/loss columns above are not mutually exclusive for multi-object im
         )
     notes += """
 
-The qualitative examples demonstrate mechanisms and counterexamples, not prevalence; prevalence is represented by the complete per-image CSV and the aggregate AP figure. Because the corruption is synthetic and derived from the public test images, these figures cannot establish real-world motion-blur generalization and must not be used for additional model selection.
+The `blur_training_only_seed1` figure isolates online blur augmentation: same P2 architecture, seed 1, test input, confidence and NMS settings. Four rows show one clean and one light-blur regression, plus one moderate and one strong synthetic-blur gain. Cases are selected programmatically from single-target images with GT equivalent side 16–150 native pixels, then ranked by TP50/TP75/IoU difference; the clean and light cases are nearby frames from the same source video, not independent sources. The light-blur per-image predictions were newly computed on CPU with the same 640-pixel input, 0.25 confidence and 0.70 NMS IoU settings, using existing seed-1 checkpoints; no training or aggregate test metric was changed. The companion `p2_blur_training_test_seed1` figure plots all four conditions from `reproduction/results/motion_blur_training_3seed/seed_results.csv`, including the unfavorable light-blur result. Differences use unrounded CSV values; no uncertainty is shown because this is a single-seed plot. The older three-seed qualitative grids compare standard P2 with blur-trained P2+MSEF, so they do not isolate blur training. Per-box confidence labels and in-image statistics have been moved off the image to avoid obscuring boxes. These selected examples demonstrate mechanisms and counterexamples, not prevalence; prevalence is represented by the complete per-image CSV and the aggregate AP figure. Because the corruption is synthetic and derived from the original-source test images, these figures cannot establish real-world motion-blur generalization and must not be used for additional model selection.
 
-Alt text: The quantitative two-panel figure shows three-seed AP50–95 curves across clean, light, moderate, and strong blur and paired effects for blur training, MSEF after blur training, and their interaction. The qualitative blur grid shows clean and blurred ground truth beside standard-P2 and blur-trained P2+MSEF predictions for all three seeds. The clear-regression grid shows counterexamples where standard P2 more consistently detects or localizes a clean-image target than the blur-trained P2+MSEF model.
+Alt text: The quantitative two-panel figure shows three-seed AP50–95 curves across clean, light, moderate, and strong blur and paired effects for blur training, MSEF after blur training, and their interaction. The four-row case figure shows standard-trained and blur-trained predictions from the same P2 architecture and seed on clean, light, moderate and strong test inputs; the first two rows lose a true positive and the last two regain one. The older qualitative blur grid shows clean and blurred ground truth beside standard-P2 and blur-trained P2+MSEF predictions for all three seeds. The clear-regression grid shows counterexamples where standard P2 more consistently detects or localizes a clean-image target than the blur-trained P2+MSEF model.
 """
     (OUTPUT / "FIGURE_NOTES.md").write_text(notes, encoding="utf-8")
     print(OUTPUT.resolve())

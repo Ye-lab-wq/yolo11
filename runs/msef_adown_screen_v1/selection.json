@@ -1,0 +1,25 @@
+{
+  "selection_metric": "best validation mAP50-95 from matched seed-0/60-epoch screens",
+  "minimum_direct_parent_gain": 0.003,
+  "references": {
+    "p2": 0.55457,
+    "paper": 0.56642,
+    "highpass": 0.55868,
+    "p2_adown": 0.55555,
+    "paper_adown": 0.57516
+  },
+  "candidates": [
+    {
+      "name": "highpass_atrous",
+      "map50_95": 0.55404,
+      "parent_map50_95": 0.55868
+    },
+    {
+      "name": "edge_addon",
+      "map50_95": 0.55499,
+      "parent_map50_95": 0.55457
+    }
+  ],
+  "selected": null,
+  "test_access": "none"
+}

@@ -146,6 +146,8 @@ def freeze_best(seed: int) -> Path:
         "seed": seed,
         "selection_split": "validation",
         "selection_rule": "maximum validation mAP50:95 over the fixed 200-epoch run",
+        # Legacy metadata key is misnamed: results.csv epoch is one-based.
+        # Preserve the key/value so existing frozen records remain verifiable.
         "best_epoch_zero_based": int(best["epoch"]),
         "precision": float(best["metrics/precision(B)"]),
         "recall": float(best["metrics/recall(B)"]),

@@ -15,3 +15,18 @@ other unique frames to `self_test`. `data.yaml` combines these with the public
 train/test splits. Use `data_public_test.yaml` and `data_self_test.yaml` to report
 the two test domains separately. The self-video result is within-video unseen-frame
 evaluation, not unseen-video generalization.
+
+There is **one** rebuilt dataset, not a separate "combined dataset" and "public
+dataset". Earlier reports use the code names below for evaluation scopes within
+this same dataset:
+
+| Scope | Images | Instances | Meaning |
+|---|---:|---:|---|
+| `public_test` | 625 | 685 | Test images inherited from the original dataset source; "public" is a local code name, not an external benchmark. |
+| `self_test` | 16 | 16 | Unseen frames from the added self-collected video. |
+| `combined_test` / `data.yaml` test | 641 | 701 | Both scopes together, not another dataset. |
+
+Training combines 2,911 original-source images and 36 self-video frames (2,947
+total); validation contains 625 original-source images. The deterministic
+motion-blur benchmark is a **derived copy of the 625 `public_test` images**, not
+additional training data or an independently collected test set.

@@ -1,6 +1,6 @@
 # Motion-blur training 2x2 — three-seed public-test audit
 
-All checkpoints are 60-epoch from-scratch runs selected only by clean-validation mAP50:95. Seed 0 results are reused from the frozen identical-protocol evaluation; seeds 1 and 2 were evaluated on the same 625-image/685-instance public test and deterministic derivatives.
+All checkpoints are 60-epoch from-scratch runs selected only by clean-validation mAP50:95. Seed 0 results are reused from the frozen identical-protocol evaluation; seeds 1 and 2 were evaluated on the same 625-image/685-instance original-source test portion of the one rebuilt `DetectDataset_clean_v2` dataset (code name `public_test`) and its deterministic blur derivatives. The 16 self-video test frames are a separate source portion of the same dataset, not an independent benchmark.
 
 ## AP50:95 by seed
 

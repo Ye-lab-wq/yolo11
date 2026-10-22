@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import gc
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -40,8 +41,24 @@ SPLITS = {
     ),
     "public_test": (DATASET / "data_public_test.yaml", "test", (DATASET / "test" / "images",)),
     "self_test": (DATASET / "data_self_test.yaml", "test", (DATASET / "self_test" / "images",)),
+    # Predeclared external zero-shot benchmark. Only COCO-style metrics are
+    # computed: Ultralytics val expects a data.yaml and would add a second
+    # evaluator with no role in the frozen external protocol.
+    "external_test": (
+        None,
+        None,
+        (ROOT / "external_benchmarks" / "uav_eagle" / "UAV-Eagle" / "images",),
+    ),
 }
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def parse_args() -> argparse.Namespace:
@@ -76,9 +93,9 @@ def image_paths(directories: tuple[Path, ...]) -> list[Path]:
     )
 
 
-def make_ground_truth(paths: list[Path]) -> tuple[COCO, dict[str, int]]:
+def make_ground_truth(paths: list[Path], description: str = "DetectDataset_clean_v2") -> tuple[COCO, dict[str, int]]:
     dataset: dict[str, object] = {
-        "info": {"description": "DetectDataset_clean_v2"},
+        "info": {"description": description},
         "licenses": [],
         "categories": [{"id": 1, "name": "drone"}],
         "images": [],
@@ -232,10 +249,14 @@ def main() -> None:
     weights = parse_weights(args.weights)
     data_yaml, ultralytics_split, directories = SPLITS[args.split]
     paths = image_paths(directories)
-    ground_truth, path_to_id = make_ground_truth(paths)
+    if not paths:
+        raise ValueError(f"No images found for {args.split}: {directories}")
+    ground_truth, path_to_id = make_ground_truth(
+        paths, "UAV-Eagle" if args.split == "external_test" else "DetectDataset_clean_v2"
+    )
     report: dict[str, object] = {
         "split": args.split,
-        "data": str(data_yaml),
+        "data": str(data_yaml) if data_yaml is not None else str(directories[0]),
         "selection_status": "frozen_before_test" if "test" in args.split else "validation_only",
         "imgsz": 640,
         "batch": args.batch,
@@ -255,43 +276,45 @@ def main() -> None:
     for name, path in weights:
         print(f"Evaluating {name}: {path}", flush=True)
         model = YOLO(str(path))
-        validation = model.val(
-            data=str(data_yaml),
-            split=ultralytics_split,
-            imgsz=640,
-            batch=args.batch,
-            device=args.device,
-            workers=4,
-            conf=0.001,
-            iou=0.7,
-            max_det=300,
-            plots=False,
-            save_json=False,
-            verbose=False,
-            project=str(args.output.parent / "ultralytics"),
-            name=f"{name}_{args.split}",
-            exist_ok=True,
-        )
-        ultralytics_metrics = {
-            "precision": float(validation.box.mp),
-            "recall": float(validation.box.mr),
-            "mAP50": float(validation.box.map50),
-            "mAP75": float(validation.box.map75),
-            "mAP50_95": float(validation.box.map),
-        }
-        # The following COCO-style prediction pass is intentionally separate.
-        # Release validation tensors first so high-resolution P2 features do not
-        # overlap in GPU memory with the prediction batch.
-        del validation
-        gc.collect()
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+        ultralytics_metrics = None
+        if data_yaml is not None:
+            validation = model.val(
+                data=str(data_yaml),
+                split=ultralytics_split,
+                imgsz=640,
+                batch=args.batch,
+                device=args.device,
+                workers=4,
+                conf=0.001,
+                iou=0.7,
+                max_det=300,
+                plots=False,
+                save_json=False,
+                verbose=False,
+                project=str(args.output.parent / "ultralytics"),
+                name=f"{name}_{args.split}",
+                exist_ok=True,
+            )
+            ultralytics_metrics = {
+                "precision": float(validation.box.mp),
+                "recall": float(validation.box.mr),
+                "mAP50": float(validation.box.map50),
+                "mAP75": float(validation.box.map75),
+                "mAP50_95": float(validation.box.map),
+            }
+            # Release validation tensors before the separate COCO prediction pass.
+            del validation
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
         records = predictions(model, paths, path_to_id, args.device, args.batch)
         report["models"][name] = {
             "weights": str(path),
-            "ultralytics": ultralytics_metrics,
+            "weights_sha256": sha256_file(path),
             "coco_style": coco_metrics(ground_truth, records),
         }
+        if ultralytics_metrics is not None:
+            report["models"][name]["ultralytics"] = ultralytics_metrics
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(args.output.resolve())

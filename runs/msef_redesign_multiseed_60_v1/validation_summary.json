@@ -1,0 +1,122 @@
+[
+  {
+    "name": "p2_nearest_ciou",
+    "seed": 1,
+    "epochs": 60,
+    "best_epoch": 57,
+    "precision": 0.89591,
+    "recall": 0.89211,
+    "map50": 0.93742,
+    "map50_95": 0.55979,
+    "training_time_s": 1694.72,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_nearest_ciou_s1/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_paper_ciou",
+    "seed": 1,
+    "epochs": 60,
+    "best_epoch": 59,
+    "precision": 0.90265,
+    "recall": 0.88759,
+    "map50": 0.93984,
+    "map50_95": 0.56149,
+    "training_time_s": 1902.77,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_paper_ciou_s1/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_highpass_ciou",
+    "seed": 1,
+    "epochs": 60,
+    "best_epoch": 56,
+    "precision": 0.92045,
+    "recall": 0.86147,
+    "map50": 0.93655,
+    "map50_95": 0.55529,
+    "training_time_s": 2059.79,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_highpass_ciou_s1/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_highpass_atrous_ciou",
+    "seed": 1,
+    "epochs": 60,
+    "best_epoch": 57,
+    "precision": 0.90254,
+    "recall": 0.89343,
+    "map50": 0.93617,
+    "map50_95": 0.55248,
+    "training_time_s": 1891.46,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_highpass_atrous_ciou_s1/weights/best.pt"
+  },
+  {
+    "name": "p2_c3k2_msef_edge_addon_ciou",
+    "seed": 1,
+    "epochs": 60,
+    "best_epoch": 57,
+    "precision": 0.91789,
+    "recall": 0.88124,
+    "map50": 0.93961,
+    "map50_95": 0.55357,
+    "training_time_s": 1865.65,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_c3k2_msef_edge_addon_ciou_s1/weights/best.pt"
+  },
+  {
+    "name": "p2_nearest_ciou",
+    "seed": 2,
+    "epochs": 60,
+    "best_epoch": 60,
+    "precision": 0.91357,
+    "recall": 0.88029,
+    "map50": 0.93443,
+    "map50_95": 0.54859,
+    "training_time_s": 1696.7,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_nearest_ciou_s2/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_paper_ciou",
+    "seed": 2,
+    "epochs": 60,
+    "best_epoch": 56,
+    "precision": 0.92498,
+    "recall": 0.88204,
+    "map50": 0.93559,
+    "map50_95": 0.56047,
+    "training_time_s": 1904.93,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_paper_ciou_s2/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_highpass_ciou",
+    "seed": 2,
+    "epochs": 60,
+    "best_epoch": 56,
+    "precision": 0.90342,
+    "recall": 0.87883,
+    "map50": 0.93279,
+    "map50_95": 0.55088,
+    "training_time_s": 1839.49,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_highpass_ciou_s2/weights/best.pt"
+  },
+  {
+    "name": "p2_msef_highpass_atrous_ciou",
+    "seed": 2,
+    "epochs": 60,
+    "best_epoch": 59,
+    "precision": 0.91089,
+    "recall": 0.86549,
+    "map50": 0.93319,
+    "map50_95": 0.55443,
+    "training_time_s": 1902.26,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_msef_highpass_atrous_ciou_s2/weights/best.pt"
+  },
+  {
+    "name": "p2_c3k2_msef_edge_addon_ciou",
+    "seed": 2,
+    "epochs": 60,
+    "best_epoch": 59,
+    "precision": 0.8954,
+    "recall": 0.91225,
+    "map50": 0.93945,
+    "map50_95": 0.55578,
+    "training_time_s": 1865.73,
+    "best_weight": "/home/b520/Downloads/yelin/yolo11/runs/msef_redesign_multiseed_60_v1/p2_c3k2_msef_edge_addon_ciou_s2/weights/best.pt"
+  }
+]

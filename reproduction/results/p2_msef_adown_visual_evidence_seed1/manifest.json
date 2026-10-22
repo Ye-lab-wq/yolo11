@@ -1,6 +1,6 @@
 {
   "purpose": "seed-1 visual evidence for the P2, MSEFPaper, and full-path ADown chain",
-  "split": "DetectDataset_clean_v2 combined test (public test + 16 self-video frames)",
+  "split": "DetectDataset_clean_v2 full test (625 original-source + 16 self-video frames; historical code name combined_test)",
   "images": 641,
   "instances": 701,
   "inference": {
@@ -1214,5 +1214,5 @@
       "gflops": 10.3
     }
   },
-  "figure_processing": "native RGB crops only; identical crop per model; nearest-neighbor display interpolation; no brightness, contrast, denoising, or selective image adjustment"
+  "figure_processing": "native RGB crops only; identical crop per model; thin green GT overlaid in every model panel; nearest-neighbor display interpolation; no brightness, contrast, denoising, or selective image adjustment"
 }

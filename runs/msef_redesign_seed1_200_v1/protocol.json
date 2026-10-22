@@ -1,0 +1,88 @@
+{
+  "purpose": "Exploratory seed-1/200-epoch follow-up to the 60-epoch MSEF redesign screen",
+  "seed": 1,
+  "epochs": 200,
+  "controls": [
+    {
+      "name": "P2",
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_nearest.yaml",
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2/train_seed1"
+    },
+    {
+      "name": "P2_MSEFPaper",
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_paper.yaml",
+      "run": "/home/b520/Downloads/yelin/yolo11/runs/ablation_200_v1/p2_msef_paper/train_seed1"
+    }
+  ],
+  "candidates": [
+    {
+      "name": "MSEFHighPass",
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_highpass.yaml",
+      "yaml_sha256": "ea0698d6ec9e451baa03ff8390e5fd943e8d198a8ffc9ec90c60f3d123851b72"
+    },
+    {
+      "name": "MSEFHighPassAtrous",
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_msef_highpass_atrous.yaml",
+      "yaml_sha256": "4d5bcf5817c8e03f06bf9782ff45ecc14ab57ed33cdab053a0f0f9b8a6402a63"
+    },
+    {
+      "name": "MSEFEdgeAddOn",
+      "yaml": "/home/b520/Downloads/yelin/yolo11/reproduction/ablation/models/p2_c3k2_msef_edge_addon.yaml",
+      "yaml_sha256": "577f144450f36e2997d97298face56d302110a8f0f6536799d22e6dc01698a00"
+    }
+  ],
+  "module_source_sha256": "f69499d049bb71ac0616bfefb3425d9db1d735f40221551d9192504e8a8d44d6",
+  "training": {
+    "data": "/home/b520/Downloads/yelin/yolo11/DetectDataset_clean_v2/data.yaml",
+    "epochs": 200,
+    "patience": 200,
+    "batch": 16,
+    "imgsz": 640,
+    "device": 0,
+    "workers": 4,
+    "pretrained": false,
+    "optimizer": "AdamW",
+    "lr0": 0.001,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.1,
+    "box": 7.5,
+    "cls": 0.5,
+    "dfl": 1.5,
+    "bbox_loss_mode": "ciou",
+    "focaler_iou": false,
+    "focaler_d": 0.0,
+    "focaler_u": 0.95,
+    "deterministic": true,
+    "amp": false,
+    "close_mosaic": 10,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "copy_paste": 0.0,
+    "cutmix": 0.0,
+    "cache": false,
+    "plots": true,
+    "save": true,
+    "save_period": -1
+  },
+  "checkpoint_selection": "Validation mAP50-95 selects one best.pt independently for each 200-epoch run",
+  "evaluation": "All five frozen weights on the full 641-image combined test split; no selection by test",
+  "environment": {
+    "python": "3.12.0 | packaged by Anaconda, Inc. | (main, Oct  2 2023, 17:29:18) [GCC 11.2.0]",
+    "torch": "2.10.0+cu128",
+    "ultralytics": "8.3.241"
+  }
+}

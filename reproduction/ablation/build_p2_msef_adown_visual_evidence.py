@@ -449,7 +449,7 @@ def crop_bounds(target: np.ndarray, width: int, height: int) -> tuple[int, int, 
     return left, top, left + side, top + side
 
 
-def add_box(ax, box, crop, color, linestyle="-", linewidth=1.8, label=None):
+def add_box(ax, box, crop, color, linestyle="-", linewidth=0.9, label=None):
     left, top, right, bottom = crop
     x1, y1, x2, y2 = box
     if x2 <= left or x1 >= right or y2 <= top or y1 >= bottom:
@@ -466,7 +466,7 @@ def add_box(ax, box, crop, color, linestyle="-", linewidth=1.8, label=None):
         linestyle=linestyle,
         label=label,
     )
-    patch.set_path_effects([pe.Stroke(linewidth=linewidth + 1.5, foreground="black"), pe.Normal()])
+    patch.set_path_effects([pe.Stroke(linewidth=linewidth + 0.45, foreground="black"), pe.Normal()])
     ax.add_patch(patch)
 
 
@@ -519,48 +519,27 @@ def qualitative_figure(
                 ax.imshow(image, interpolation="nearest")
                 ax.set_xticks([])
                 ax.set_yticks([])
+                for gt_index, gt_box in enumerate(record["boxes"]):
+                    add_box(
+                        ax,
+                        gt_box,
+                        crop,
+                        "#00A65A",
+                        linewidth=0.95 if gt_index == example["target_index"] else 0.7,
+                    )
                 if column != "Ground truth":
                     visible = predictions[column][str(path)]
                     visible = visible[visible[:, 4] >= confidence]
                     for prediction in visible:
-                        add_box(ax, prediction[:4], crop, "#D62728", linewidth=1.8)
+                        add_box(ax, prediction[:4], crop, "#D62728", linewidth=0.9)
                     result = example["models"][column]
                     if result["box"] is None:
                         status = "Miss"
                     else:
                         status = f"IoU {result['iou']:.2f} | C {result['confidence']:.2f}"
-                    ax.text(
-                        0.02,
-                        0.02,
-                        status,
-                        transform=ax.transAxes,
-                        va="bottom",
-                        ha="left",
-                        fontsize=5.5,
-                        color="#B22222",
-                        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 1.0},
-                    )
+                    ax.text(0.5, -0.04, status, transform=ax.transAxes, va="top", ha="center", fontsize=5.5, color="#B22222", clip_on=False)
                 else:
-                    for gt_index, gt_box in enumerate(record["boxes"]):
-                        add_box(
-                            ax,
-                            gt_box,
-                            crop,
-                            "#00A65A",
-                            linestyle="-",
-                            linewidth=2.0 if gt_index == example["target_index"] else 1.2,
-                        )
-                    ax.text(
-                        0.02,
-                        0.02,
-                        f"GT size {example['equivalent_side_px']:.1f}px",
-                        transform=ax.transAxes,
-                        va="bottom",
-                        ha="left",
-                        fontsize=5.5,
-                        color="black",
-                        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 1.0},
-                    )
+                    ax.text(0.5, -0.04, f"GT size {example['equivalent_side_px']:.1f}px", transform=ax.transAxes, va="top", ha="center", fontsize=5.5, color="black", clip_on=False)
                 if row == 0:
                     ax.set_title(
                         short_names[column],
@@ -582,8 +561,8 @@ def qualitative_figure(
                 }
             )
         fig.suptitle(
-            "Seed-1 qualitative comparison on the combined test set (confidence >= 0.25)\n"
-            "Ground truth: green solid box; predictions: red solid boxes",
+            "Seed-1 comparison on the rebuilt dataset's full test (641 images; confidence >= 0.25)\n"
+            "Green ground truth in every panel; red predictions; thin solid boxes",
             fontsize=8,
         )
         fig.savefig(output_dir / "qualitative_p2_msef_adown_seed1.png", dpi=400)
@@ -622,8 +601,8 @@ def large_target_diagnostic_figure(
             ax.imshow(image, interpolation="nearest")
             ax.set_xticks([])
             ax.set_yticks([])
+            add_box(ax, target, crop, "#00A65A", linewidth=0.95)
             if column == "Ground truth":
-                add_box(ax, target, crop, "#00A65A", linestyle="-", linewidth=2.0)
                 status = "GT: 457 x 601 px"
                 title_color = "black"
             else:
@@ -631,27 +610,17 @@ def large_target_diagnostic_figure(
                 raw = best_prediction_for_target(predictions[column][str(path)], target, 0.001)
                 diagnostics[column] = {"display": display, "raw": raw}
                 if display["box"] is not None:
-                    add_box(ax, display["box"], crop, "#D62728", linewidth=1.8)
+                    add_box(ax, display["box"], crop, "#D62728", linewidth=0.9)
                     status = f"IoU {display['iou']:.2f}\nC {display['confidence']:.3f}"
                 else:
                     if raw["box"] is not None:
-                        add_box(ax, raw["box"], crop, "#E69F00", linestyle=":", linewidth=1.5)
+                        add_box(ax, raw["box"], crop, "#E69F00", linestyle=":", linewidth=0.8)
                     status = f"miss @.25\nraw IoU {raw['iou']:.2f} | C {raw['confidence']:.3f}"
                 title_color = "black"
             ax.set_title(short_name, color=title_color)
-            ax.text(
-                0.02,
-                0.02,
-                status,
-                transform=ax.transAxes,
-                va="bottom",
-                ha="left",
-                fontsize=5.2,
-                color=title_color,
-                bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 1.0},
-            )
+            ax.text(0.5, -0.04, status, transform=ax.transAxes, va="top", ha="center", fontsize=5.2, color=title_color, clip_on=False)
         fig.suptitle(
-            "Large-target score diagnostic (red solid >=0.25; orange dotted <0.25)",
+            "Large-target score diagnostic (green GT; red solid >=0.25; orange dotted <0.25)",
             fontsize=8,
         )
         fig.savefig(output_dir / "large_target_threshold_diagnostic_seed1.png", dpi=400)
@@ -682,6 +651,48 @@ def large_target_diagnostic_figure(
         ),
         "models": diagnostics,
     }
+
+
+def rerender_earlier_three_model_figure() -> None:
+    """Keep the earlier P2/ADown comparison consistent with the current box style."""
+    legacy_dir = ROOT / "reproduction/results/p2_adown_visual_evidence_seed1"
+    manifest = json.loads((legacy_dir / "manifest.json").read_text(encoding="utf-8"))
+    raw = json.loads((legacy_dir / "raw_predictions.json").read_text(encoding="utf-8"))
+    selected = manifest["selected_examples"]
+    columns = ("Ground truth", "YOLO11n", "+P2", "+P2+ADown")
+    records = load_ground_truth([(ROOT / example["path"]).resolve() for example in selected])
+    with mpl.rc_context({"font.family": "DejaVu Sans", "font.size": 8, "axes.titlesize": 8, "figure.facecolor": "white", "savefig.facecolor": "white", "pdf.fonttype": 42}):
+        fig, axes = plt.subplots(len(selected), len(columns), figsize=(7.08, 1.62 * len(selected)), layout="constrained", squeeze=False)
+        for row, example in enumerate(selected):
+            path = (ROOT / example["path"]).resolve()
+            crop = tuple(example["crop_xyxy"])
+            with Image.open(path) as source:
+                image = np.asarray(source.convert("RGB").crop(crop))
+            gt_boxes = records[str(path)]["boxes"]
+            for col, column in enumerate(columns):
+                ax = axes[row, col]
+                ax.imshow(image, interpolation="nearest")
+                ax.set_xticks([])
+                ax.set_yticks([])
+                for gt_index, box in enumerate(gt_boxes):
+                    add_box(ax, box, crop, "#00A65A", linewidth=0.95 if gt_index == example["target_index"] else 0.7)
+                if column == "Ground truth":
+                    status = f"GT size {example['equivalent_side_px']:.1f}px"
+                else:
+                    predictions = np.asarray(raw[column][example["path"]], dtype=float).reshape(-1, 5)
+                    for prediction in predictions[predictions[:, 4] >= 0.25]:
+                        add_box(ax, prediction[:4], crop, "#D62728", linewidth=0.9)
+                    result = example["models"][column]
+                    status = "Miss" if result["box"] is None else f"IoU {result['iou']:.2f} | C {result['confidence']:.2f}"
+                ax.text(0.5, -0.04, status, transform=ax.transAxes, va="top", ha="center", fontsize=5.5, color="black", clip_on=False)
+                if row == 0:
+                    ax.set_title(column)
+                if col == 0:
+                    ax.set_ylabel(f"{example['selection_group']}\n{path.stem[:18]}", rotation=0, ha="right", va="center")
+        fig.suptitle("Seed-1 P2/ADown comparison on the rebuilt dataset's full test (641 images)\nThin green GT in every panel; thin red predictions at confidence >= 0.25", fontsize=8)
+        fig.savefig(legacy_dir / "qualitative_p2_adown_seed1.png", dpi=400)
+        fig.savefig(legacy_dir / "qualitative_p2_adown_seed1.pdf")
+        plt.close(fig)
 
 
 def quantitative_figure(
@@ -948,7 +959,7 @@ def main() -> None:
 
     manifest = {
         "purpose": "seed-1 visual evidence for the P2, MSEFPaper, and full-path ADown chain",
-        "split": "DetectDataset_clean_v2 combined test (public test + 16 self-video frames)",
+        "split": "DetectDataset_clean_v2 full test (625 original-source + 16 self-video frames; historical code name combined_test)",
         "images": len(paths),
         "instances": sum(len(record["boxes"]) for record in ground_truth_records.values()),
         "inference": {
@@ -976,7 +987,7 @@ def main() -> None:
         "coco_style_metrics": metrics,
         "ap_by_iou_percent": curves,
         "complexity": COMPLEXITY,
-        "figure_processing": "native RGB crops only; identical crop per model; nearest-neighbor display interpolation; no brightness, contrast, denoising, or selective image adjustment",
+        "figure_processing": "native RGB crops only; identical crop per model; thin green GT overlaid in every model panel; nearest-neighbor display interpolation; no brightness, contrast, denoising, or selective image adjustment",
     }
     (output_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -994,7 +1005,7 @@ def main() -> None:
 
 ## Same-protocol results
 
-Single-run seed-1 COCO-style results on 641 images / 701 instances:
+Single-run seed-1 COCO-style results on the one rebuilt dataset's full test (641 images / 701 instances: 625 original-source plus 16 self-video):
 
 | Model | AP50:95/% | AP50/% | AP75/% | AP 16-32 px/% | AP >=96 px/% | Params/M | GFLOPs |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -1020,11 +1031,11 @@ This is not evidence of a systematic large-target collapse: among {large_score_g
 
 ## Figure construction
 
-The paper-style qualitative grid uses deterministic geometry-based selection rather than manual image picking: one P2 gain, one MSEF gain, one ADown gain, one combined-model gain, and one ADown regression. Ground truth is shown only in its own column with a green solid box; each model column uses red solid prediction boxes at confidence >=0.25. Low-score candidates are excluded from the main qualitative grid and shown only in the separately labelled diagnostic figure. Each row uses an identical native-pixel crop across models, with no brightness, contrast, denoising, or selective adjustment.
+The paper-style qualitative grid uses deterministic geometry-based selection rather than manual image picking: one P2 gain, one MSEF gain, one ADown gain, one combined-model gain, and one ADown regression. Thin solid green ground-truth boxes appear in every panel; each model column also uses thin solid red prediction boxes at confidence >=0.25. All status and confidence text sits below the image area so it cannot obscure either box. Low-score candidates are excluded from the main qualitative grid and shown only in the separately labelled diagnostic figure. Each row uses an identical native-pixel crop across models, with no brightness, contrast, denoising, or selective adjustment.
 
 The quantitative figure reports AP-versus-IoU, size-stratified AP, direct-parent changes, and the parameter/AP75 trade-off. The <16 px subset is exploratory because it contains only nine instances. No uncertainty interval is shown because these figures use the requested single selected seed. All plotted values use the COCO-style evaluator consistently.
 
-Alt text: Four-panel quantitative comparison and five-row qualitative crop grid compare seed-1 YOLO11n, YOLO11n+P2, YOLO11n+P2+MSEF, YOLO11n+P2+ADown, and the full combination. The main grid uses conventional separate solid ground-truth and prediction boxes. The figures expose both direct module effects and the non-additive MSEF-ADown interaction, retain an ADown regression, and separately diagnose the low-score but well-localized candidate for the user-flagged very large target.
+Alt text: Four-panel quantitative comparison and five-row qualitative crop grid compare seed-1 YOLO11n, YOLO11n+P2, YOLO11n+P2+MSEF, YOLO11n+P2+ADown, and the full combination. Every prediction panel overlays green ground-truth and red prediction boxes. The figures expose both direct module effects and the non-additive MSEF-ADown interaction, retain an ADown regression, and separately diagnose the low-score but well-localized candidate for the user-flagged very large target.
 """
     (output_dir / "FIGURE_NOTES.md").write_text(caption, encoding="utf-8")
     print(output_dir)

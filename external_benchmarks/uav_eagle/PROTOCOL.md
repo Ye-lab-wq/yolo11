@@ -19,10 +19,19 @@ Evaluate the validation-selected 200-epoch `best.pt` checkpoints for seeds 0, 1 
 4. YOLO11n + P2 + full-path ADown;
 5. YOLO11n + P2 + MSEFPaper + full-path ADown.
 
-The P2+ADown 200-epoch seeds 0 and 2 finished on 2026-10-07; all five comparisons now have three validation-selected checkpoints. All models were trained from scratch on `DetectDataset_clean_v2` with the same 200-epoch schedule and image size 640. No UAV-Eagle-specific fine-tuning is allowed. External inference has not yet been run.
+The P2+ADown 200-epoch seeds 0 and 2 finished on 2026-10-07; all five comparisons now have three validation-selected checkpoints. All models were trained from scratch on `DetectDataset_clean_v2` with the same 200-epoch schedule and image size 640. No UAV-Eagle-specific fine-tuning is allowed. At the time this protocol was frozen, external inference had not yet been run.
 
 Use the existing `evaluate_frozen.py` COCO-style evaluator with inference size 640, confidence floor 0.001, NMS IoU 0.70 and max detections 300. Report AP50, AP75, AP50–95 and target-size AP for each seed, then descriptive mean and sample SD across seeds. The same-image paired contrasts are reported against YOLO11n and each module's direct parent. Keep per-seed values visible; do not choose a seed using this test.
 
 Before inference, check archive integrity, image-label pairing and valid normalized coordinates, and compare decoded-image hashes against the internal clean dataset. Preserve the supplied labels. Any class-ID remapping must be recorded in the audit; no relabeling based on model predictions.
 
 If there are no verified target-negative frames, precision and AP describe performance on target-positive frames only and cannot characterize background false alarms. Report that limitation explicitly.
+
+## Execution record
+
+Executed on 2026-10-20 without changing the frozen comparison or source
+labels. The archive/inventory/hash audit is in `audit.json`; results for all
+15 checkpoints are in `../../reproduction/results/uav_eagle_external_200_3seed/results.json`
+and interpreted in its adjacent `RESULTS.md`. The archive contains six
+exact-image duplicate pairs, four with different supplied box coordinates;
+all were retained in the primary analysis. All 510 images are target-positive.

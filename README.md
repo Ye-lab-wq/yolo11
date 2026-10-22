@@ -1,6 +1,6 @@
 # YOLO11 微小无人机检测项目
 
-本目录保存论文第三章对应的作者材料、现存权重复核，以及在重建数据集上重新训练的受控消融。当前研究结果入口是 [200 轮三种子汇总](reproduction/results/clean_v2_200_3seed/RESULTS.md)、[合成运动模糊三种子结果](reproduction/results/motion_blur_training_3seed/RESULTS.md)和[模糊/清晰图可视化分析](reproduction/results/motion_blur_visual_analysis_3seed/ANALYSIS_ZH.md)。
+本目录保存论文第三章对应的作者材料、现存权重复核，以及在重建数据集上重新训练的受控消融。论文结论应先看[证据与主张边界](reproduction/PAPER_CLAIMS_AUDIT.md)；原始结果入口是 [200 轮三种子汇总](reproduction/results/clean_v2_200_3seed/RESULTS.md)、[MSEF 改版 seed 1 / 200 轮探索性复核](reproduction/results/msef_redesign_seed1_200_v1/RESULTS.md)、[UAV-Eagle 外部零样本测试](reproduction/results/uav_eagle_external_200_3seed/RESULTS.md)、[合成运动模糊三种子结果](reproduction/results/motion_blur_training_3seed/RESULTS.md)和[模糊/清晰图可视化分析](reproduction/results/motion_blur_visual_analysis_3seed/ANALYSIS_ZH.md)。
 
 ## 1. 文件来源
 
@@ -19,6 +19,8 @@
 - 本 `README.md`：项目入口说明。
 
 原作者的完整模型和旧权重保持原有语义。新实验使用 `reproduction/ablation/` 中独立命名的模型配置和本地 Ultralytics 扩展；它们与作者提交的最终 MEDA 权重是不同的实验对象。
+
+`DetectDataset_clean_v2` 只有**一个**重建数据集：训练集是原始来源 2,911 张加自采 36 张；验证集是原始来源 625 张；完整测试集是原始来源 625 张加自采 16 张。代码里的 `public_test` 和 `self_test` 只是这一个测试集的两个来源子集，`combined_test` 指两者合计 641 张。详见[数据集说明](DetectDataset_clean_v2/README.md)。
 
 ## 2. 目录结构
 
@@ -207,5 +209,5 @@ PYTHONPATH="$PWD" /home/b520/anaconda3/envs/YHP/bin/yolo detect train \
 - 作者现存权重的 val/test 复核已完成；与之分开的受控实验也已完成五组模型各三种子的 200 轮训练、同口径测试及同机测速。后者见[受控实验结果索引](reproduction/results/clean_v2_200_3seed/RESULTS.md)。
 - 最终 MEDA 在独立 test 上的 mAP50:95 为 63.68%，指定 YOLO11n 基线为 61.75%，提升 1.92 个百分点。
 - 论文报告的 4.59 个百分点提升不能由这两个最终 `best.pt` 在独立 test 上复现。
-- 重建数据集的公开测试划分已用于多轮研究分析，不应再称为从未接触的终稿测试集。新的外部来源测试协议在 `external_benchmarks/uav_eagle/PROTOCOL.md`；结果尚未生成。
+- 重建数据集中的原始来源测试子集（代码名 `public_test`）已用于多轮研究分析，不应再称为从未接触的终稿测试集。[UAV-Eagle 外部来源零样本结果](reproduction/results/uav_eagle_external_200_3seed/RESULTS.md)已生成：五组架构各三种子、仅使用验证选出的权重；该外部集全为有目标图，不能验证无目标场景的误报率或跨机型普适性。
 - `reproduction/` 中的历史测试排名只用于审计，不能再反馈为模型选择依据。

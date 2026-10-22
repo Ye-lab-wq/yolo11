@@ -1,0 +1,60 @@
+{
+  "source_archive": "/home/b520/Downloads/yelin/yolo11/external_benchmarks/uav_eagle/UAV-Eagle.zip",
+  "source_archive_sha256": "26dbf6c08a32e7609fb2114695cecd3343dec367d2017dc2c9f1e7b137e0fd56",
+  "images": 510,
+  "labels": 510,
+  "instances": 617,
+  "target_negative_frames": 0,
+  "class_id_counts": {
+    "0": 617
+  },
+  "internal_images_compared": 4213,
+  "decoded_rgb_overlap_with_internal": [],
+  "unique_external_decoded_images": 504,
+  "external_duplicate_image_groups": [
+    [
+      "images/frame0015.jpg",
+      "images/frame0016.jpg"
+    ],
+    [
+      "images/frame0215.jpg",
+      "images/frame0216.jpg"
+    ],
+    [
+      "images/frame0369.jpg",
+      "images/frame0370.jpg"
+    ],
+    [
+      "images/frame0546.jpg",
+      "images/frame0547.jpg"
+    ],
+    [
+      "images/frame0549.jpg",
+      "images/frame0550.jpg"
+    ],
+    [
+      "images/frame0555.jpg",
+      "images/frame0556.jpg"
+    ]
+  ],
+  "external_duplicate_label_disagreement": [
+    [
+      "images/frame0015.jpg",
+      "images/frame0016.jpg"
+    ],
+    [
+      "images/frame0215.jpg",
+      "images/frame0216.jpg"
+    ],
+    [
+      "images/frame0546.jpg",
+      "images/frame0547.jpg"
+    ],
+    [
+      "images/frame0549.jpg",
+      "images/frame0550.jpg"
+    ]
+  ],
+  "label_semantics": "YOLO class 0; preserved as supplied",
+  "source_scope": "single UAV-Eagle source; not independent aircraft/video generalization"
+}

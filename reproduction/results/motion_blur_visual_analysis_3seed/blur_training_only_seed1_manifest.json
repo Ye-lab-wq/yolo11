@@ -1,0 +1,41 @@
+{
+  "manual_image_selection": false,
+  "comparison": "seed-1 P2 standard training versus same-architecture P2 blur training",
+  "rule": "single-target images with GT equivalent side 16–150 native pixels; clean/light require TP50 loss, moderate/strong require TP50 gain; rank by signed TP75 and mean-best-IoU difference, then filename; distinct image stems",
+  "display_confidence": 0.25,
+  "nms_iou": 0.7,
+  "examples": [
+    {
+      "condition": "clean",
+      "stem": "video1375__a2a17c833ac6fe18",
+      "standard_tp50": 1,
+      "blur_trained_tp50": 0,
+      "standard_mean_best_iou": 0.8155098740967928,
+      "blur_trained_mean_best_iou": 0.0
+    },
+    {
+      "condition": "light",
+      "stem": "video1375__e06aac4a9f0b92be",
+      "standard_tp50": 1,
+      "blur_trained_tp50": 0,
+      "standard_mean_best_iou": 0.8189627753701599,
+      "blur_trained_mean_best_iou": 0.0
+    },
+    {
+      "condition": "moderate",
+      "stem": "video19_1872__752e24d6469e7ab0",
+      "standard_tp50": 0,
+      "blur_trained_tp50": 1,
+      "standard_mean_best_iou": 0.0,
+      "blur_trained_mean_best_iou": 0.8678334773441683
+    },
+    {
+      "condition": "strong",
+      "stem": "video18_2525__781b6251a5eb99a8",
+      "standard_tp50": 0,
+      "blur_trained_tp50": 1,
+      "standard_mean_best_iou": 0.0,
+      "blur_trained_mean_best_iou": 0.8913259898339668
+    }
+  ]
+}

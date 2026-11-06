@@ -1,0 +1,186 @@
+{
+  "source": "200-epoch validation-selected seed-1 best.pt predictions",
+  "split": "DetectDataset_clean_v2/test (original-source part of the 641-image full test)",
+  "full_test_images": 641,
+  "full_test_instances": 701,
+  "prediction_cache": "reproduction/results/p2_msef_adown_visual_evidence_seed1/raw_predictions.json",
+  "prediction_cache_sha256": "7725caf1291b056dd6b8c5d11dc9b24eadabbeab5d8e267f586ba4c7faa92339",
+  "source_checkpoint_records": {
+    "YOLO11n": {
+      "path": "runs/final_baseline_yolo11n_200/train_seed1/weights/best.pt",
+      "sha256": "6b73eb2fae3b1f98d753af3500aa152ab9739ae868bef3314d808ee7c24ddd63"
+    },
+    "+P2": {
+      "path": "runs/ablation_200_v1/p2/train_seed1/weights/best.pt",
+      "sha256": "aec08d074a5c917c568513f3c2e27898773473228e35b51b7002035063c05107"
+    },
+    "+P2+ADown": {
+      "path": "runs/ablation_200_v1/p2_adown/train_seed1/weights/best.pt",
+      "sha256": "8fde6855a88548e24c59d13597c2a7c88361307194385f2b8e4c06be64a39849"
+    }
+  },
+  "display_confidence": 0.25,
+  "screening_counts": {
+    "source_images": 625,
+    "targets": 685,
+    "small_localization_gains": 6,
+    "comparable_size_regressions": 1
+  },
+  "selection": {
+    "type": "exploratory, post-hoc qualitative illustration",
+    "positive_rule": "16\u201332 px equivalent side; baseline IoU in [0.50,0.75); P2+ADown IoU>=0.75, confidence>=0.40",
+    "negative_rule": "baseline IoU>=0.75; P2+ADown IoU<0.50; comparable target size",
+    "visual_exclusions": "avoided visible stock watermarks; used different video/source IDs for the two gains",
+    "not_claimed": "representative random sample, independent test evidence, module mechanism proof"
+  },
+  "images": [
+    {
+      "panel": "a",
+      "role": "Small target / tighter box",
+      "path": "DetectDataset_clean_v2/test/images/video14_116__9262a227b8483f48.jpg",
+      "sha256": "9262a227b8483f48f66c05d8241290262c96477ff548d8d4839292cad1eeba6d",
+      "gt_xyxy": [
+        242.5,
+        207.25,
+        264.5,
+        233.75
+      ],
+      "equivalent_side_px": 24.145392935299274,
+      "crop_xyxy": [
+        190,
+        156,
+        318,
+        284
+      ],
+      "models": {
+        "YOLO11n": {
+          "best_iou_at_conf025": 0.6244971173284172,
+          "best_confidence": 0.599822,
+          "best_box_xyxy": [
+            240.647156,
+            202.335999,
+            268.016327,
+            236.445587
+          ]
+        },
+        "+P2": {
+          "best_iou_at_conf025": 0.6963539495885397,
+          "best_confidence": 0.684897,
+          "best_box_xyxy": [
+            240.824127,
+            204.021713,
+            267.211609,
+            235.749557
+          ]
+        },
+        "+P2+ADown": {
+          "best_iou_at_conf025": 0.784717379436912,
+          "best_confidence": 0.620377,
+          "best_box_xyxy": [
+            241.754028,
+            205.121475,
+            266.869568,
+            234.702469
+          ]
+        }
+      }
+    },
+    {
+      "panel": "b",
+      "role": "Small target / tighter box",
+      "path": "DetectDataset_clean_v2/test/images/video17_146__e86d0aaa615e4daf.jpg",
+      "sha256": "e86d0aaa615e4dafb587bd350b2c2c439a3533da6818a94cfe46125c253161d9",
+      "gt_xyxy": [
+        319.5,
+        123.75,
+        343.5,
+        159.25
+      ],
+      "equivalent_side_px": 29.189039038652847,
+      "crop_xyxy": [
+        268,
+        78,
+        396,
+        206
+      ],
+      "models": {
+        "YOLO11n": {
+          "best_iou_at_conf025": 0.6095989800848237,
+          "best_confidence": 0.687493,
+          "best_box_xyxy": [
+            316.909424,
+            119.570686,
+            348.119263,
+            164.352722
+          ]
+        },
+        "+P2": {
+          "best_iou_at_conf025": 0.6115612906183643,
+          "best_confidence": 0.574035,
+          "best_box_xyxy": [
+            316.545715,
+            120.370384,
+            348.033142,
+            164.615204
+          ]
+        },
+        "+P2+ADown": {
+          "best_iou_at_conf025": 0.7769222970993964,
+          "best_confidence": 0.566098,
+          "best_box_xyxy": [
+            319.834106,
+            122.033524,
+            346.594971,
+            161.998886
+          ]
+        }
+      }
+    },
+    {
+      "panel": "c",
+      "role": "Boundary case / missed target",
+      "path": "DetectDataset_clean_v2/test/images/video16_453__c10eeab514799863.jpg",
+      "sha256": "c10eeab514799863927570b42f335ca1f7dd1676de0f7c4ad9b9cde4c650165e",
+      "gt_xyxy": [
+        280.25,
+        245.5,
+        351.75000000000006,
+        299.5
+      ],
+      "equivalent_side_px": 62.136945531623965,
+      "crop_xyxy": [
+        228,
+        184,
+        404,
+        360
+      ],
+      "models": {
+        "YOLO11n": {
+          "best_iou_at_conf025": 0.7836618164670723,
+          "best_confidence": 0.666928,
+          "best_box_xyxy": [
+            285.932678,
+            240.940582,
+            349.924011,
+            296.356293
+          ]
+        },
+        "+P2": {
+          "best_iou_at_conf025": 0.77740285038123,
+          "best_confidence": 0.54501,
+          "best_box_xyxy": [
+            285.269409,
+            236.916473,
+            349.063599,
+            299.223419
+          ]
+        },
+        "+P2+ADown": {
+          "best_iou_at_conf025": 0.0,
+          "best_confidence": 0.0,
+          "best_box_xyxy": null
+        }
+      }
+    }
+  ]
+}

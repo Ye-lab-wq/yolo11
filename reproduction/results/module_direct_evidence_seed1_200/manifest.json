@@ -1,0 +1,130 @@
+{
+  "source": "200-epoch, seed-1, validation-selected best.pt predictions",
+  "full_test": "DetectDataset_clean_v2/test; 641 images, 701 targets",
+  "display_confidence": 0.25,
+  "one_to_one_transition_ious": [
+    0.5,
+    0.75
+  ],
+  "cache_sha256": "7725caf1291b056dd6b8c5d11dc9b24eadabbeab5d8e267f586ba4c7faa92339",
+  "selection": "exploratory and post-hoc; one direct-parent rescue, one localization gain, one regression",
+  "images": [
+    {
+      "role": "P2: small-target score rescue",
+      "path": "DetectDataset_clean_v2/test/images/video18_1628__8c8cb8266b2195d7.jpg",
+      "sha256": "8c8cb8266b2195d742f144eddf17077b0657c8b3cc54059d746fb0d9c4b7e1b5",
+      "target_index": 0,
+      "all_gt_xyxy": [
+        [
+          312.25,
+          186.50000000000003,
+          329.75,
+          210.5
+        ],
+        [
+          420.25,
+          288.0,
+          447.75,
+          318.0
+        ]
+      ],
+      "crop_xyxy": [
+        257,
+        134,
+        385,
+        262
+      ],
+      "side_px": 20.493901531919185,
+      "parent": "YOLO11n",
+      "child": "+P2",
+      "models": {
+        "YOLO11n": {
+          "best_iou": 0.0,
+          "best_conf": 0.552513,
+          "raw_iou": 0.7786374749216145,
+          "raw_conf": 0.078599
+        },
+        "+P2": {
+          "best_iou": 0.7470612810652056,
+          "best_conf": 0.386507,
+          "raw_iou": 0.7470612810652056,
+          "raw_conf": 0.386507
+        }
+      }
+    },
+    {
+      "role": "ADown: tighter small-target box",
+      "path": "DetectDataset_clean_v2/test/images/video17_146__e86d0aaa615e4daf.jpg",
+      "sha256": "e86d0aaa615e4dafb587bd350b2c2c439a3533da6818a94cfe46125c253161d9",
+      "target_index": 0,
+      "all_gt_xyxy": [
+        [
+          319.5,
+          123.75,
+          343.5,
+          159.25
+        ]
+      ],
+      "crop_xyxy": [
+        268,
+        78,
+        396,
+        206
+      ],
+      "side_px": 29.189039038652847,
+      "parent": "+P2",
+      "child": "+P2+ADown",
+      "models": {
+        "+P2": {
+          "best_iou": 0.6115612906183643,
+          "best_conf": 0.574035,
+          "raw_iou": 0.8435376637061395,
+          "raw_conf": 0.097096
+        },
+        "+P2+ADown": {
+          "best_iou": 0.7769222970993964,
+          "best_conf": 0.566098,
+          "raw_iou": 0.7769222970993964,
+          "raw_conf": 0.566098
+        }
+      }
+    },
+    {
+      "role": "ADown: confidence-collapse counterexample",
+      "path": "DetectDataset_clean_v2/test/images/video16_453__c10eeab514799863.jpg",
+      "sha256": "c10eeab514799863927570b42f335ca1f7dd1676de0f7c4ad9b9cde4c650165e",
+      "target_index": 0,
+      "all_gt_xyxy": [
+        [
+          280.25,
+          245.5,
+          351.75000000000006,
+          299.5
+        ]
+      ],
+      "crop_xyxy": [
+        228,
+        184,
+        404,
+        360
+      ],
+      "side_px": 62.136945531623965,
+      "parent": "+P2",
+      "child": "+P2+ADown",
+      "models": {
+        "+P2": {
+          "best_iou": 0.77740285038123,
+          "best_conf": 0.54501,
+          "raw_iou": 0.77740285038123,
+          "raw_conf": 0.54501
+        },
+        "+P2+ADown": {
+          "best_iou": 0.0,
+          "best_conf": 0.0,
+          "raw_iou": 0.8315835374291811,
+          "raw_conf": 0.013288
+        }
+      }
+    }
+  ]
+}

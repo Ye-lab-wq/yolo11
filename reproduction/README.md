@@ -18,6 +18,8 @@
 - `results/clean_v2_200_3seed/RESULTS.md`：五组结构各三种子的 200 轮原始来源测试子集（代码名 `public_test`）与同机测速汇总；它与自采测试子集同属一个重建数据集。
 - `results/uav_eagle_external_200_3seed/RESULTS.md`：同 15 个冻结权重在独立 UAV-Eagle 来源上的零样本测试与数据局限性；原始下载和审计协议在 `external_benchmarks/uav_eagle/`。
 - `results/p2_msef_adown_visual_evidence_seed1/`：P2、MSEF、ADown 的逐模块可视化图和源数据。
+- `results/sci_qualitative_seed1_200/REVIEW_NOTES.md`：重新排版的 200 轮 seed1 基线／P2／P2+ADown 定性图、图注、逐例溯源和审稿视角的主张边界；重建脚本为 `ablation/build_sci_qualitative_seed1_200.py`。
+- `results/module_direct_evidence_seed1_200/JOURNAL_STYLE_NOTES.md`：当前推荐的 P2/ADown 期刊式定性图与同领域图版参考；`REVIEW_NOTES.md`、`direct_parent_examples.*` 保留失败案例及完整测试集目标匹配转换核查。绘图脚本位于 `ablation/`。
 - `results/motion_blur_training_3seed/` 与 `results/motion_blur_visual_analysis_3seed/`：三种子动态模糊结果及清晰/模糊场景可视化。
 - `results/msef_redesign_60_s12/RESULTS.md`：MSEF 三步改版与 P2、旧 MSEFPaper 的 60 轮三种子配对复核。
 - `results/msef_redesign_seed1_200_v1/RESULTS.md`：同五个结构的 seed 1 / 200 轮探索性完整测试，含两套评估器、验证选模记录和结论边界。
